@@ -1,0 +1,11 @@
+* {
+	box-sizing: border-box;
+}
+
+.testDiv {
+	width: 200px;
+	height: 200px;
+	border: 20px solid black;
+	border-radius: 10px;
+	background-color: green;
+}
