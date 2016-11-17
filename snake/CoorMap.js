@@ -26,12 +26,9 @@ CoorMap.prototype = {
 			this.map.set({"x":x , "y":y}, value);
 		}
 	},
-	map: function() {
+	getMap: function() {
 		return this.map;
 	}
 }
-
-CoorMap.prototype.size = Map
-
 
 module.exports = CoorMap;
