@@ -6,10 +6,14 @@ var Snake = function(box, drawer){
 	this.config = box.getConfig();
 	this.dataSource = box.getDataSource();
 	this.domSource = box.getDomSource();
+
 	this.direction = null; // left, right, up, down
+	this.directionLock = false;
 
 	this.head = null;
 	this.tail = null;
+
+	this.handler = null;
 }
 
 Snake.prototype = {
@@ -41,19 +45,30 @@ Snake.prototype = {
 
 		this.drawer.notify();
 
+		this.startSnake();
+
+	},
+
+	startSnake: function(){
 		var _this = this;
-		var handler = setInterval(function(){
+		this.handler = setInterval(function(){
 			_this.move();
-		}, 50);
+		}, 300);
 	},
 
 	move: function(){
-		if(this.checkHit() === true){
-
+		var next = this._getNextPoint();
+		if(this.checkHit(next) === true){
+			clearInterval(this.handler);
+			var restartFlg = confirm("game over ! restart ?");
+			if(restartFlg === true){
+				window.location.reload();
+			} else {
+				// nothing todo
+			}
 		} else {
 			// head move
 			var eatFlg = false;
-			var next = this._getNextPoint();
 			if(this.dataSource.get(next.x, next.y).value == 2){
 				// eat!
 				eatFlg = true;
@@ -73,12 +88,22 @@ Snake.prototype = {
 				this.dataSource.set(tailX, tailY, {value:0, leader: null});
 			}
 
+			this.directionLock = false;
+
 			// draw
 			this.drawer.notify();
 		}
 	},
 
-	checkHit: function(){
+	checkHit: function(point){
+		var cell = this.dataSource.get(point.x, point.y);
+		console.log(cell);
+		if(!cell){
+			return true;
+		}
+		if(cell.value == 1){
+			return true;
+		}
 		return false;
 	},
 

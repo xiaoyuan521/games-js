@@ -31,8 +31,9 @@ $(function(){
 					break;
 			}
 
-			if(direction != null){
+			if(direction != null && snake.directionLock == false){
 				snake.setDirection(direction);
+				snake.directionLock = true;
 			}
 		})
 	}
