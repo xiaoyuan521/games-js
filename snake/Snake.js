@@ -53,7 +53,7 @@ Snake.prototype = {
 		var _this = this;
 		this.handler = setInterval(function(){
 			_this.move();
-		}, 300);
+		}, 100);
 	},
 
 	move: function(){
