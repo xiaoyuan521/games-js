@@ -7,17 +7,21 @@
  * 后台服务器使用 nodejs + koajs
 
 * npm 全局安装包
-npm install -g jasmine
-npm install -g browserify
-npm install -g watchify
-npm install -g nodemon
+
+ * npm install -g jasmine
+ * npm install -g browserify
+ * npm install -g watchify
+ * npm install -g nodemon
 
 * 启动
 
  * 编译js
- watchify snake/*.js -o snake/build/bundle.js --debug
+
+  watchify snake/*.js -o snake/build/bundle.js --debug
+
  * 启动后台
- nodemon server.js
+
+  nodemon server.js
 
 
 * unit test的执行
