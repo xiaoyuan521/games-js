@@ -27,3 +27,9 @@
 * unit test的执行
 
  jasmine
+
+* 游戏运行
+
+ * snake
+
+  http://localhost:3000/snake/index.html
