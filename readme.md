@@ -13,7 +13,7 @@
  * npm install -g watchify
  * npm install -g nodemon
 
-* 启动
+* snake
 
  * 编译js
 
@@ -21,15 +21,31 @@
 
  * 启动后台
 
-  nodemon server.js
+  nodemon server_snake.js
 
 
-* unit test的执行
+ * unit test的执行
 
- jasmine
+  jasmine
 
-* 游戏运行
-
- * snake
+ * 游戏运行
 
   http://localhost:3000/snake/index.html
+
+* rpg
+
+ * 编译js
+
+  watchify rpg/frontend/*.js -o rpg/build/bundle.js --debug
+
+ * 启动后台
+
+  nodemon rpg/server.js
+
+ * unit test的执行
+
+  jasmine
+
+ * 游戏运行
+
+  http://localhost:3000/rpg/index.html

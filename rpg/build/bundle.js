@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module 'config.js' from 'c:\\gitWorkspace\\games-js\\rpg\\frontend'");
