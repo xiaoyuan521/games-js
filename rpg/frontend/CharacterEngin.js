@@ -26,18 +26,7 @@ CharacterEngin.prototype = {
 	startTimer: function(){
 		var _this = this;
 		setInterval(function(){
-
 			_this.walk();
-
-			
-			if(_this.walkFlg == 2){
-				_this.walkFlg = 0;
-			}
-
-			if(_this.walkFlg == 0){
-				_this.nextDirection = null;
-			}
-
 		}, 200);
 	},
 
@@ -84,8 +73,21 @@ CharacterEngin.prototype = {
 
 	},
 
+	walk: function(){
+		this.walkOneStep();
+
+		
+		if(this.walkFlg == 2){
+			this.walkFlg = 0;
+		}
+
+		if(this.walkFlg == 0){
+			this.nextDirection = null;
+		}
+	},
+
 	// 人物移动
-	walk: function() {
+	walkOneStep: function() {
 
 		var $characterDom = $(".currentCharacter");
 		if($characterDom.length == 0) {
@@ -94,7 +96,7 @@ CharacterEngin.prototype = {
 		if(this.nextDirection == null){
 			return;
 		}
-		
+
 		this.walkFlg ++;
 
 		var nextMove = this._getNextMove();
