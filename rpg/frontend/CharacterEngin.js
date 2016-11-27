@@ -6,6 +6,8 @@ function CharacterEngin() {
 
 	this.currentMove = "01"; // x = 0; y = 1
 
+	this.walkFlg = 0; // 每次走动2步，移动一个地图格
+
 	this.characterData = null;
 
 }
@@ -14,18 +16,29 @@ CharacterEngin.prototype = {
 	constructor: CharacterEngin,
 
 	init: function(){
-		this.startTimer();
 		this.bindEvent();
 		this.loadCharacter("girl");
+		this.startTimer();
 
 	},
 
-	// 定时检测任务走动
+	// 定时检测人物走动
 	startTimer: function(){
 		var _this = this;
 		setInterval(function(){
+
 			_this.walk();
-		},200);
+
+			
+			if(_this.walkFlg == 2){
+				_this.walkFlg = 0;
+			}
+
+			if(_this.walkFlg == 0){
+				_this.nextDirection = null;
+			}
+
+		}, 200);
 	},
 
 	// 人物走动的键盘事件
@@ -75,16 +88,17 @@ CharacterEngin.prototype = {
 	walk: function() {
 
 		var $characterDom = $(".currentCharacter");
-		if($characterDom.length == 0){
+		if($characterDom.length == 0) {
 			return;
 		}
 		if(this.nextDirection == null){
 			return;
 		}
+		
+		this.walkFlg ++;
 
 		var nextMove = this._getNextMove();
 		var nextPositions = this._getPositionXY(this.characterData.size, nextMove);
-		console.log(nextMove, nextPositions);
 
 		var $characterDom = $(".currentCharacter");
 		$characterDom.css({
@@ -94,7 +108,6 @@ CharacterEngin.prototype = {
 		
 		this.currentMove = nextMove;
 		this.currentDirection = this.nextDirection;
-		this.nextDirection = null;
 	},
 
 	// 计算人物的css偏移量
@@ -114,7 +127,10 @@ CharacterEngin.prototype = {
 		var currentDirection = this.currentDirection;
 		var nextDirection = this.nextDirection;
 		var returnMove = null;
+
 		if(currentDirection == nextDirection){
+			// 向同一个方向行走
+
 			var moveInt = parseInt(currentMove[0], 10);
 			moveInt++;
 			if(moveInt > 3){
@@ -122,6 +138,9 @@ CharacterEngin.prototype = {
 			}
 			returnMove = moveInt + currentMove[1];
 		} else {
+			// 改变行走方向
+
+			this.walkFlg=0;
 			switch(nextDirection){
 				case "left":
 					returnMove = "03";
