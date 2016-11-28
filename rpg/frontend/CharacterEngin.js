@@ -90,7 +90,8 @@ CharacterEngin.prototype = {
 			"height": characterSize + "px",
 			"background-image": "url('" + imgPath + "')",
 			"background-position-x": positions.x + "px",
-			"background-position-y": positions.y + "px"
+			"background-position-y": positions.y + "px",
+			"transition": "top .4s linear,left .4s linear" // 移动的动画效果
 		});
 
 		// 将人物放到地图中
@@ -115,18 +116,18 @@ CharacterEngin.prototype = {
 
 		var canWalkFlg = true;
 		var nextMapXy = null;
-		if(this.walkFlg == 1){
-			// 已经走了一步，继续走
-			canWalkFlg = true;
-		} else if(this.walkFlg == 0){
-			// 走完了一个格子（2步），判断下一个位置是否能走
+		if(this.walkFlg == 0){
+			// 走第一步，判断下一个位置是否能走
 			nextMapXy = this._getNextMapXy(this.nextDirection);
 			canWalkFlg = this._canWalk(nextMapXy);
-			if(canWalkFlg === true){
+			if(canWalkFlg === true) {
 				this.x = nextMapXy.x;
 				this.y = nextMapXy.y;
 				this._moveCharacter(this.x, this.y);
 			}
+		} else if(this.walkFlg == 1){
+			// 走第二步
+			canWalkFlg = true;
 		}
 
 		if(canWalkFlg === true){
@@ -155,8 +156,7 @@ CharacterEngin.prototype = {
 		var $characterDom = $(".currentCharacter");
 		$characterDom.css({
 			"background-position-x": nextPositions.x + "px",
-			"background-position-y": nextPositions.y + "px",
-			"transition": "top .4s linear,left .4s linear"
+			"background-position-y": nextPositions.y + "px"
 		});
 		
 		this.currentMove = nextMove;
