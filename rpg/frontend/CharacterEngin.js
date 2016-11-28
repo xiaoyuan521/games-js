@@ -66,7 +66,30 @@ CharacterEngin.prototype = {
 					_this.nextDirection = "down";
 					break;
 				default:
-					break
+					break;
+			}
+
+			if(_this.nextDirection != _this.currentDirection){
+				_this.currentDirection = _this.nextDirection;
+
+				// 改变行走方向
+				_this.walkFlg=0;
+				switch(_this.nextDirection){
+					case "left":
+						_this.currentMove = "03";
+						break;
+					case "right":
+						_this.currentMove = "01";
+						break;
+					case "up":
+						_this.currentMove = "02";
+						break;
+					case "down":
+						_this.currentMove = "00";
+						break;
+					default:
+						break;
+				}
 			}
 		});
 	},
@@ -242,34 +265,12 @@ CharacterEngin.prototype = {
 		var nextDirection = this.nextDirection;
 		var returnMove = null;
 
-		if(currentDirection == nextDirection){
-			// 向同一个方向行走
-
-			var moveInt = parseInt(currentMove[0], 10);
-			moveInt++;
-			if(moveInt > 3){
-				moveInt = 0;
-			}
-			returnMove = moveInt + currentMove[1];
-		} else {
-			// 改变行走方向
-
-			this.walkFlg=0;
-			switch(nextDirection){
-				case "left":
-					returnMove = "03";
-					break;
-				case "right":
-					returnMove = "01";
-					break;
-				case "up":
-					returnMove = "02";
-					break;
-				case "down":
-					returnMove = "00";
-					break;
-			}
+		var moveInt = parseInt(currentMove[0], 10);
+		moveInt++;
+		if(moveInt > 3){
+			moveInt = 0;
 		}
+		returnMove = moveInt + currentMove[1];
 		return returnMove;
 		
 	}
