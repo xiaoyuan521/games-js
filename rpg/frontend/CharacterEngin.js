@@ -1,23 +1,41 @@
 var characters = require("./characters.js");
+var maps = require("./maps");
 
-function CharacterEngin() {
+function CharacterEngin(config) {
+	this.config = config;
+	this.engin = null;
+	this.dataSource = null;
+	this.characterData = null;
+
 	this.currentDirection = "right";
 	this.nextDirection = null;
 
-	this.currentMove = "01"; // x = 0; y = 1
+	// 人物动作的css偏移用 x = 0; y = 1
+	this.currentMove = "01"; 
 
-	this.walkFlg = 0; // 每次走动2步，移动一个地图格
+	// 计步器，2个状态 0，1
+	this.walkFlg = 0;
 
-	this.characterData = null;
+	// 人物在地图中的位置
+	this.x = 0;
+	this.y = 0;
+
 
 }
 
 CharacterEngin.prototype = {
 	constructor: CharacterEngin,
 
-	init: function(){
+	init: function(engin){
+		this.engin = engin;
+		this.dataSource = engin.getDataSource();
+
 		this.bindEvent();
-		this.loadCharacter("girl");
+
+		var x = 3 * this.config.cellSize;
+		var y = 3 * this.config.cellSize;
+		this.loadCharacter("girl", x, y);
+
 		this.startTimer();
 
 	},
@@ -54,7 +72,11 @@ CharacterEngin.prototype = {
 	},
 
 	// 加载人物图片，初始化姿势
-	loadCharacter: function(name){
+	loadCharacter: function(name, x, y){
+
+		this.x = x;
+		this.y = y;
+
 		var characterData = this.characterData = characters[name];
 		var characterSize = characterData.size;
 		var imgPath = "images/" + characterData.imgName;
@@ -71,23 +93,17 @@ CharacterEngin.prototype = {
 			"background-position-y": positions.y + "px"
 		});
 
-	},
+		// 将人物放到地图中
+		$characterDom.css({
+			"position": "absolute",
+			"left": x + "px",
+			"top": y + "px"
+		});
 
-	walk: function(){
-		this.walkOneStep();
-
-		
-		if(this.walkFlg == 2){
-			this.walkFlg = 0;
-		}
-
-		if(this.walkFlg == 0){
-			this.nextDirection = null;
-		}
 	},
 
 	// 人物移动
-	walkOneStep: function() {
+	walk: function(){
 
 		var $characterDom = $(".currentCharacter");
 		if($characterDom.length == 0) {
@@ -97,7 +113,41 @@ CharacterEngin.prototype = {
 			return;
 		}
 
-		this.walkFlg ++;
+		var canWalkFlg = true;
+		var nextMapXy = null;
+		if(this.walkFlg == 1){
+			// 已经走了一步，继续走
+			canWalkFlg = true;
+		} else if(this.walkFlg == 0){
+			// 走完了一个格子（2步），判断下一个位置是否能走
+			nextMapXy = this._getNextMapXy(this.nextDirection);
+			canWalkFlg = this._canWalk(nextMapXy);
+			if(canWalkFlg === true){
+				this.x = nextMapXy.x;
+				this.y = nextMapXy.y;
+				this._moveCharacter(this.x, this.y);
+			}
+		}
+
+		if(canWalkFlg === true){
+			this._walk();
+		}
+
+		// 每走2步，计步器归0
+		if(this.walkFlg == 2){
+			this.walkFlg = 0;
+		}
+
+		// 走完后，将nextDirection设定为null，停止行走
+		if(this.walkFlg == 0){
+			this.nextDirection = null;
+		}
+	},
+
+	// 人物移动
+	_walk: function() {
+
+		this.walkFlg++;
 
 		var nextMove = this._getNextMove();
 		var nextPositions = this._getPositionXY(this.characterData.size, nextMove);
@@ -105,11 +155,73 @@ CharacterEngin.prototype = {
 		var $characterDom = $(".currentCharacter");
 		$characterDom.css({
 			"background-position-x": nextPositions.x + "px",
-			"background-position-y": nextPositions.y + "px"
+			"background-position-y": nextPositions.y + "px",
+			"transition": "top .4s linear,left .4s linear"
 		});
 		
 		this.currentMove = nextMove;
 		this.currentDirection = this.nextDirection;
+
+	},
+
+	_moveCharacter: function(x, y){
+		var $characterDom = $(".currentCharacter");
+		$characterDom.css({
+			"left": x + "px",
+			"top": y + "px"
+		});
+	},
+
+	// 地图中，下一个点是否为可以移动点
+	_canWalk: function(nextMapXy){
+
+		if(this.nextDirection == null){
+			return false;
+		}
+
+		// 超出地图
+		if(nextMapXy.x < 0 || nextMapXy.y < 0){
+			return false;
+		}
+
+		// 不能行走的地图
+		var mapCellName = this.dataSource.get(nextMapXy.x, nextMapXy.y).bg;
+		if(maps["mapMapping"][mapCellName]["canWalk"] === false){
+			return false;
+		}
+
+		return true;
+	},
+
+	// 根据行走方向取得，下一个地图的x，y坐标
+	_getNextMapXy: function(direction){
+		var cellSize = this.config.cellSize;
+		var x = 0;
+		var y = 0;
+		switch(direction){
+			case "left":
+				x = this.x - cellSize;
+				y = this.y;
+				break;
+			case "right":
+				x = this.x + cellSize;
+				y = this.y;
+				break;
+			case "up":
+				x = this.x;
+				y = this.y - cellSize;
+				break;
+			case "down":
+				x = this.x;
+				y = this.y + cellSize;
+				break;
+			default:
+				break;
+		}
+		return {
+			x:x,
+			y:y
+		}
 	},
 
 	// 计算人物的css偏移量

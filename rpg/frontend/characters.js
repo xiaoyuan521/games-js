@@ -2,7 +2,7 @@ var characters = {}
 
 characters["girl"] = {
 	imgName: "c_girl.png",
-	size: 120
+	size: 45
 
 }
 

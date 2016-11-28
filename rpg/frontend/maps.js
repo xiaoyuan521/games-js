@@ -1,11 +1,26 @@
 var maps = {}
 
 maps["mapMapping"] = {
-	"tr": "tree.png",
-	"se": "sea.png",
-	"be": "beach.png",
-	"la": "land.png",
-	"br": "bridge.png"
+	"tr": {
+		name: "tree.png",
+		canWalk: false
+	},
+	"se": {
+		name: "sea.png",
+		canWalk: false
+	},
+	"be": {
+		name: "beach.png",
+		canWalk: true
+	},
+	"la": {
+		name: "land.png",
+		canWalk: true
+	},
+	"br": {
+		name: "bridge.png",
+		canWalk: true
+	}
 }
 
 maps["01"] =

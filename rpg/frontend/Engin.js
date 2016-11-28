@@ -1,27 +1,31 @@
 var MapEngin = require("./MapEngin");
 var CharacterEngin = require("./CharacterEngin.js");
 
-function Engin(config){
+function Engin(config) {
 	this.config = config;
 	this.dataSource = null;
 	this.mapEngin = new MapEngin(config);
-	this.characterEngin = new CharacterEngin();
+	this.characterEngin = new CharacterEngin(config);
 }
 
 Engin.prototype = {
 	constructor: Engin,
 
-	init: function(){
+	init: function() {
 		this.mapEngin.init(this);
-		this.characterEngin.init();
+		this.characterEngin.init(this);
 	},
 
-	start: function(){
+	start: function() {
 
 	},
 
-	setDataSource: function(dataSource){
+	setDataSource: function(dataSource) {
 		this.dataSource = dataSource;
+	},
+
+	getDataSource: function(){
+		return this.dataSource;
 	}
 }
 

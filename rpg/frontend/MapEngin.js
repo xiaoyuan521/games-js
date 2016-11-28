@@ -19,7 +19,7 @@ MapEngin.prototype = {
 		var $loadDiv = $("<div class='display_none'></div>");
 		$loadDiv.appendTo($(document.body));
 		for(var key in mapMapping){
-			var imagePath = "images/" + mapMapping[key];
+			var imagePath = "images/" + mapMapping[key].name;
 			$('<img/>').attr("src", imagePath).appendTo($loadDiv);
 		}
 
@@ -43,7 +43,8 @@ MapEngin.prototype = {
 			height: height + "px"
 		});
 
-		// init dataSource and dom
+		// 根据地图做数据成dataSource，并设定到engin对象中
+		// 根据地图数据画出地图
 		var value = null;
 		var row = null;
 		var x,y;
@@ -51,15 +52,16 @@ MapEngin.prototype = {
 		for(var j=0;j<mapData.length;j++){
 			row = mapData[j];
 			for(var i=0;i<row.length;i++){
-				value = this.mapMapping[row[i]];
+				value = this.mapMapping[row[i]].name;
 				x = i * cellSize;
 				y = j * cellSize;
 
 				// datasource
-				dataSource.set(x,y, {bg: value});
+				dataSource.set(x,y, {bg: row[i]});
 
 				// images
-				var $img = $('<img alt="" />').attr("src", "images/" + value);
+				// var $img = $('<img alt="" />').attr("src", "images/" + value);
+				var $img = $('<div></div>').text(value.substring(0,2));
 				$img.css({
 					width: cellSize + "px",
 					height: cellSize + "px",
