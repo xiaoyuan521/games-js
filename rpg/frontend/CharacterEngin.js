@@ -1,57 +1,57 @@
-var characters = require("./characters.js");
 var maps = require("./maps");
+var Character = require("./Character.js");
+
+var moveTime = 600;
 
 function CharacterEngin(config) {
 	this.config = config;
 	this.engin = null;
 	this.dataSource = null;
-	this.characterData = null;
 
-	this.currentDirection = "right";
+	// 人物移动方向， null代表停止
 	this.nextDirection = null;
 
-	// 人物动作的css偏移用 x = 0; y = 1
-	this.currentMove = "01"; 
-
-	// 计步器，2个状态 0，1
-	this.walkFlg = 0;
+	this.currentCharacter = null;
 
 	// 人物在地图中的位置
 	this.x = 0;
 	this.y = 0;
 
-
+	this.isWalking = false;
 }
 
 CharacterEngin.prototype = {
 	constructor: CharacterEngin,
 
-	init: function(engin){
+	init: function(engin) {
 		this.engin = engin;
 		this.dataSource = engin.getDataSource();
 
+		// 绑定键盘事件
 		this.bindEvent();
 
-		var x = 3 * this.config.cellSize;
-		var y = 3 * this.config.cellSize;
-		this.loadCharacter("girl", x, y);
+		// 初始化人物
+		var currentCharacter = this.currentCharacter = new Character(engin, "girl");
+		// 人物放到地图空位置上
+		var x = this.x = 3 * this.config.cellSize;
+		var y = this.y = 3 * this.config.cellSize;
+		$(".currentCharacter").css({
+			left: x + "px",
+			top: y + "px"
+		});
 
 		this.startTimer();
-
-	},
-
-	// 定时检测人物走动
-	startTimer: function(){
-		var _this = this;
-		setInterval(function(){
-			_this.walk();
-		}, 200);
 	},
 
 	// 人物走动的键盘事件
-	bindEvent: function(){
+	bindEvent: function() {
 		var _this = this;
 		$(document.body).on("keydown.character.walk", function(e){
+
+			if(_this.isWalking === true){
+				return;
+			}
+
 			switch(e.keyCode){
 				case 37:
 					_this.nextDirection = "left";
@@ -69,130 +69,56 @@ CharacterEngin.prototype = {
 					break;
 			}
 
-			if(_this.nextDirection != _this.currentDirection){
-				_this.currentDirection = _this.nextDirection;
-
-				// 改变行走方向
-				_this.walkFlg=0;
-				switch(_this.nextDirection){
-					case "left":
-						_this.currentMove = "03";
-						break;
-					case "right":
-						_this.currentMove = "01";
-						break;
-					case "up":
-						_this.currentMove = "02";
-						break;
-					case "down":
-						_this.currentMove = "00";
-						break;
-					default:
-						break;
-				}
-			}
+			_this.currentCharacter.setDirection(this.nextDirection);
 		});
 	},
 
-	// 加载人物图片，初始化姿势
-	loadCharacter: function(name, x, y){
+	// 定时检测人物走动
+	startTimer: function() {
 
-		this.x = x;
-		this.y = y;
+		var _this = this;
+		setInterval(function() {
+			if(_this.isWalking === true) {
+				return;
+			}
 
-		var characterData = this.characterData = characters[name];
-		var characterSize = characterData.size;
-		var imgPath = "images/" + characterData.imgName;
+			if(_this.nextDirection == null) {
+				_this.currentCharacter.stop();
+				return;
+			}
 
-		var $characterDom = $('<div class="currentCharacter"></div>');
-		$characterDom.appendTo($(".main"));
-
-		var positions = this._getPositionXY(characterSize, this.currentMove);
-		$characterDom.css({
-			"width": characterSize + "px",
-			"height": characterSize + "px",
-			"background-image": "url('" + imgPath + "')",
-			"background-position-x": positions.x + "px",
-			"background-position-y": positions.y + "px",
-			"transition": "top .4s linear,left .4s linear" // 移动的动画效果
-		});
-
-		// 将人物放到地图中
-		$characterDom.css({
-			"position": "absolute",
-			"left": x + "px",
-			"top": y + "px"
-		});
-
+			_this.walk();
+		}, 10);
 	},
 
 	// 人物移动
 	walk: function(){
 
+		var _this = this;
 		var $characterDom = $(".currentCharacter");
 		if($characterDom.length == 0) {
 			return;
 		}
-		if(this.nextDirection == null){
-			return;
-		}
 
-		var canWalkFlg = true;
-		var nextMapXy = null;
-		if(this.walkFlg == 0){
-			// 走第一步，判断下一个位置是否能走
-			nextMapXy = this._getNextMapXy(this.nextDirection);
-			canWalkFlg = this._canWalk(nextMapXy);
-			if(canWalkFlg === true) {
-				this.x = nextMapXy.x;
-				this.y = nextMapXy.y;
-				this._moveCharacter(this.x, this.y);
-			}
-		} else if(this.walkFlg == 1){
-			// 走第二步
-			canWalkFlg = true;
-		}
+		var nextMapXy = this._getNextMapXy(this.nextDirection);
+		var canWalkFlg = this._canWalk(nextMapXy);
 
 		if(canWalkFlg === true){
-			this._walk();
-		}
-
-		// 每走2步，计步器归0
-		if(this.walkFlg == 2){
-			this.walkFlg = 0;
-		}
-
-		// 走完后，将nextDirection设定为null，停止行走
-		if(this.walkFlg == 0){
-			this.nextDirection = null;
+			this.isWalking = true;
+			this.currentCharacter.walk();
+			this._moveCharacter(nextMapXy.x, nextMapXy.y, function(){
+				_this.isWalking = false;
+				_this.nextDirection = null;
+			})
 		}
 	},
 
-	// 人物移动
-	_walk: function() {
-
-		this.walkFlg++;
-
-		var nextMove = this._getNextMove();
-		var nextPositions = this._getPositionXY(this.characterData.size, nextMove);
-
+	_moveCharacter: function(x, y, callbackFn){
 		var $characterDom = $(".currentCharacter");
-		$characterDom.css({
-			"background-position-x": nextPositions.x + "px",
-			"background-position-y": nextPositions.y + "px"
-		});
-		
-		this.currentMove = nextMove;
-		this.currentDirection = this.nextDirection;
-
-	},
-
-	_moveCharacter: function(x, y){
-		var $characterDom = $(".currentCharacter");
-		$characterDom.css({
+		$characterDom.animate({
 			"left": x + "px",
 			"top": y + "px"
-		});
+		}, moveTime, callbackFn);
 	},
 
 	// 地图中，下一个点是否为可以移动点
@@ -245,34 +171,6 @@ CharacterEngin.prototype = {
 			x:x,
 			y:y
 		}
-	},
-
-	// 计算人物的css偏移量
-	_getPositionXY: function(size, movePosition){
-		var x = size * parseInt(movePosition[0], 10) * -1;
-		var y = size * parseInt(movePosition[1], 10) * -1;
-		return {
-			x: x,
-			y: y
-		}
-	},
-
-	// 取得下一次移动的位置 
-	// "03", "33" ...
-	_getNextMove: function(){
-		var currentMove = this.currentMove;
-		var currentDirection = this.currentDirection;
-		var nextDirection = this.nextDirection;
-		var returnMove = null;
-
-		var moveInt = parseInt(currentMove[0], 10);
-		moveInt++;
-		if(moveInt > 3){
-			moveInt = 0;
-		}
-		returnMove = moveInt + currentMove[1];
-		return returnMove;
-		
 	}
 }
 
