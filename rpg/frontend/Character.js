@@ -1,13 +1,14 @@
 var characters = require("./characters.js");
 
 // 走一步的时间
-var walkTime = 150;
+var walkTime = 300;
 
 
 function Character(engin, CharacterName){
 	this.engin = engin;
 	this.characterData = null;
 	this.intervalHandler = null;
+	this.isWalking = false;
 
 	// 人物动作的css偏移用 x = 0; y = 1
 	this.currentMove = "01"; 
@@ -22,6 +23,21 @@ Character.prototype = {
 
 	init: function(CharacterName){
 		this.loadCharacter(CharacterName);
+		this.startTimer();
+	},
+
+	startTimer: function(){
+		var _this = this;
+		this.intervalHandler = setInterval(function(){
+
+			if(_this.isWalking === false){
+				return;
+			}
+
+			var nextMove = _this._getNextMove();
+			_this._setCssDeviation(nextMove);
+			_this.currentMove = nextMove;
+		}, this.walkTime);
 	},
 
 	// 加载人物图片，初始化姿势
@@ -41,8 +57,6 @@ Character.prototype = {
 		})
 
 		this._setCssDeviation(this.currentMove);
-
-
 	},
 
 	// 取得下一次移动的位置 
@@ -64,17 +78,12 @@ Character.prototype = {
 
 	// 开始走路
 	walk: function(){
-		var _this = this;
-		this.intervalHandler = setInterval(function(){
-			var nextMove = _this._getNextMove();
-			_this._setCssDeviation(nextMove);
-			_this.currentMove = nextMove;
-		}, this.walkTime);
+		this.isWalking = true;
 	},
 
 	// 停止走路
 	stop: function(){
-		clearInterval(this.intervalHandler);
+		this.isWalking = false;
 		var stopMove = "0" + this.currentMove[1];
 		this._setCssDeviation(stopMove);
 	},
@@ -83,11 +92,9 @@ Character.prototype = {
 	// 需要在walk方法调用前调用
 	// 也可以单独调用，用于，撞墙，撞人时候的转向
 	setDirection: function(direction){
-		this.direction = direction;
 
 		if(direction != this.currentDirection){
 			// 面向当前方向
-
 			switch(direction){
 				case "left":
 					this.currentMove = "03";
@@ -106,6 +113,7 @@ Character.prototype = {
 			}
 		}
 
+		this.currentDirection = direction;
 		this._setCssDeviation(this.currentMove);
 
 	},

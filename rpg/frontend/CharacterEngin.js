@@ -69,7 +69,7 @@ CharacterEngin.prototype = {
 					break;
 			}
 
-			_this.currentCharacter.setDirection(this.nextDirection);
+			_this.currentCharacter.setDirection(_this.nextDirection);
 		});
 	},
 
@@ -109,6 +109,8 @@ CharacterEngin.prototype = {
 			this._moveCharacter(nextMapXy.x, nextMapXy.y, function(){
 				_this.isWalking = false;
 				_this.nextDirection = null;
+				_this.x = nextMapXy.x;
+				_this.y = nextMapXy.y;
 			})
 		}
 	},
@@ -118,7 +120,7 @@ CharacterEngin.prototype = {
 		$characterDom.animate({
 			"left": x + "px",
 			"top": y + "px"
-		}, moveTime, callbackFn);
+		}, moveTime, "linear", callbackFn);
 	},
 
 	// 地图中，下一个点是否为可以移动点
