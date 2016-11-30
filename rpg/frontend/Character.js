@@ -1,7 +1,7 @@
 var characters = require("./characters.js");
 
 // 走一步的时间
-var walkTime = 300;
+var walkTime = 100;
 
 
 function Character(engin, CharacterName){
@@ -37,7 +37,7 @@ Character.prototype = {
 			var nextMove = _this._getNextMove();
 			_this._setCssDeviation(nextMove);
 			_this.currentMove = nextMove;
-		}, this.walkTime);
+		}, walkTime);
 	},
 
 	// 加载人物图片，初始化姿势
