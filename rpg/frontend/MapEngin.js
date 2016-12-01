@@ -32,7 +32,7 @@ MapEngin.prototype = {
 		$mapLayer.appendTo($(".main"));
 
 		// set map total height and width
-		var mapData = this.maps[mapKey];
+		var mapData = this.maps[mapKey].data;
 		var cellSize = this.config.cellSize;
 		var hLen = mapData.length;
 		var wLen = mapData[0].length;

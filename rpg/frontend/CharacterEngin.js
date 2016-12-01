@@ -1,7 +1,7 @@
 var maps = require("./maps");
 var Character = require("./Character.js");
 
-var moveTime = 600;
+var moveTime = 400;
 
 function CharacterEngin(config) {
 	this.config = config;
