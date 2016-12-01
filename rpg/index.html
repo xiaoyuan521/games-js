@@ -10,6 +10,17 @@
 	<link rel="stylesheet" href="frontend/index.css">
 </head>
 <body>
-	<div class="main"></div>
+	<div class="main">
+		<div class="layer zIndex100 map-layer"></div>
+		<div class="layer zIndex200 character-layer"></div>
+		<div class="layer zIndex400 scenario-layer"></div>
+
+		<!-- overlay -->
+		<div class="overlay zIndex300 display_none character-overlay" tabIndex=1></div>
+		<div class="overlay zIndex500 display_none scenario-overlay" tabIndex=1></div>
+		<div class="overlay zIndex1000 display_none top-overlay" tabIndex=1></div>
+	</div>
+
+
 </body>
 </html>

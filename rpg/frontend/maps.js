@@ -24,6 +24,8 @@ maps["mapMapping"] = {
 }
 
 maps["01"] = {
+	initPosition: "9_5",
+	initFaceTo: "right",
 	data: 
 		"tr,tr,tr,be,se,br,se,be,tr,tr,tr_" +
 		"tr,tr,tr,be,se,br,se,be,tr,tr,tr_" +
@@ -36,14 +38,16 @@ maps["01"] = {
 		"tr,tr,tr,be,be,br,be,be,tr,tr,tr_" +
 		"tr,tr,tr,be,se,br,se,be,tr,tr,tr_" +
 		"tr,tr,tr,be,se,br,se,be,tr,tr,tr",
-	exit: {
+	exits: {
 		"10_5": {
 			map: "02",
-			initPosition: "0_5"
+			initPosition: "0_5",
+			faceTo: "rigth"
 		},
 		"5_10": {
 			map: "03",
-			initPosition: "1_0"
+			initPosition: "1_0",
+			faceTo: "down"
 		}
 	}
 };
@@ -60,11 +64,12 @@ maps["02"] = {
 		"tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr_" +
 		"tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr_" +
 		"tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr_" +
-		"tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr_",
-	exit: {
+		"tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr",
+	exits: {
 		"0_5": {
 			map: "01",
-			initPosition: "10_5"
+			initPosition: "10_5",
+			faceTo: "left"
 		}
 	}
 };
@@ -81,11 +86,12 @@ maps["03"] = {
 		"tr,tr,tr,tr,tr,la,tr,la,tr,la,tr_" +
 		"tr,tr,tr,tr,tr,la,la,la,la,la,tr_" +
 		"tr,tr,tr,tr,tr,tr,tr,la,tr,tr,tr_" +
-		"tr,tr,tr,tr,tr,tr,tr,la,la,la,tr_",
-	exit: {
+		"tr,tr,tr,tr,tr,tr,tr,la,la,la,tr",
+	exits: {
 		"1_0": {
 			map: "01",
-			initPosition: "5_10"
+			initPosition: "5_10",
+			faceTo: "up"
 		}
 	}
 };

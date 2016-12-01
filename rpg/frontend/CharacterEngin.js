@@ -33,12 +33,11 @@ CharacterEngin.prototype = {
 		// 初始化人物
 		var currentCharacter = this.currentCharacter = new Character(engin, "girl");
 		// 人物放到地图空位置上
-		var x = this.x = 3 * this.config.cellSize;
-		var y = this.y = 3 * this.config.cellSize;
-		$(".currentCharacter").css({
-			left: x + "px",
-			top: y + "px"
-		});
+		var mapInfo = maps["01"];
+		var position = mapInfo.initPosition;
+		var faceTo = mapInfo.initFaceTo;
+		var posArr = position.split("_");
+		this.setCharacterPosition(posArr[0], posArr[1], faceTo);
 
 		this.startTimer();
 	},
@@ -111,7 +110,36 @@ CharacterEngin.prototype = {
 				_this.nextDirection = null;
 				_this.x = nextMapXy.x;
 				_this.y = nextMapXy.y;
+
+				// 每次移动完成后，校验是否加载新地图 或者 触发剧情
+				_this.engin.checkEvent(_this.x, _this.y);
 			})
+		}
+	},
+
+	// 可以用于地图加载后人物的初始化
+	//
+	// 设定人物在地图中的位置
+	// 设定人物的面部朝向
+	// x,y 可以是字符串 "1","1"
+	// x,y 也可以是number型的 45, 90
+	setCharacterPosition: function(x, y, direction){
+		var cellSize = this.config.cellSize;
+		if(typeof x === "string"){
+			x = cellSize * parseInt(x, 10);
+		}
+		if(typeof y === "string"){
+			y = cellSize * parseInt(y, 10);
+		}
+		$(".currentCharacter").css({
+			left: x + "px",
+			top: y + "px"
+		});
+		this.x = x;
+		this.y = y;
+
+		if(direction){
+			this.currentCharacter.setDirection(direction);
 		}
 	},
 
@@ -136,8 +164,14 @@ CharacterEngin.prototype = {
 		}
 
 		// 不能行走的地图
-		var mapCellName = this.dataSource.get(nextMapXy.x, nextMapXy.y).bg;
+		var mapCell = this.dataSource.get(nextMapXy.x, nextMapXy.y);
+		if(!mapCell){
+			// 超出地图
+			return false;
+		}
+		var mapCellName = mapCell.bg;
 		if(maps["mapMapping"][mapCellName]["canWalk"] === false){
+			// 不能走的地图， 树，或者海洋之类的
 			return false;
 		}
 

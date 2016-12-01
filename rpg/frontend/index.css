@@ -1,3 +1,52 @@
 .display_none {
 	display:none;
 }
+
+.overlay {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	outline:none;
+}
+
+zIndex100: {
+	z-index: 100;
+}
+
+zIndex200: {
+	z-index: 200;
+}
+
+zIndex300: {
+	z-index: 300;
+}
+
+zIndex400: {
+	z-index: 400;
+}
+
+zIndex500: {
+	z-index: 500;
+}
+
+zIndex600: {
+	z-index: 600;
+}
+
+zIndex700: {
+	z-index: 700;
+}
+
+zIndex800: {
+	z-index: 800;
+}
+
+zIndex900: {
+	z-index: 900;
+}
+
+zIndex1000: {
+	z-index: 1000;
+}

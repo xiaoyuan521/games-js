@@ -5,6 +5,8 @@ function MapEngin(config){
 	this.engin = null;
 	this.maps = require("./maps.js");
 	this.mapMapping = this.maps.mapMapping;
+
+	this.currentMapKey = null;
 }
 
 MapEngin.prototype = {
@@ -27,9 +29,10 @@ MapEngin.prototype = {
 	},
 
 	loadMap: function(mapKey) {
-		$(".main .mapLayer").remove();
-		var $mapLayer = $("<div class='mapLayer'></div>");
-		$mapLayer.appendTo($(".main"));
+		this.currentMapKey = mapKey;
+
+		var $mapLayer = $(".main .map-layer")
+		$mapLayer.empty();
 
 		// set map total height and width
 		var mapData = this.maps[mapKey].data;
@@ -38,7 +41,7 @@ MapEngin.prototype = {
 		var wLen = mapData[0].length;
 		var width = wLen * cellSize;
 		var height = hLen * cellSize;
-		$mapLayer.css({
+		$(".layer").css({
 			width: width + "px",
 			height: height + "px"
 		});
@@ -72,6 +75,39 @@ MapEngin.prototype = {
 			}
 		}
 		this.engin.setDataSource(dataSource);
+	},
+
+	checkChangeMap: function(x,y){
+		var position = this._getPosition(x,y);
+		var exits = this.maps[this.currentMapKey].exits;
+		var exitsInfo = exits[position];
+		if(exitsInfo){
+			// 到达出口,加载下一张地图
+			this._changeMap(exitsInfo);
+		}
+	},
+
+	_changeMap: function(exitsInfo){
+		var mapName = exitsInfo.map;
+		var initPosition = exitsInfo.initPosition;
+		var faceTo = exitsInfo.faceTo;
+
+		var posArr = initPosition.split("_");
+		var x = posArr[0];
+		var y = posArr[1];
+
+		this.engin.characterEngin.currentCharacter.stop();
+		$(".character-overlay").show();
+		this.loadMap(mapName);
+		this.engin.characterEngin.setCharacterPosition(x, y, faceTo);
+		$(".character-overlay").hide();
+	},
+
+	// param: 450, 45
+	// return "10_1"
+	_getPosition: function(x, y){
+		var cellSize = this.config.cellSize;
+		return "" + x / cellSize + "_" +  y / cellSize;
 	}
 }
 

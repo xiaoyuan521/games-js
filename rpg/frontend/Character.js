@@ -48,7 +48,7 @@ Character.prototype = {
 		var imgPath = "images/" + characterData.imgName;
 
 		var $characterDom = $('<div class="currentCharacter"></div>');
-		$characterDom.appendTo($(".main"));
+		$characterDom.appendTo($(".character-layer"));
 
 		$characterDom.css({
 			"width": characterSize + "px",
