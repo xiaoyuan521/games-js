@@ -51,7 +51,8 @@ MapEngin.prototype = {
 		var value = null;
 		var row = null;
 		var x,y;
-		var dataSource = new CoorMap();
+		var dataSource = this.engin.getDataSource();
+		dataSource.clear();
 		for(var j=0;j<mapData.length;j++){
 			row = mapData[j];
 			for(var i=0;i<row.length;i++){
@@ -63,8 +64,8 @@ MapEngin.prototype = {
 				dataSource.set(x,y, {bg: row[i]});
 
 				// images
-				// var $img = $('<img alt="" />').attr("src", "images/" + value);
-				var $img = $('<div></div>').text(value.substring(0,2));
+				var $img = $('<img alt="" />').attr("src", "images/" + value);
+				// var $img = $('<div></div>').text(value.substring(0,2));
 				$img.css({
 					width: cellSize + "px",
 					height: cellSize + "px",
@@ -74,7 +75,6 @@ MapEngin.prototype = {
 				}).appendTo($mapLayer);
 			}
 		}
-		this.engin.setDataSource(dataSource);
 	},
 
 	checkChangeMap: function(x,y){

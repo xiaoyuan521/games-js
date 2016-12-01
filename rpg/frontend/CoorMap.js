@@ -26,6 +26,11 @@ CoorMap.prototype = {
 			this.map.set({"x":x , "y":y}, value);
 		}
 	},
+
+	clear: function(){
+		this.map = new Map();
+	},
+
 	getMap: function() {
 		return this.map;
 	}

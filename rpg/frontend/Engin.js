@@ -1,9 +1,10 @@
+var CoorMap = require("./CoorMap");
 var MapEngin = require("./MapEngin");
 var CharacterEngin = require("./CharacterEngin.js");
 
 function Engin(config) {
 	this.config = config;
-	this.dataSource = null;
+	this.dataSource = new CoorMap();
 	this.mapEngin = new MapEngin(config);
 	this.characterEngin = new CharacterEngin(config);
 }
