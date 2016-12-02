@@ -5,18 +5,42 @@ var CharacterEngin = require("./CharacterEngin.js");
 function Engin(config) {
 	this.config = config;
 	this.dataSource = new CoorMap();
-	this.mapEngin = new MapEngin(config);
-	this.characterEngin = new CharacterEngin(config);
+	this.mapEngin = null;
+	this.characterEngin = null;
+
+	this.mapData = null;
+	this.scriptData = null;
 }
 
 Engin.prototype = {
 	constructor: Engin,
 
 	init: function() {
-		this.mapEngin.init(this);
-		this.characterEngin.init(this);
+		var _this = this;
+		$.when(this.getInitData()).then(function(result){
+			console.log("11111111");
+			console.log(result);
+			
+			_this.mapEngin = new MapEngin(_this, result.mapData);
+			_this.mapEngin.init();
 
-		this._initOverlay();
+			_this.characterEngin = new CharacterEngin(_this);
+			_this.characterEngin.init();
+
+			_this._initOverlay();
+		});
+	},
+
+	getInitData: function(){
+		var deferred = new $.Deferred();
+		var _this = this;
+		var url = "/init";
+		$.ajax(url, {
+			method: "get"
+		}).then(function(result){
+			deferred.resolve(result);
+		})
+		return deferred;
 	},
 
 	// 检测地图切换

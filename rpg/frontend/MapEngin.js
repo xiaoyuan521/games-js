@@ -1,10 +1,9 @@
 var CoorMap = require("./CoorMap.js");
 
-function MapEngin(config){
-	this.config = config;
-	this.engin = null;
-	this.maps = require("./maps.js");
-	this.mapMapping = this.maps.mapMapping;
+function MapEngin(engin, mapData){
+	this.engin = engin;
+	this.config = engin.config;
+	this.maps = mapData;
 
 	this.currentMapKey = null;
 }
@@ -12,9 +11,7 @@ function MapEngin(config){
 MapEngin.prototype = {
 	constructor: MapEngin,
 
-	init: function(engin){
-
-		this.engin = engin;
+	init: function(){
 
 		// pre-load all images
 		var mapMapping = this.maps.mapMapping;
@@ -56,7 +53,7 @@ MapEngin.prototype = {
 		for(var j=0;j<mapData.length;j++){
 			row = mapData[j];
 			for(var i=0;i<row.length;i++){
-				value = this.mapMapping[row[i]].name;
+				value = this.maps.mapMapping[row[i]].name;
 				x = i * cellSize;
 				y = j * cellSize;
 
@@ -64,8 +61,8 @@ MapEngin.prototype = {
 				dataSource.set(x,y, {bg: row[i]});
 
 				// images
-				var $img = $('<img alt="" />').attr("src", "images/" + value);
-				// var $img = $('<div></div>').text(value.substring(0,2));
+				// var $img = $('<img alt="" />').attr("src", "images/" + value);
+				var $img = $('<div></div>').text(value.substring(0,2));
 				$img.css({
 					width: cellSize + "px",
 					height: cellSize + "px",
@@ -81,18 +78,20 @@ MapEngin.prototype = {
 		var position = this._getPosition(x,y);
 		var exits = this.maps[this.currentMapKey].exits;
 		var exitsInfo = exits[position];
-		if(exitsInfo){
+		if(exitsInfo) {
 			// 到达出口,加载下一张地图
 			this._changeMap(exitsInfo);
+			return true;
 		}
+		return false;
 	},
 
 	_changeMap: function(exitsInfo){
 		var mapName = exitsInfo.map;
-		var initPosition = exitsInfo.initPosition;
+		var position = exitsInfo.position;
 		var faceTo = exitsInfo.faceTo;
 
-		var posArr = initPosition.split("_");
+		var posArr = position.split("_");
 		var x = posArr[0];
 		var y = posArr[1];
 

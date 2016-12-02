@@ -3,10 +3,10 @@ var Character = require("./Character.js");
 
 var moveTime = 400;
 
-function CharacterEngin(config) {
-	this.config = config;
-	this.engin = null;
-	this.dataSource = null;
+function CharacterEngin(engin) {
+	this.engin = engin;
+	this.config = engin.config;
+	this.dataSource = engin.getDataSource();
 
 	// 人物移动方向， null代表停止
 	this.nextDirection = null;
@@ -24,8 +24,6 @@ CharacterEngin.prototype = {
 	constructor: CharacterEngin,
 
 	init: function(engin) {
-		this.engin = engin;
-		this.dataSource = engin.getDataSource();
 
 		// 绑定键盘事件
 		this.bindEvent();

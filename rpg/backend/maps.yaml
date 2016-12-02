@@ -1,0 +1,77 @@
+mapMapping:
+ tr:
+  name: tree.png
+  canWalk: false
+ se:
+  name: sea.png
+  canWalk: false
+ be:
+  name: beach.png
+  canWalk: true
+ la:
+  name: land.png
+  canWalk: true
+ br:
+  name: bridge.png
+  canWalk: true
+
+"01":
+ data:
+  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
+  - [tr,tr,tr,be,be,br,be,be,tr,tr,tr]
+  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
+  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
+  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,tr,be,be,br,be,be,tr,tr,tr]
+  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
+  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
+ exits: 
+  "10_5":
+   map: "02"
+   position: "0_5"
+   faceTo: "rigth"
+  "5_10":
+   map: "03"
+   position: "1_0"
+   faceTo: down
+
+"02":
+ data: 
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+ exits: 
+  "0_5":
+   map: "01"
+   position: "10_5"
+   faceTo: left
+
+"03":
+ data: 
+  - [tr,la,la,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,la,la,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,tr,tr,la,la,tr,tr,la,la,la,tr]
+  - [tr,tr,tr,tr,la,la,tr,la,tr,la,tr]
+  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
+  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
+  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
+  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
+  - [tr,tr,tr,tr,tr,la,la,la,la,la,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,la,tr,tr,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,la,la,la,tr]
+ exits: 
+  "1_0":
+   map: "01"
+   position: "5_10"
+   faceTo: up
