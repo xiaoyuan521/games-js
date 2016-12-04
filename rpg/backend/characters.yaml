@@ -1,0 +1,18 @@
+mainCharacter: 
+ name: girl
+ position: "4_5"
+ faceTo: right
+
+characters:
+ girl: 
+  imgName: "c_girl.png"
+  size: 45
+ boy:
+  imgName: "c_boy.png"
+  size: 45
+ man:
+  imgName: "c_man.png"
+  size: 45
+ women:
+  imgName: "c_women.png"
+  size: 45

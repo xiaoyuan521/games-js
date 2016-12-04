@@ -1,11 +1,8 @@
 # 第一张地图
 "01":
  characters:
-  - name: girl
-    position: "4_5"
-    faceTo: right
   - name: boy
-    position: "5_4"
+    position: "7_7"
     faceTo: left
     line_ref: line_1
  lines:

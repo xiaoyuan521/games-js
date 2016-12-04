@@ -1,10 +1,10 @@
-var maps = require("./maps");
 var Character = require("./Character.js");
 
 var moveTime = 400;
 
 function CharacterEngin(engin) {
 	this.engin = engin;
+	this.mapData = this.engin.mapData;
 	this.config = engin.config;
 	this.dataSource = engin.getDataSource();
 
@@ -28,16 +28,11 @@ CharacterEngin.prototype = {
 		// 绑定键盘事件
 		this.bindEvent();
 
-		// 初始化人物
-		var currentCharacter = this.currentCharacter = new Character(engin, "girl");
-		// 人物放到地图空位置上
-		var mapInfo = maps["01"];
-		var position = mapInfo.initPosition;
-		var faceTo = mapInfo.initFaceTo;
-		var posArr = position.split("_");
-		this.setCharacterPosition(posArr[0], posArr[1], faceTo);
-
 		this.startTimer();
+	},
+
+	setCurrentCharacter: function(currentCharacter){
+		this.currentCharacter = currentCharacter;
 	},
 
 	// 人物走动的键盘事件
@@ -75,6 +70,11 @@ CharacterEngin.prototype = {
 
 		var _this = this;
 		setInterval(function() {
+
+			if(!_this.currentCharacter){
+				return;
+			}
+
 			if(_this.isWalking === true) {
 				return;
 			}
@@ -156,11 +156,6 @@ CharacterEngin.prototype = {
 			return false;
 		}
 
-		// 超出地图
-		if(nextMapXy.x < 0 || nextMapXy.y < 0){
-			return false;
-		}
-
 		// 不能行走的地图
 		var mapCell = this.dataSource.get(nextMapXy.x, nextMapXy.y);
 		if(!mapCell){
@@ -168,7 +163,7 @@ CharacterEngin.prototype = {
 			return false;
 		}
 		var mapCellName = mapCell.bg;
-		if(maps["mapMapping"][mapCellName]["canWalk"] === false){
+		if(this.mapData["mapMapping"][mapCellName]["canWalk"] === false){
 			// 不能走的地图， 树，或者海洋之类的
 			return false;
 		}

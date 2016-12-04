@@ -1,11 +1,9 @@
-var characters = require("./characters.js");
-
 // 走一步的时间
 var walkTime = 100;
 
 
 function Character(engin, CharacterName){
-	this.engin = engin;
+	this.characters = engin.characterData.characters;
 	this.characterData = null;
 	this.intervalHandler = null;
 	this.isWalking = false;
@@ -16,6 +14,8 @@ function Character(engin, CharacterName){
 	this.direction = "right";
 
 	this.init(CharacterName);
+
+	this.dom = null;
 }
 
 Character.prototype = {
@@ -43,11 +43,11 @@ Character.prototype = {
 	// 加载人物图片，初始化姿势
 	loadCharacter: function(name){
 
-		var characterData = this.characterData = characters[name];
+		var characterData = this.characterData = this.characters[name];
 		var characterSize = characterData.size;
 		var imgPath = "images/" + characterData.imgName;
 
-		var $characterDom = $('<div class="currentCharacter"></div>');
+		var $characterDom = this.dom = $('<div class=""></div>');
 		$characterDom.appendTo($(".character-layer"));
 
 		$characterDom.css({
@@ -142,6 +142,10 @@ Character.prototype = {
 
 	getDirection: function() {
 		return this.direction;
+	},
+
+	getDom: function(){
+		return this.dom;
 	}
 
 }

@@ -1,9 +1,9 @@
 var CoorMap = require("./CoorMap.js");
 
-function MapEngin(engin, mapData){
+function MapEngin(engin){
 	this.engin = engin;
 	this.config = engin.config;
-	this.maps = mapData;
+	this.mapData = engin.mapData;
 
 	this.currentMapKey = null;
 }
@@ -14,7 +14,7 @@ MapEngin.prototype = {
 	init: function(){
 
 		// pre-load all images
-		var mapMapping = this.maps.mapMapping;
+		var mapMapping = this.mapData.mapMapping;
 		var $loadDiv = $("<div class='display_none'></div>");
 		$loadDiv.appendTo($(document.body));
 		for(var key in mapMapping){
@@ -32,7 +32,7 @@ MapEngin.prototype = {
 		$mapLayer.empty();
 
 		// set map total height and width
-		var mapData = this.maps[mapKey].data;
+		var mapData = this.mapData[mapKey].data;
 		var cellSize = this.config.cellSize;
 		var hLen = mapData.length;
 		var wLen = mapData[0].length;
@@ -53,7 +53,7 @@ MapEngin.prototype = {
 		for(var j=0;j<mapData.length;j++){
 			row = mapData[j];
 			for(var i=0;i<row.length;i++){
-				value = this.maps.mapMapping[row[i]].name;
+				value = this.mapData.mapMapping[row[i]].name;
 				x = i * cellSize;
 				y = j * cellSize;
 
@@ -76,12 +76,12 @@ MapEngin.prototype = {
 
 	checkChangeMap: function(x,y){
 		var position = this._getPosition(x,y);
-		var exits = this.maps[this.currentMapKey].exits;
+		var exits = this.mapData[this.currentMapKey].exits;
 		var exitsInfo = exits[position];
 		if(exitsInfo) {
 			// 到达出口,加载下一张地图
 			this._changeMap(exitsInfo);
-			return true;
+			return exitsInfo.mapName;
 		}
 		return false;
 	},

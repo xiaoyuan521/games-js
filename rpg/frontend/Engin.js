@@ -1,15 +1,20 @@
 var CoorMap = require("./CoorMap");
 var MapEngin = require("./MapEngin");
 var CharacterEngin = require("./CharacterEngin.js");
+var ScriptEngin = require("./ScriptEngin.js");
 
 function Engin(config) {
 	this.config = config;
 	this.dataSource = new CoorMap();
-	this.mapEngin = null;
-	this.characterEngin = null;
 
 	this.mapData = null;
+	this.mapEngin = null;
+	
+	this.characterData = null;
+	this.characterEngin = null;
+
 	this.scriptData = null;
+	this.scriptEngin = null;
 }
 
 Engin.prototype = {
@@ -18,14 +23,19 @@ Engin.prototype = {
 	init: function() {
 		var _this = this;
 		$.when(this.getInitData()).then(function(result){
-			console.log("11111111");
 			console.log(result);
 			
-			_this.mapEngin = new MapEngin(_this, result.mapData);
+			_this.mapData = result.mapData;
+			_this.mapEngin = new MapEngin(_this);
 			_this.mapEngin.init();
 
+			_this.characterData = result.characterData;
 			_this.characterEngin = new CharacterEngin(_this);
 			_this.characterEngin.init();
+
+			_this.scriptData = result.scriptData;
+			_this.scriptEngin = new ScriptEngin(_this);
+			_this.scriptEngin.init();
 
 			_this._initOverlay();
 		});
@@ -46,9 +56,13 @@ Engin.prototype = {
 	// 检测地图切换
 	// 检测剧情发生
 	checkEvent: function(x, y){
-		if(this.mapEngin.checkChangeMap(x,y) == true){
+		var changeToMap = this.mapEngin.checkChangeMap(x,y);
+		if( changeToMap === false){
 			return;
 		}
+
+		// 根据地图加载人物和剧情脚本
+		this.scriptEngin.load(changeToMap);
 	},
 
 	_initOverlay: function(){

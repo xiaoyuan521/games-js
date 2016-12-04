@@ -22,7 +22,7 @@ mapMapping:
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [la,la,la,la,la,la,la,la,la,la,la]
-  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
+  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,be,be,br,be,be,tr,tr,tr]
@@ -32,7 +32,7 @@ mapMapping:
   "10_5":
    map: "02"
    position: "0_5"
-   faceTo: "rigth"
+   faceTo: right
   "5_10":
    map: "03"
    position: "1_0"

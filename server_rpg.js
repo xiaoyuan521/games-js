@@ -12,9 +12,11 @@ app.use(function* (next){
 	if(this.path == "/init"){
 		var scriptData = yield getScriptData();
 		var mapData = yield getMapData();
+		var characterData = yield getCharacters();
 		this.body = {
 			scriptData: scriptData,
-			mapData: mapData
+			mapData: mapData,
+			characterData: characterData
 		};
 		return;
 	}
@@ -30,6 +32,13 @@ function getScriptData(){
 function getMapData(){
 	return new Promise((resolve, reject) => {
 		var mapData = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, "rpg", "backend","maps.yaml"), 'utf8'));
+		resolve(mapData);
+	});
+}
+
+function getCharacters(){
+	return new Promise((resolve, reject) => {
+		var mapData = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, "rpg", "backend","characters.yaml"), 'utf8'));
 		resolve(mapData);
 	});
 }
