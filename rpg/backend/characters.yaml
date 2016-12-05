@@ -1,18 +1,63 @@
 mainCharacter: 
- name: girl
+ name: girl01
  position: "4_5"
  faceTo: right
 
 characters:
- girl: 
-  imgName: "c_girl.png"
+ girl01: 
+  imgName: "girl_01.png"
   size: 45
- boy:
-  imgName: "c_boy.png"
+ girl02: 
+  imgName: "girl_02.png"
   size: 45
- man:
-  imgName: "c_man.png"
+ girl03: 
+  imgName: "girl_03.png"
   size: 45
- women:
-  imgName: "c_women.png"
+ girl04: 
+  imgName: "girl_04.png"
+  size: 45
+ girl05: 
+  imgName: "girl_05.png"
+  size: 45
+ girl06: 
+  imgName: "girl_06.png"
+  size: 45
+ girl07: 
+  imgName: "girl_07.png"
+  size: 45
+ girl08: 
+  imgName: "girl_08.png"
+  size: 45
+ boy01: 
+  imgName: "boy_01.png"
+  size: 45
+ boy02: 
+  imgName: "boy_02.png"
+  size: 45
+ boy03: 
+  imgName: "boy_03.png"
+  size: 45
+ boy04: 
+  imgName: "boy_04.png"
+  size: 45
+ boy05: 
+  imgName: "boy_05.png"
+  size: 45
+ boy06: 
+  imgName: "boy_06.png"
+  size: 45
+ boy07: 
+  imgName: "boy_07.png"
+  size: 45
+ boy08: 
+  imgName: "boy_08.png"
+  size: 45
+ boy09: 
+  imgName: "boy_09.png"
+  size: 45
+ boy10: 
+  imgName: "boy_10.png"
+  size: 45
+ boy11: 
+  imgName: "boy_11.png"
   size: 45

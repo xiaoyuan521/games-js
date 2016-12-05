@@ -27,9 +27,14 @@ ScriptEngin.prototype = {
 
 	// 加载当前地图的人物
 	loadCharacter: function() {
+		$(".character-layer > div").not(".currentCharacter").remove();
+
 		var currentScriptKey = this.currentScriptKey;
 		var currentMapKey = this.engin.mapEngin.currentMapKey;
 		var currentMapScript = this.scriptData[currentScriptKey][currentMapKey];
+		if(!currentMapScript || !currentMapScript.characters){
+			return;
+		}		
 		var characters = currentMapScript.characters;
 		for(var key in characters) {
 			var character = characters[key];
@@ -41,9 +46,24 @@ ScriptEngin.prototype = {
 	},
 
 	_loadCharacter: function(name, pos, faceTo){
+		var config = this.engin.config;
+		var cellSize = config.cellSize;
+
+		// 设定人物到画面上
 		var character = new Character(this.engin, name);
 		var posArr = pos.split("_");
-		character.setPosition(posArr[0], posArr[1], faceTo);
+		var x = parseInt(posArr[0],10) * cellSize;
+		var y = parseInt(posArr[1], 10) * cellSize;
+		character.setPosition(x, y, faceTo);
+
+		// 设定人物到datasource中
+		var dataSource = this.engin.getDataSource();
+		var dataSourcePoint = dataSource.get(x,y);
+		dataSourcePoint.character = {
+			name: name,
+			faceTo: faceTo
+		}
+
 		return character;
 	},
 

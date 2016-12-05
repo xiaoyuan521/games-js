@@ -129,6 +129,12 @@ CharacterEngin.prototype = {
 			// 超出地图
 			return false;
 		}
+
+		if(mapCell.character){
+			// npc
+			return false;
+		}
+
 		var mapCellName = mapCell.bg;
 		if(this.mapData["mapMapping"][mapCellName]["canWalk"] === false){
 			// 不能走的地图， 树，或者海洋之类的

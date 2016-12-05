@@ -128,13 +128,13 @@ Character.prototype = {
 			// 面向当前方向
 			switch(direction){
 				case "left":
-					this.currentMove = "03";
-					break;
-				case "right":
 					this.currentMove = "01";
 					break;
-				case "up":
+				case "right":
 					this.currentMove = "02";
+					break;
+				case "up":
+					this.currentMove = "03";
 					break;
 				case "down":
 					this.currentMove = "00";

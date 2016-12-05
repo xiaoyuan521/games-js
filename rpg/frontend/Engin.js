@@ -60,6 +60,9 @@ Engin.prototype = {
 		if( changeToMap === false){
 			return;
 		}
+
+		// 地图切换，加载当前地图人物
+		this.scriptEngin.loadCharacter();
 	},
 
 	_initOverlay: function(){
@@ -67,10 +70,6 @@ Engin.prototype = {
 			e.stopPropagation();
 			e.preventDefault();
 		})
-	},
-
-	start: function() {
-
 	},
 
 	setDataSource: function(dataSource) {
