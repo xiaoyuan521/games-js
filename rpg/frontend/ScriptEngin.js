@@ -41,11 +41,11 @@ ScriptEngin.prototype = {
 			var name = character.name;
 			var pos = character.position;
 			var faceTo = character.faceTo;
-			this._loadCharacter(name, pos, faceTo);
+			this._loadCharacter(name, pos, faceTo, true);
 		}
 	},
 
-	_loadCharacter: function(name, pos, faceTo){
+	_loadCharacter: function(name, pos, faceTo, changeDataSourceFlg){
 		var config = this.engin.config;
 		var cellSize = config.cellSize;
 
@@ -56,12 +56,14 @@ ScriptEngin.prototype = {
 		var y = parseInt(posArr[1], 10) * cellSize;
 		character.setPosition(x, y, faceTo);
 
-		// 设定人物到datasource中
-		var dataSource = this.engin.getDataSource();
-		var dataSourcePoint = dataSource.get(x,y);
-		dataSourcePoint.character = {
-			name: name,
-			faceTo: faceTo
+		if(changeDataSourceFlg === true){
+			// 设定人物到datasource中
+			var dataSource = this.engin.getDataSource();
+			var dataSourcePoint = dataSource.get(x,y);
+			dataSourcePoint.character = {
+				name: name,
+				faceTo: faceTo
+			}
 		}
 
 		return character;
