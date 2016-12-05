@@ -25,7 +25,9 @@ app.use(function* (next){
 function getScriptData(){
 	return new Promise((resolve, reject) => {
 		var scriptData = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, "rpg", "backend","scripts_01.yaml"), 'utf8'));
-		resolve(scriptData);
+		resolve({
+			"01": scriptData
+		});
 	});
 }
 

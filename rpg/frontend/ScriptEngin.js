@@ -3,17 +3,15 @@ var Character = require("./Character.js");
 function ScriptEngin(engin) {
 	this.engin = engin;
 	this.scriptData = this.engin.scriptData;
-	this.currentScript = null;
+	this.currentScriptKey = "01";
 }
 
 ScriptEngin.prototype = {
 	constructor: ScriptEngin,
 
-	init: function(){
-		var initScriptName = "01";
-		this.currentScript = this.scriptData[initScriptName];
+	init: function() {
 
-		// 初始化主人公
+		// 加载主人公
 		var mainCharacterInfo = this.engin.characterData.mainCharacter;
 		var name = mainCharacterInfo.name;
 		var pos = mainCharacterInfo.position;
@@ -22,16 +20,18 @@ ScriptEngin.prototype = {
 		currentCharacter.getDom().addClass("currentCharacter");
 		this.engin.characterEngin.setCurrentCharacter(currentCharacter);
 
+		// 加载其他人物
 		this.loadCharacter();
 
 	},
 
 	// 加载当前地图的人物
-	loadCharacter: function(){
+	loadCharacter: function() {
+		var currentScriptKey = this.currentScriptKey;
 		var currentMapKey = this.engin.mapEngin.currentMapKey;
-		var currentMapScript = this.currentScript[currentMapKey];
+		var currentMapScript = this.scriptData[currentScriptKey][currentMapKey];
 		var characters = currentMapScript.characters;
-		for(var key in characters){
+		for(var key in characters) {
 			var character = characters[key];
 			var name = character.name;
 			var pos = character.position;
@@ -43,8 +43,12 @@ ScriptEngin.prototype = {
 	_loadCharacter: function(name, pos, faceTo){
 		var character = new Character(this.engin, name);
 		var posArr = pos.split("_");
-		this.engin.characterEngin.setCharacterPosition(posArr[0], posArr[1], faceTo);
+		character.setPosition(posArr[0], posArr[1], faceTo);
 		return character;
+	},
+
+	changeScript: function(scriptKey){
+		this.currentScriptKey = scriptKey;
 	}
 }
 

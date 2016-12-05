@@ -29,7 +29,7 @@ mapMapping:
   - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
   - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
  exits: 
-  "10_5":
+  "10_4":
    map: "02"
    position: "0_5"
    faceTo: right
@@ -54,7 +54,7 @@ mapMapping:
  exits: 
   "0_5":
    map: "01"
-   position: "10_5"
+   position: "10_4"
    faceTo: left
 
 "03":

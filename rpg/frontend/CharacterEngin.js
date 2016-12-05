@@ -13,10 +13,6 @@ function CharacterEngin(engin) {
 
 	this.currentCharacter = null;
 
-	// 人物在地图中的位置
-	this.x = 0;
-	this.y = 0;
-
 	this.isWalking = false;
 }
 
@@ -25,14 +21,8 @@ CharacterEngin.prototype = {
 
 	init: function(engin) {
 
-		// 绑定键盘事件
 		this.bindEvent();
-
 		this.startTimer();
-	},
-
-	setCurrentCharacter: function(currentCharacter){
-		this.currentCharacter = currentCharacter;
 	},
 
 	// 人物走动的键盘事件
@@ -92,52 +82,29 @@ CharacterEngin.prototype = {
 	walk: function(){
 
 		var _this = this;
-		var $characterDom = $(".currentCharacter");
+		var currentCharacter = this.currentCharacter;
+		var $characterDom = currentCharacter.getDom();
 		if($characterDom.length == 0) {
 			return;
 		}
 
 		var nextMapXy = this._getNextMapXy(this.nextDirection);
 		var canWalkFlg = this._canWalk(nextMapXy);
+		var x = nextMapXy.x;
+		var y = nextMapXy.y;
 
 		if(canWalkFlg === true){
 			this.isWalking = true;
-			this.currentCharacter.walk();
-			this._moveCharacter(nextMapXy.x, nextMapXy.y, function(){
+			currentCharacter.walk();
+			this._moveCharacter(x, y, function(){
 				_this.isWalking = false;
 				_this.nextDirection = null;
-				_this.x = nextMapXy.x;
-				_this.y = nextMapXy.y;
+				currentCharacter.x = x;
+				currentCharacter.y = y;
 
 				// 每次移动完成后，校验是否加载新地图 或者 触发剧情
-				_this.engin.checkEvent(_this.x, _this.y);
+				_this.engin.checkEvent(x, y);
 			})
-		}
-	},
-
-	// 可以用于地图加载后人物的初始化
-	//
-	// 设定人物在地图中的位置
-	// 设定人物的面部朝向
-	// x,y 可以是字符串 "1","1"
-	// x,y 也可以是number型的 45, 90
-	setCharacterPosition: function(x, y, direction){
-		var cellSize = this.config.cellSize;
-		if(typeof x === "string"){
-			x = cellSize * parseInt(x, 10);
-		}
-		if(typeof y === "string"){
-			y = cellSize * parseInt(y, 10);
-		}
-		$(".currentCharacter").css({
-			left: x + "px",
-			top: y + "px"
-		});
-		this.x = x;
-		this.y = y;
-
-		if(direction){
-			this.currentCharacter.setDirection(direction);
 		}
 	},
 
@@ -174,24 +141,26 @@ CharacterEngin.prototype = {
 	// 根据行走方向取得，下一个地图的x，y坐标
 	_getNextMapXy: function(direction){
 		var cellSize = this.config.cellSize;
+		var currentX = this.currentCharacter.x;
+		var currentY = this.currentCharacter.y;
 		var x = 0;
 		var y = 0;
 		switch(direction){
 			case "left":
-				x = this.x - cellSize;
-				y = this.y;
+				x = currentX - cellSize;
+				y = currentY;
 				break;
 			case "right":
-				x = this.x + cellSize;
-				y = this.y;
+				x = currentX + cellSize;
+				y = currentY;
 				break;
 			case "up":
-				x = this.x;
-				y = this.y - cellSize;
+				x = currentX;
+				y = currentY - cellSize;
 				break;
 			case "down":
-				x = this.x;
-				y = this.y + cellSize;
+				x = currentX;
+				y = currentY + cellSize;
 				break;
 			default:
 				break;
@@ -200,7 +169,11 @@ CharacterEngin.prototype = {
 			x:x,
 			y:y
 		}
-	}
+	},
+
+	setCurrentCharacter: function(currentCharacter){
+		this.currentCharacter = currentCharacter;
+	},
 }
 
 module.exports = CharacterEngin

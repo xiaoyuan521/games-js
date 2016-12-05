@@ -3,19 +3,22 @@ var walkTime = 100;
 
 
 function Character(engin, CharacterName){
+	this.engin = engin;
+	this.config = engin.config;
+
 	this.characters = engin.characterData.characters;
 	this.characterData = null;
-	this.intervalHandler = null;
+	this.intervalHandler = null; // 走路动作检测的定时器
 	this.isWalking = false;
 
-	// 人物动作的css偏移用 x = 0; y = 1
-	this.currentMove = "01"; 
-	// 人物面向的方向
-	this.direction = "right";
+	
+	this.dom = null; // 人物dom
+	this.currentMove = "01";  // 人物动作的css偏移用 x = 0; y = 1
+	this.direction = "right"; // 人物面向的方向
+	this.x = null; // 人物在地图中的位置 x
+	this.y = null; // 人物在地图中的位置 y
 
 	this.init(CharacterName);
-
-	this.dom = null;
 }
 
 Character.prototype = {
@@ -57,6 +60,34 @@ Character.prototype = {
 		})
 
 		this._setCssDeviation(this.currentMove);
+	},
+
+	// 设定人物在地图中的位置，和面部朝向
+	//
+	// 设定人物在地图中的位置
+	// 设定人物的面部朝向
+	// x,y 可以是字符串 "1","1"
+	// x,y 也可以是number型的 45, 90
+	setPosition: function(x, y, direction){
+		var cellSize = this.config.cellSize;
+		if(typeof x === "string") {
+			x = cellSize * parseInt(x, 10);
+		}
+		if(typeof y === "string") {
+			y = cellSize * parseInt(y, 10);
+		}
+
+		var dom = this.getDom();
+		dom.css({
+			"left": x + "px",
+			"top": y + "px"
+		});
+		this.x = x;
+		this.y = y;
+
+		if(direction){
+			this.setDirection(direction);
+		}
 	},
 
 	// 取得下一次移动的位置 
@@ -122,7 +153,7 @@ Character.prototype = {
 	// nextMove : "01", "33" ...
 	_setCssDeviation: function(nextMove) {
 		var nextPositions = this._getPositionXY(this.characterData.size, nextMove);
-		var $characterDom = $(".currentCharacter");
+		var $characterDom = this.getDom();
 		$characterDom.css({
 			"position":"absolute",
 			"background-position-x": nextPositions.x + "px",

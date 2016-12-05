@@ -98,7 +98,7 @@ MapEngin.prototype = {
 		this.engin.characterEngin.currentCharacter.stop();
 		$(".character-overlay").show();
 		this.loadMap(mapName);
-		this.engin.characterEngin.setCharacterPosition(x, y, faceTo);
+		this.engin.characterEngin.currentCharacter.setPosition(x, y, faceTo);
 		$(".character-overlay").hide();
 	},
 

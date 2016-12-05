@@ -60,9 +60,6 @@ Engin.prototype = {
 		if( changeToMap === false){
 			return;
 		}
-
-		// 根据地图加载人物和剧情脚本
-		this.scriptEngin.load(changeToMap);
 	},
 
 	_initOverlay: function(){
