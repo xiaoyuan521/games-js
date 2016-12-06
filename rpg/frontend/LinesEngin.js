@@ -43,6 +43,9 @@ var methods = {
 	bindEvent: function(){
 		var _this = this;
 		$(".lines-overlay").on("keydown", function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			
 			var keyCode = e.keyCode;
 			if(keyCode === 32 || keyCode === 13){
 				// 空格和回车触发事件
@@ -63,7 +66,7 @@ var methods = {
 				this.lines.chooseDown();
 			}
 
-			e.stopPropagation();
+
 		});
 	}
 }
