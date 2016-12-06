@@ -38,7 +38,7 @@ ScriptEngin.prototype = {
 		var characters = currentMapScript.characters;
 		for(var key in characters) {
 			var character = characters[key];
-			var name = character.name;
+			var name = key;
 			var pos = character.position;
 			var faceTo = character.faceTo;
 			this._loadCharacter(name, pos, faceTo, true);

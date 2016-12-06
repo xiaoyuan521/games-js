@@ -14,13 +14,14 @@ LinesEngin.prototype = new EnginBase();
 
 var methods = {
 	init: function(){
-		this.initLines();
 		this.initDom();
+		this.initLines();
 		this.bindEvent();
 	},
 
 	initLines: function(){
 		this.lines = new Lines();
+		this.lines.init();
 	},
 
 	initDom: function(){
@@ -33,22 +34,24 @@ var methods = {
 
 	start: function(){
 		var _this = this;
+		this.isPlaying = true;
 		this.lines.play(function(){
 			_this.isPlaying = false;
 		});
 	},
 
 	bindEvent: function(){
+		var _this = this;
 		$(".lines-overlay").on("keydown", function(e){
-			var _this = this;
 			var keyCode = e.keyCode;
 			if(keyCode === 32 || keyCode === 13){
 				// 空格和回车触发事件
-				if(this.isPlaying === true){
-					this.lines.playEnd();
-					this.isPlaying = false;
+				if(_this.isPlaying === true){
+					_this.lines.playEnd();
+					_this.isPlaying = false;
 				} else {
-					this.lines.play(function(){
+					_this.isPlaying = true;
+					_this.lines.play(function(){
 						_this.isPlaying = false;
 					});
 				}

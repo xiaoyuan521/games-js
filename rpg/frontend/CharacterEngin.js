@@ -129,12 +129,14 @@ CharacterEngin.prototype = {
 		if(!nextData || !nextData.character){
 			return;
 		}
+
+		$(".lines-overlay").show().focus();
 		var characterName = nextData.character.name;
 		var scriptInfo = this.engin.scriptEngin.getCurrentScript();
 		var lineRef = scriptInfo.characters[characterName]["line_ref"];
 		var lineObj = scriptInfo.lines;
-		this.engin.scriptEngin.setLinesObj(lineObj, lineRef);
-		this.engin.scriptEngin.start();
+		this.engin.linesEngin.setLinesObj(lineObj, lineRef);
+		this.engin.linesEngin.start();
 
 	},
 

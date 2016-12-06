@@ -21,7 +21,7 @@ Lines.prototype = {
 	},
 
 	initDom: function(){
-		var $lines = $(".lines");
+		var $lines = $("div.lines");
 		$('<div class="content"></div>').appendTo($lines);
 		$('<div class="options"></div>').appendTo($lines);
 	},
@@ -32,17 +32,19 @@ Lines.prototype = {
 	},
 
 	play: function(callback){
-		var lineArr = this.lineObj[this.currentRef];
+		var lineArr = this.linesObj[this.currentRef];
 		var line = this.currentLine = lineArr[this._index];
+		this._index++;
 		var count = 1;
 
 		var _this = this;
 		var $content = $(".lines .content");
 		this._interval_handler = setInterval(function(){
-			var displayContent = line.substring(0, count);
+			var content = line.content;
+			var displayContent = line.content.substring(0, count);
 			$content.text(displayContent);
 			count++;
-			if(count == line.length -1 ){
+			if(count > content.length ){
 				clearInterval(_this._interval_handler);
 				_this.currentLine = null;
 				if(callback){
@@ -58,7 +60,7 @@ Lines.prototype = {
 			return;
 		}
 		var $content = $(".lines .content");
-		$content.text(this.currentLine);
+		$content.text(this.currentLine.content);
 		clearInterval(this._interval_handler);
 	},
 

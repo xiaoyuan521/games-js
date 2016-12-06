@@ -1,7 +1,7 @@
 # 第一张地图
 "01":
  characters:
-  - name: boy01
+  boy01:
     position: "7_7"
     faceTo: left
     line_ref: line_1
@@ -31,11 +31,11 @@
 # 第二张地图
 "02":
  characters:
-  - name: boy02
+  boy02:
     position: "6_5"
     faceTo: right
     line_ref: line_4
-  - name: boy03
+  boy03:
     position: "4_4"
     faceTo: down
     line_ref: line_1
