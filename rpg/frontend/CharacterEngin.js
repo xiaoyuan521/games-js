@@ -1,7 +1,7 @@
 var Character = require("./Character.js");
 
 var MOVE_TIME = 400;
-var BLANK_ENTER_KEY_CODES = [3,13];
+var BLANK_ENTER_KEY_CODES = [32,13];
 var DIRECTION_KEY_CODES = [37,38,39,40]
 
 function CharacterEngin(engin) {
