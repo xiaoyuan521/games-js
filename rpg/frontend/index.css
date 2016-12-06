@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 .display_none {
 	display:none;
 }
@@ -15,6 +19,18 @@
 	position:absolute;
 	left:0px;
 	top:0px;
+}
+
+.lines {
+	position: absolute;
+	width: 400px;
+	height: 100px;
+	bottom: -50px;
+	left: 50%;
+	margin-left: -200px;
+	background-color: #eaeacd;
+	border-radius: 20px;
+	padding: 20px;
 }
 
 zIndex100: {

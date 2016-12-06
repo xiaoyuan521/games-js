@@ -2,6 +2,7 @@ var CoorMap = require("./CoorMap");
 var MapEngin = require("./MapEngin");
 var CharacterEngin = require("./CharacterEngin.js");
 var ScriptEngin = require("./ScriptEngin.js");
+var LinesEngin = require("./LinesEngin.js");
 
 function Engin(config) {
 	this.config = config;
@@ -15,6 +16,8 @@ function Engin(config) {
 
 	this.scriptData = null;
 	this.scriptEngin = null;
+
+	this.linesEngin = null;
 }
 
 Engin.prototype = {
@@ -23,7 +26,6 @@ Engin.prototype = {
 	init: function() {
 		var _this = this;
 		$.when(this.getInitData()).then(function(result){
-			console.log(result);
 			
 			_this.mapData = result.mapData;
 			_this.mapEngin = new MapEngin(_this);
@@ -37,7 +39,8 @@ Engin.prototype = {
 			_this.scriptEngin = new ScriptEngin(_this);
 			_this.scriptEngin.init();
 
-			_this._initOverlay();
+			_this.linesEngin = new LinesEngin(_this);
+			_this.linesEngin.init();
 		});
 	},
 
@@ -63,13 +66,6 @@ Engin.prototype = {
 
 		// 地图切换，加载当前地图人物
 		this.scriptEngin.loadCharacter();
-	},
-
-	_initOverlay: function(){
-		$(".overlay").on("keydown", function(e){
-			e.stopPropagation();
-			e.preventDefault();
-		})
 	},
 
 	setDataSource: function(dataSource) {

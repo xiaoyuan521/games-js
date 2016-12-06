@@ -71,6 +71,13 @@ ScriptEngin.prototype = {
 
 	changeScript: function(scriptKey){
 		this.currentScriptKey = scriptKey;
+	},
+
+	getCurrentScript: function(mapKey){
+		var mapKey = this.engin.mapEngin.currentMapKey;
+		var scriptKey = this.currentScriptKey;
+		var scriptInfo = this.scriptData[scriptKey][mapKey];
+		return scriptInfo;
 	}
 }
 

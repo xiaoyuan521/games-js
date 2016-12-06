@@ -1,6 +1,8 @@
 var Character = require("./Character.js");
 
-var moveTime = 400;
+var MOVE_TIME = 400;
+var BLANK_ENTER_KEY_CODES = [3,13];
+var DIRECTION_KEY_CODES = [37,38,39,40]
 
 function CharacterEngin(engin) {
 	this.engin = engin;
@@ -25,7 +27,7 @@ CharacterEngin.prototype = {
 		this.startTimer();
 	},
 
-	// 人物走动的键盘事件
+	// 键盘事件
 	bindEvent: function() {
 		var _this = this;
 		$(document.body).on("keydown.character.walk", function(e){
@@ -34,24 +36,36 @@ CharacterEngin.prototype = {
 				return;
 			}
 
-			switch(e.keyCode){
-				case 37:
-					_this.nextDirection = "left";
-					break;
-				case 38:
-					_this.nextDirection = "up";
-					break;
-				case 39:
-					_this.nextDirection = "right";
-					break;
-				case 40:
-					_this.nextDirection = "down";
-					break;
-				default:
-					break;
-			}
+			var keyCode = e.keyCode;
+			if(DIRECTION_KEY_CODES.indexOf(keyCode) != -1){
 
-			_this.currentCharacter.setDirection(_this.nextDirection);
+				// 人物走路
+				switch(e.keyCode){
+					case 37:
+						_this.nextDirection = "left";
+						break;
+					case 38:
+						_this.nextDirection = "up";
+						break;
+					case 39:
+						_this.nextDirection = "right";
+						break;
+					case 40:
+						_this.nextDirection = "down";
+						break;
+					default:
+						break;
+				}
+
+				_this.currentCharacter.setDirection(_this.nextDirection);
+			} else if(BLANK_ENTER_KEY_CODES.indexOf(keyCode) != -1){
+
+				// 对话
+				_this.checkLines();
+			}
+			
+
+
 		});
 	},
 
@@ -108,12 +122,28 @@ CharacterEngin.prototype = {
 		}
 	},
 
+	checkLines: function(){
+		var characterFaceTo = this.currentCharacter.currentDirection;
+		var nextXy = this._getNextMapXy(characterFaceTo);
+		var nextData = this.dataSource.get(nextXy.x, nextXy.y);
+		if(!nextData || !nextData.character){
+			return;
+		}
+		var characterName = nextData.character.name;
+		var scriptInfo = this.engin.scriptEngin.getCurrentScript();
+		var lineRef = scriptInfo.characters[characterName]["line_ref"];
+		var lineObj = scriptInfo.lines;
+		this.engin.scriptEngin.setLinesObj(lineObj, lineRef);
+		this.engin.scriptEngin.start();
+
+	},
+
 	_moveCharacter: function(x, y, callbackFn){
 		var $characterDom = $(".currentCharacter");
 		$characterDom.animate({
 			"left": x + "px",
 			"top": y + "px"
-		}, moveTime, "linear", callbackFn);
+		}, MOVE_TIME, "linear", callbackFn);
 	},
 
 	// 地图中，下一个点是否为可以移动点

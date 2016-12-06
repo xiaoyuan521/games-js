@@ -23,6 +23,7 @@ MapEngin.prototype = {
 		}
 
 		this.loadMap("01");
+		this.initOverlay();
 	},
 
 	loadMap: function(mapKey) {
@@ -107,6 +108,13 @@ MapEngin.prototype = {
 	_getPosition: function(x, y){
 		var cellSize = this.config.cellSize;
 		return "" + x / cellSize + "_" +  y / cellSize;
+	},
+
+	initOverlay: function(){
+		$(".character-overlay").on("keydown", function(e){
+			e.preventDefault();
+			e.stopPropagation();
+		});
 	}
 }
 
