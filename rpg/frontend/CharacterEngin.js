@@ -131,6 +131,7 @@ CharacterEngin.prototype = {
 		}
 
 		$(".lines-overlay").show().focus();
+		$("div.lines").show();
 		var characterName = nextData.character.name;
 		var scriptInfo = this.engin.scriptEngin.getCurrentScript();
 		var lineRef = scriptInfo.characters[characterName]["line_ref"];

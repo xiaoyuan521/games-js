@@ -60,10 +60,10 @@ var methods = {
 				}
 			}
 			if(keyCode === 38) {
-				this.lines.chooseUp();
+				_this.lines.chooseUp();
 			}
 			if(keyCode === 40) {
-				this.lines.chooseDown();
+				_this.lines.chooseDown();
 			}
 
 

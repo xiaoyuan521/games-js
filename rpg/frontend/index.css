@@ -1,5 +1,7 @@
 * {
 	box-sizing: border-box;
+	font-family: "微软雅黑";
+	font-size: 16px;
 }
 
 .display_none {
@@ -33,42 +35,71 @@
 	padding: 20px;
 }
 
-zIndex100: {
+div.lines {
+	display: none;
+}
+
+.options {
+	margin-top: 10px;
+}
+
+.option {
+	margin-left: 20px;
+}
+
+.option.selected {
+	font-weight: bold
+}
+
+.option.selected:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	margin-left: -15px;
+	margin-top: 3px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #f13838;
+    border-bottom: 5px solid transparent;
+}
+
+.zIndex100: {
 	z-index: 100;
 }
 
-zIndex200: {
+.zIndex200: {
 	z-index: 200;
 }
 
-zIndex300: {
+.zIndex300: {
 	z-index: 300;
 }
 
-zIndex400: {
+.zIndex400: {
 	z-index: 400;
 }
 
-zIndex500: {
+.zIndex500: {
 	z-index: 500;
 }
 
-zIndex600: {
+.zIndex600: {
 	z-index: 600;
 }
 
-zIndex700: {
+.zIndex700: {
 	z-index: 700;
 }
 
-zIndex800: {
+.zIndex800: {
 	z-index: 800;
 }
 
-zIndex900: {
+.zIndex900: {
 	z-index: 900;
 }
 
-zIndex1000: {
+.zIndex1000: {
 	z-index: 1000;
 }
