@@ -21,9 +21,9 @@ Lines.prototype = {
 	},
 
 	initDom: function(){
-		var $lines = $("div.lines");
-		$('<div class="content"></div>').appendTo($lines);
-		$('<div class="options"></div>').appendTo($lines);
+		var $contentContainer = $("div.lines .content_container");
+		$('<div class="content"></div>').appendTo($contentContainer);
+		$('<div class="options"></div>').appendTo($contentContainer);
 	},
 
 	initOptions: function(options){
@@ -56,7 +56,8 @@ Lines.prototype = {
 			// 本段对话结束
 			$(".lines-overlay").hide();
 			$("div.lines").hide();
-			$("div.lines > div").empty();
+			$("div.lines .avatar_container").empty();
+			$("div.lines .content_container > div").empty();
 			return;
 		}
 

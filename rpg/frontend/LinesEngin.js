@@ -25,7 +25,10 @@ var methods = {
 	},
 
 	initDom: function(){
-		$('<div class="lines"></div>').appendTo(".lines-layer");
+		var $linesDiv = $('<div class="lines"></div>');
+		$('<div class="avatar_container"></div>').appendTo($lineDiv);
+		$('<div class="content_container"></div>').appendTo($lineDiv);
+		$linesDiv.appendTo(".lines-layer");
 	},
 
 	setLinesObj: function(linesObj, lineRef){
