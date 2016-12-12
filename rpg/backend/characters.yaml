@@ -5,78 +5,78 @@ mainCharacter:
 
 characters:
  girl01: 
-  imgName: "girl_01.png"
+  imgName: "girl_01.jpg"
   avatar: "girl_01_avatar.png"
-  size: 45
+  size: "32*48"
  girl02: 
-  imgName: "girl_02.png"
+  imgName: "girl_02.jpg"
   avatar: "girl_02_avatar.png"
-  size: 45
+  size: "32*48"
  girl03: 
-  imgName: "girl_03.png"
+  imgName: "girl_03.jpg"
   avatar: "girl_03_avatar.png"
-  size: 45
+  size: "32*48"
  girl04: 
-  imgName: "girl_04.png"
+  imgName: "girl_04.jpg"
   avatar: "girl_04_avatar.png"
-  size: 45
+  size: "32*48"
  girl05: 
-  imgName: "girl_05.png"
+  imgName: "girl_05.jpg"
   avatar: "girl_05_avatar.png"
-  size: 45
+  size: "32*48"
  girl06: 
-  imgName: "girl_06.png"
+  imgName: "girl_06.jpg"
   avatar: "girl_06_avatar.png"
-  size: 45
+  size: "32*48"
  girl07: 
-  imgName: "girl_07.png"
+  imgName: "girl_07.jpg"
   avatar: "girl_07_avatar.png"
-  size: 45
+  size: "32*48"
  girl08: 
-  imgName: "girl_08.png"
+  imgName: "girl_08.jpg"
   avatar: "girl_08_avatar.png"
-  size: 45
+  size: "32*48"
  boy01: 
-  imgName: "boy_01.png"
+  imgName: "boy_01.jpg"
   avatar: "boy_01_avatar.png"
-  size: 45
+  size: "32*48"
  boy02: 
-  imgName: "boy_02.png"
+  imgName: "boy_02.jpg"
   avatar: "boy_02_avatar.png"
-  size: 45
+  size: "32*48"
  boy03: 
-  imgName: "boy_03.png"
+  imgName: "boy_03.jpg"
   avatar: "boy_03_avatar.png"
-  size: 45
+  size: "32*48"
  boy04: 
-  imgName: "boy_04.png"
+  imgName: "boy_04.jpg"
   avatar: "boy_04_avatar.png"
-  size: 45
+  size: "32*48"
  boy05: 
-  imgName: "boy_05.png"
+  imgName: "boy_05.jpg"
   avatar: "boy_05_avatar.png"
-  size: 45
+  size: "32*48"
  boy06: 
-  imgName: "boy_06.png"
+  imgName: "boy_06.jpg"
   avatar: "boy_06_avatar.png"
-  size: 45
+  size: "32*48"
  boy07: 
-  imgName: "boy_07.png"
+  imgName: "boy_07.jpg"
   avatar: "boy_07_avatar.png"
-  size: 45
+  size: "32*48"
  boy08: 
-  imgName: "boy_08.png"
+  imgName: "boy_08.jpg"
   avatar: "boy_08_avatar.png"
-  size: 45
+  size: "32*48"
  boy09: 
-  imgName: "boy_09.png"
+  imgName: "boy_09.jpg"
   avatar: "boy_09_avatar.png"
-  size: 45
+  size: "32*48"
  boy10: 
-  imgName: "boy_10.png"
+  imgName: "boy_10.jpg"
   avatar: "boy_10_avatar.png"
-  size: 45
+  size: "32*48"
  boy11: 
-  imgName: "boy_11.png"
+  imgName: "boy_11.jpg"
   avatar: "boy_11_avatar.png"
-  size: 45
+  size: "32*48"

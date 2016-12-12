@@ -47,15 +47,15 @@ Character.prototype = {
 	loadCharacter: function(name){
 
 		var characterData = this.characterData = this.characters[name];
-		var characterSize = characterData.size;
+		var characterSizeXy = this._getCharacterSizeXy(characterData.size);
 		var imgPath = "images/" + characterData.imgName;
 
 		var $characterDom = this.dom = $('<div class=""></div>');
 		$characterDom.appendTo($(".character-layer"));
 
 		$characterDom.css({
-			"width": characterSize + "px",
-			"height": characterSize + "px",
+			"width": characterSizeXy.x + "px",
+			"height": characterSizeXy.y + "px",
 			"background-image": "url('" + imgPath + "')"
 		})
 
@@ -152,7 +152,10 @@ Character.prototype = {
 	// 设定人物图片的偏移量
 	// nextMove : "01", "33" ...
 	_setCssDeviation: function(nextMove) {
-		var nextPositions = this._getPositionXY(this.characterData.size, nextMove);
+		var size = this.characterData.size;
+		var singleXy = this._getCharacterSizeXy(size);
+
+		var nextPositions = this._getPositionXY(singleXy.x, singleXy.y, nextMove);
 		var $characterDom = this.getDom();
 		$characterDom.css({
 			"position":"absolute",
@@ -162,13 +165,36 @@ Character.prototype = {
 	},
 
 	// 计算人物的css偏移量
-	_getPositionXY: function(size, movePosition) {
-		var x = size * parseInt(movePosition[0], 10) * -1;
-		var y = size * parseInt(movePosition[1], 10) * -1;
+	_getPositionXY: function(singleX, singleY, movePosition) {
+		var x = singleX * parseInt(movePosition[0], 10) * -1;
+		var y = singleY * parseInt(movePosition[1], 10) * -1;
 		return {
 			x: x,
 			y: y
 		}
+	},
+
+	_getCharacterSizeXy: function(size){
+
+		if(typeof size != 'string'){
+			console.error("character.size 必须为string型");
+			return;
+		}
+
+		var singleX = 0;
+		var singinY = 0;
+		if(size.indexOf("*") != -1){
+			var sizeArr = size.split("*");
+			singleX = parseInt(sizeArr[0], 10);
+			singleY = parseInt(sizeArr[1], 10);
+		} else {
+			singleX = singleY = parseInt(size, 10);
+		}
+		return {
+			x: singleX,
+			y: singleY
+		}
+
 	},
 
 	getDirection: function() {
