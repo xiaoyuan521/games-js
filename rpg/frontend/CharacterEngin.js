@@ -218,15 +218,15 @@ CharacterEngin.prototype = {
 
 	preload: function(){
 		var characterData = this.engin.characterData;
-		var $preload = $('<div class="preload"></div>');
+		var $preload = $("div.preload");
 
 		// load character use images
 		for(var key in characterData.characters) {
 			var characterInfo = characterData.characters[key];
 			var bodyFileName = characterInfo.imgName;
 			var avatarFileName = characterInfo.avatar;
-			$('<img src="" alt="" />').attr('src', "images/" + bodyFileName ).appendTo($preload);
-			$('<img src="" alt="" />').attr('src', "images/" + avatarFileName ).appendTo($preload);
+			$('<img src="" alt="" />').attr('src', "images/" + bodyFileName).appendTo($preload);
+			$('<img src="" alt="" />').attr('src', "images/" + avatarFileName).appendTo($preload);
 		}
 	}
 }

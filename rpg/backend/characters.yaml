@@ -3,10 +3,6 @@ mainCharacter:
  position: "6_7"
  faceTo: right
 
-avatar:
-  maxWidth: 60
-  maxHeight: 90
-
 characters:
  girl01: 
   imgName: "girl_01.png"

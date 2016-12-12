@@ -20,24 +20,21 @@ var methods = {
 	},
 
 	initLines: function(){
-		this.lines = new Lines();
+		this.lines = new Lines(this.engin);
 		this.lines.init();
 	},
 
 	initDom: function(){
 		var characterData = this.engin.characterData;
 
-		var $linesDiv = $('<div class="lines"></div>');
+		var $linesDiv = $('<div class="lines nowrap"></div>');
 
 		// avatar
-		var avatarWidth = characterData.avatar.maxWidth;
 		var $avatarContainer = $('<div class="avatar_container"></div>');
-		$avatarContainer.css({
-			"width": avatarWidth + "px"
-		}).appendTo($linesDiv);
+		$avatarContainer.appendTo($linesDiv);
 		
 		// content
-		var $contentContainer = $('<div class="content_container"></div>')
+		var $contentContainer = $('<div class="content_container"></div>');
 		$contentContainer.appendTo($linesDiv);
 		
 		$linesDiv.appendTo(".lines-layer");

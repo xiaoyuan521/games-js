@@ -1,6 +1,7 @@
 var PLAY_TIME = 200;
 
-function Lines(){
+function Lines(engin){
+	this.engin = engin;
 	this.linesObj = null;
 	this.currentRef = null;
 
@@ -20,13 +21,17 @@ Lines.prototype = {
 		this.initDom();
 	},
 
-	initDom: function(){
+	initDom: function() {
+
+		var $avatarContainer = $("div.lines .avatar_container");
+		$('<div class="avatar"></div>').appendTo($avatarContainer);
+
 		var $contentContainer = $("div.lines .content_container");
-		$('<div class="content"></div>').appendTo($contentContainer);
-		$('<div class="options"></div>').appendTo($contentContainer);
+		$('<div class="content wrapByWord"></div>').appendTo($contentContainer);
+		$('<div class="options wrapByWord"></div>').appendTo($contentContainer);
 	},
 
-	initOptions: function(options){
+	initOptions: function(options) {
 		var $options = $(".lines .options");
 		options.forEach(function(o, index){
 			$o = $('<div class="option"></div>')
@@ -61,9 +66,21 @@ Lines.prototype = {
 			return;
 		}
 
-		var character = line.character;
-		var avatarPath = "images" + character + "_"
 
+		// 	设定头像
+		var characterData = this.engin.characterData;
+		var characterName = line.character;
+		var avatarPath = 'images/' + characterData.characters[characterName].avatar;
+		var $avatar = $(".lines .avatar_container");
+		var $avatarImg = $('<img src="" alt="" />').attr("src", avatarPath);
+		$avatarImg.css({
+			"max-width": "100%",
+			"max-height": "100%"
+		});
+		$avatar.empty();
+		$avatarImg.appendTo($avatar);
+
+		// 有options的情况下，重置相关变量
 		if(line.options){
 			this._optionIndex = 0;
 			this._resetLinesByOption(0);
@@ -71,6 +88,7 @@ Lines.prototype = {
 			$(".lines .options").empty();
 		}
 
+		// 播放台词
 		var count = 1;
 		this.isPlaying = true;
 		this._interval_handler = setInterval(function(){
@@ -78,7 +96,7 @@ Lines.prototype = {
 			var displayContent = line.content.substring(0, count);
 			$content.text(displayContent);
 			count++;
-			if(count > content.length ){
+			if(count > content.length) {
 				clearInterval(_this._interval_handler);
 				var options = _this.currentLine.options;
 				if(options){
