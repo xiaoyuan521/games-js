@@ -35,6 +35,17 @@
 	padding: 20px;
 }
 
+.avatar_container,
+.content_container {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.avatar_container {
+	text-align: center;
+	margin-right: 10px;
+}
+
 div.lines {
 	display: none;
 }

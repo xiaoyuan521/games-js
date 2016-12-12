@@ -3,61 +3,84 @@ mainCharacter:
  position: "6_7"
  faceTo: right
 
+avatar:
+  maxWidth: 60
+  maxHeight: 90
+
 characters:
  girl01: 
   imgName: "girl_01.png"
+  avatar: "girl_01_avatar.png"
   size: 45
  girl02: 
   imgName: "girl_02.png"
+  avatar: "girl_02_avatar.png"
   size: 45
  girl03: 
   imgName: "girl_03.png"
+  avatar: "girl_03_avatar.png"
   size: 45
  girl04: 
   imgName: "girl_04.png"
+  avatar: "girl_04_avatar.png"
   size: 45
  girl05: 
   imgName: "girl_05.png"
+  avatar: "girl_05_avatar.png"
   size: 45
  girl06: 
   imgName: "girl_06.png"
+  avatar: "girl_06_avatar.png"
   size: 45
  girl07: 
   imgName: "girl_07.png"
+  avatar: "girl_07_avatar.png"
   size: 45
  girl08: 
   imgName: "girl_08.png"
+  avatar: "girl_08_avatar.png"
   size: 45
  boy01: 
   imgName: "boy_01.png"
+  avatar: "boy_01_avatar.png"
   size: 45
  boy02: 
   imgName: "boy_02.png"
+  avatar: "boy_02_avatar.png"
   size: 45
  boy03: 
   imgName: "boy_03.png"
+  avatar: "boy_03_avatar.png"
   size: 45
  boy04: 
   imgName: "boy_04.png"
+  avatar: "boy_04_avatar.png"
   size: 45
  boy05: 
   imgName: "boy_05.png"
+  avatar: "boy_05_avatar.png"
   size: 45
  boy06: 
   imgName: "boy_06.png"
+  avatar: "boy_06_avatar.png"
   size: 45
  boy07: 
   imgName: "boy_07.png"
+  avatar: "boy_07_avatar.png"
   size: 45
  boy08: 
   imgName: "boy_08.png"
+  avatar: "boy_08_avatar.png"
   size: 45
  boy09: 
   imgName: "boy_09.png"
+  avatar: "boy_09_avatar.png"
   size: 45
  boy10: 
   imgName: "boy_10.png"
+  avatar: "boy_10_avatar.png"
   size: 45
  boy11: 
   imgName: "boy_11.png"
+  avatar: "boy_11_avatar.png"
   size: 45

@@ -13,15 +13,7 @@ MapEngin.prototype = {
 
 	init: function(){
 
-		// pre-load all images
-		var mapMapping = this.mapData.mapMapping;
-		var $loadDiv = $("<div class='display_none'></div>");
-		$loadDiv.appendTo($(document.body));
-		for(var key in mapMapping){
-			var imagePath = "images/" + mapMapping[key].name;
-			$('<img/>').attr("src", imagePath).appendTo($loadDiv);
-		}
-
+		this.preload();
 		this.loadMap("01");
 		this.initOverlay();
 	},
@@ -115,6 +107,16 @@ MapEngin.prototype = {
 			e.preventDefault();
 			e.stopPropagation();
 		});
+	},
+
+	preload: function(){
+		// pre-load map images
+		var mapMapping = this.mapData.mapMapping;
+		var $loadDiv = $("div.preload");
+		for(var key in mapMapping){
+			var imagePath = "images/" + mapMapping[key].name;
+			$('<img/>').attr("src", imagePath).appendTo($loadDiv);
+		}
 	}
 }
 

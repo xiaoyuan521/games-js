@@ -25,9 +25,21 @@ var methods = {
 	},
 
 	initDom: function(){
+		var characterData = this.engin.characterData;
+
 		var $linesDiv = $('<div class="lines"></div>');
-		$('<div class="avatar_container"></div>').appendTo($lineDiv);
-		$('<div class="content_container"></div>').appendTo($lineDiv);
+
+		// avatar
+		var avatarWidth = characterData.avatar.maxWidth;
+		var $avatarContainer = $('<div class="avatar_container"></div>');
+		$avatarContainer.css({
+			"width": avatarWidth + "px"
+		}).appendTo($linesDiv);
+		
+		// content
+		var $contentContainer = $('<div class="content_container"></div>')
+		$contentContainer.appendTo($linesDiv);
+		
 		$linesDiv.appendTo(".lines-layer");
 	},
 

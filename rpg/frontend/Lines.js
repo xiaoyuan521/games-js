@@ -61,6 +61,9 @@ Lines.prototype = {
 			return;
 		}
 
+		var character = line.character;
+		var avatarPath = "images" + character + "_"
+
 		if(line.options){
 			this._optionIndex = 0;
 			this._resetLinesByOption(0);

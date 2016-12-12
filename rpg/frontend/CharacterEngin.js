@@ -10,6 +10,8 @@ function CharacterEngin(engin) {
 	this.config = engin.config;
 	this.dataSource = engin.getDataSource();
 
+	this.preload();
+
 	// 人物移动方向， null代表停止
 	this.nextDirection = null;
 
@@ -213,6 +215,20 @@ CharacterEngin.prototype = {
 	setCurrentCharacter: function(currentCharacter){
 		this.currentCharacter = currentCharacter;
 	},
+
+	preload: function(){
+		var characterData = this.engin.characterData;
+		var $preload = $('<div class="preload"></div>');
+
+		// load character use images
+		for(var key in characterData.characters) {
+			var characterInfo = characterData.characters[key];
+			var bodyFileName = characterInfo.imgName;
+			var avatarFileName = characterInfo.avatar;
+			$('<img src="" alt="" />').attr('src', "images/" + bodyFileName ).appendTo($preload);
+			$('<img src="" alt="" />').attr('src', "images/" + avatarFileName ).appendTo($preload);
+		}
+	}
 }
 
 module.exports = CharacterEngin
