@@ -51,7 +51,7 @@ characters:
  boy04: 
   imgName: "boy_04.jpg"
   avatar: "boy_04_avatar.png"
-  size: "32*48"
+  size: "33*50"
  boy05: 
   imgName: "boy_05.jpg"
   avatar: "boy_05_avatar.png"
@@ -67,15 +67,15 @@ characters:
  boy08: 
   imgName: "boy_08.jpg"
   avatar: "boy_08_avatar.png"
-  size: "32*48"
+  size: "50*75"
  boy09: 
   imgName: "boy_09.jpg"
   avatar: "boy_09_avatar.png"
-  size: "32*48"
+  size: "50*75"
  boy10: 
   imgName: "boy_10.jpg"
   avatar: "boy_10_avatar.png"
-  size: "32*48"
+  size: "50*75"
  boy11: 
   imgName: "boy_11.jpg"
   avatar: "boy_11_avatar.png"

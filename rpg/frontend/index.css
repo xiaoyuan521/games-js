@@ -52,6 +52,8 @@
 	background-color: #eaeacd;
 	border-radius: 20px;
 	padding: 10px;
+	border: 1px solid #708fd4;
+	box-shadow: 2px 2px 10px #708fd4;
 }
 
 .avatar_container,
@@ -68,7 +70,7 @@
 }
 
 .content_container {
-	width: 320px;
+	width: 310px;
 }
 
 .lines .avatar {

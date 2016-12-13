@@ -5,14 +5,14 @@
     position: "7_7"
     faceTo: left
     line_ref: line_1
-  boy03:
+  boy04:
     position: "5_5"
     faceTo: down
     line_ref: line_4
   girl03:
     position: "4_5"
     faceTo: left
-    line_ref: line_6
+    line_ref: line_5
  lines:
   line_1:
    - character: girl01
@@ -37,21 +37,20 @@
    - character: boy01
      content: 真好吃啊！
   line_4:
-    - character: boy03
-      content: 我想请你帮个忙。
-    - character: boy03
-      content: 最近村子里来了很多的不速之客，我不知道该怎么办了，你能把村子里的长老找来么？
-    - character: boy03
-      content: 长老是个神龙见首不见尾的人，关于他的去向，你可以跟，【筱筱】打听一下。
-    - character: girl01
-      content: 让我想想。。。
-      options: 
-        - content: 接受任务
-          script: "02"
-        - content: 不接受任务
-  line_6:
+    - character: boy04
+    - content: 去找【筱筱】打听一下关于长老的位置信息。
+  line_5:
     - character: girl02
-      content: 你好，我是【筱筱】。人家心情不好，现在不想说话。
+      content: 你好，我叫【筱筱】，是整个村子里最漂亮的姑娘，有什么事问我准没错儿！
+    - character: girl01
+      content: 你好，我是girl01
+    - options:
+      - content: 切~ ，我才是长的最好看的呢。
+      - content: 我想打听一下关于长老的位置信息，你能告诉我吗？
+        line_ref: line_6
+  line_6: 
+    - character: girl02
+      content: 哦, 长老啊，他在东边的林子里。祝你好运。
 # 第二张地图
 "02":
  characters:
@@ -85,7 +84,18 @@
    - character: girl01
      content: 流氓~ 以后我不想看到你了
   line_4:
-   - character: boy03
-     content: 小姑娘，要买金鱼么？
    - character: girl01
-     content: 不要
+     content: 你是长老么？
+   - character: boy03
+     content: 我是长老么？ （喃喃自语）
+   - character: girl01
+     content: 是【筱筱】告诉我你的位置的。现在村子需要你！
+   - character: boy03
+     content: 【筱筱】， 你说的是【筱筱】么，我的筱筱，你终于需要我了，我是长老，快去带我见筱筱。
+   - character: girl01
+     content: 好，那出发吧。
+     script: "03"
+
+
+
+ 

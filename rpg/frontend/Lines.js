@@ -53,16 +53,19 @@ Lines.prototype = {
 		var _this = this;
 		var $content = $(".lines .content");
 		
+		if(!this.currentRef){
+			// 结束对话
+			this._stopLines();
+			return;
+		}
+
 		var lineArr = this.linesObj[this.currentRef];
 		var line = this.currentLine = lineArr[this._index];
 		this._index++;
 
 		if(!line) {
-			// 本段对话结束
-			$(".lines-overlay").hide();
-			$("div.lines").hide();
-			$("div.lines .avatar_container").empty();
-			$("div.lines .content_container > div").empty();
+			// 结束对话
+			this._stopLines();
 			return;
 		}
 
@@ -158,6 +161,14 @@ Lines.prototype = {
 		var line = this.currentLine;
 		this.currentRef = line.options[optionIndex]["line_ref"];
 		this._index = 0;
+	},
+
+	_stopLines: function(){
+		// 本段对话结束
+		$(".lines-overlay").hide();
+		$("div.lines").hide();
+		$("div.lines .avatar_container").empty();
+		$("div.lines .content_container > div").empty();
 	}
 }
 
