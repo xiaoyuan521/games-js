@@ -49,7 +49,7 @@ Lines.prototype = {
 		this.isPlaying = false;
 	},
 
-	play: function(callback){
+	play: function(callback) {
 		var _this = this;
 		var $content = $(".lines .content");
 		

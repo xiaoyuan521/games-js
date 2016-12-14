@@ -47,7 +47,11 @@
       content: 让我想想。。。
       options: 
         - content: 接受任务
-          script: "02"
+          script: 
+            key: "02"
+            map: null
+            position: "3_3"
+            faceTo: left
         - content: 不接受任务
   line_6:
     - character: girl02
