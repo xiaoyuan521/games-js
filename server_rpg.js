@@ -4,6 +4,7 @@ var koaStatic = require("koa-static");
 
 var yaml = require("js-yaml");
 var fs = require("fs");
+var walk = require("walk");
 
 var app = koa();
 app.use(koaStatic(path.resolve(__dirname, ".")));
@@ -24,9 +25,24 @@ app.use(function* (next){
 
 function getScriptData(){
 	return new Promise((resolve, reject) => {
-		var scriptData = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, "rpg", "backend","scripts_01.yaml"), 'utf8'));
-		resolve({
-			"01": scriptData
+		var walker = walk.walk(path.resolve(__dirname, "rpg", "backend"));
+		var scriptData = {};
+		walker.on("file", function(root, fileStats, next){
+			var fileName = fileStats.name;
+			if(/scripts*/.test(fileName)){
+				var key = fileName.replace("scripts_", "").replace(".yaml", "");
+				scriptData[key] = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, "rpg", "backend", fileName), 'utf8'));
+			}
+			next();
+		});
+
+		walker.on("errors", function(root, nodeStatsArray, next){
+			reject(root);
+			next();
+		})
+
+		walker.on("end", function(){
+			resolve(scriptData);
 		});
 	});
 }
