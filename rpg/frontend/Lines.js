@@ -2,15 +2,18 @@ var PLAY_TIME = 200;
 
 function Lines(engin){
 	this.engin = engin;
-	this.linesObj = null;
-	this.currentRef = null;
 
-	this._index = 0;
+	this.linesObj = null; // 当前地图的全部对话对象
+	this.currentRef = null; // 当前人物间的全部对话的key
+	this.currentLine = null; // 当前人物间的全部对话对象
+	this._index = 0; // 当前对话走到的index
+
 	this._optionIndex = 0;
 	this._interval_handler = null;
 
 	this.isPlaying = false;
-	this.currentLine = null;
+
+	this.nextScript = null;
 }
 
 Lines.prototype = {
@@ -53,7 +56,7 @@ Lines.prototype = {
 		var _this = this;
 		var $content = $(".lines .content");
 		
-		if(!this.currentRef){
+		if(!this.currentRef) {
 			// 结束对话
 			this._stopLines();
 			return;

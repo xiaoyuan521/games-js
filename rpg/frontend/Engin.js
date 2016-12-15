@@ -4,6 +4,23 @@ var CharacterEngin = require("./CharacterEngin.js");
 var ScriptEngin = require("./ScriptEngin.js");
 var LinesEngin = require("./LinesEngin.js");
 
+// MapEngin 负责地图的加载和dataSource的初始化
+// ---
+// CharacterEngin 负责监听键盘的事件，方向键控制人物走动，空格和回车开始对话
+// ---
+// ScriptEngin 负责设定当前剧情，加载当前剧情人物到dataSource中
+// ---
+// LinesEngin 负责剧情台词的播放，剧情的跳转（Line中实现）
+
+// 整个游戏的dataSource是由MapEngin记载的基本地图数据
+// 和ScriptEngin根据剧情加载的人物数据组成的
+
+// 主人公MainCharacter是不随剧情和地图加载的，单独加载
+
+// 游戏全体使用html js css实现
+// 前台分为3层，map layer, character layer, lines layer
+// 每个层次有一个overlay, 每个层次在展示的时候，该层的overlay会表示出来，接管键盘事件
+
 function Engin(config) {
 	this.config = config;
 	this.dataSource = new CoorMap();

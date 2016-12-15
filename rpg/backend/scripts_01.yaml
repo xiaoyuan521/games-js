@@ -49,7 +49,7 @@
         - content: 接受任务
           script: 
             key: "02"
-            map: null
+            mapKey: null
             position: "3_3"
             faceTo: left
         - content: 不接受任务
