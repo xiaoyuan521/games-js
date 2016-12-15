@@ -94,5 +94,9 @@
      content: 【筱筱】， 你说的是【筱筱】么，我的筱筱，你终于需要我了，我是长老，快去带我见筱筱。
    - character: girl01
      content: 好，那出发吧。
-     script: "03"
+     script: 
+      key: "03"
+      mapKey: "01"
+      position: "10_4"
+      faceTo: left
 
