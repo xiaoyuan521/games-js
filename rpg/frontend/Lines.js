@@ -92,7 +92,6 @@ Lines.prototype = {
 
 		// 触发剧情
 		if(currentLine.script) {
-			console.log("111111111", currentLine.script);
 			this.nextScript = currentLine.script;
 		}
 
@@ -160,7 +159,6 @@ Lines.prototype = {
 	},
 
 	changeScript: function() {
-		console.log("in change script", this.nextScript);
 		if(!this.nextScript){
 			return;
 		}
