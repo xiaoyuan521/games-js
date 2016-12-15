@@ -90,6 +90,12 @@ Lines.prototype = {
 
 		var currentLine = this._getCurrentLineObj();
 
+		// 触发剧情
+		if(currentLine.script) {
+			console.log("111111111", currentLine.script);
+			this.nextScript = currentLine.script;
+		}
+
 		// 	设定头像
 		var characterData = this.engin.characterData;
 		var characterName = currentLine.character;
@@ -153,7 +159,7 @@ Lines.prototype = {
 		this.changeScript();
 	},
 
-	changeScript: function(){
+	changeScript: function() {
 		console.log("in change script", this.nextScript);
 		if(!this.nextScript){
 			return;
@@ -164,7 +170,7 @@ Lines.prototype = {
 		this.engin.scriptEngin.changeScript(scriptKey);
 
 		var mapKey = this.nextScript.mapKey;
-		if(this.mapKey){
+		if(mapKey){
 			// 地图变更的场合，重新加载地图
 			this.engin.mapEngin.loadMap(mapKey);
 			// 加载地图上的人物

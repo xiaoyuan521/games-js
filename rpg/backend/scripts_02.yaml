@@ -5,7 +5,7 @@
     position: "7_7"
     faceTo: left
     line_ref: line_1
-  boy04:
+  boy03:
     position: "5_5"
     faceTo: down
     line_ref: line_4
@@ -37,8 +37,8 @@
    - character: boy01
      content: 真好吃啊！
   line_4:
-    - character: boy04
-    - content: 去找【筱筱】打听一下关于长老的位置信息。
+    - character: boy03
+      content: 去找【筱筱】打听一下关于长老的位置信息。
   line_5:
     - character: girl02
       content: 你好，我叫【筱筱】，是整个村子里最漂亮的姑娘，有什么事问我准没错儿！
