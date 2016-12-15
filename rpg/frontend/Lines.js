@@ -5,12 +5,12 @@ function Lines(engin){
 
 	this.linesObj = null; // 当前地图的全部对话对象
 	this.currentRef = null; // 当前人物间的全部对话的key
-	this.currentLine = null; // 当前人物间的全部对话对象
 	this._index = 0; // 当前对话走到的index
 
+	this.currentOption = null;
 	this._optionIndex = 0;
-	this._interval_handler = null;
 
+	this._interval_handler = null;
 	this.isPlaying = false;
 
 	this.nextScript = null;
@@ -35,6 +35,7 @@ Lines.prototype = {
 	},
 
 	initOptions: function(options) {
+		this._optionIndex = 0;
 		var $options = $(".lines .options");
 		options.forEach(function(o, index){
 			$o = $('<div class="option"></div>')
@@ -42,7 +43,8 @@ Lines.prototype = {
 			if(index == 0){
 				$o.addClass("selected");
 			}
-		})
+		});
+		this.currentOption = options;
 	},
 
 	setLinesObj: function(linesObj, startRef){
@@ -55,27 +57,42 @@ Lines.prototype = {
 	play: function(callback) {
 		var _this = this;
 		var $content = $(".lines .content");
+
+		if(this.currentOption){
+			// 在option选择模式中
+
+			// 根据options已经做出了选择，清空
+			$(".lines .options").empty();
 		
-		if(!this.currentRef) {
-			// 结束对话
-			this._stopLines();
-			return;
+			var optionInfos = this.currentOption;
+			this.currentOption = null;
+
+			var selectedOption = optionInfos[this._optionIndex];
+			
+			// 选择某个分支，设定剧情脚本，等待对话结束触发剧情
+			if(selectedOption.script){
+				this.nextScript = selectedOption.script;
+			}
+
+			// 选择某个分支，继续对话
+			if(selectedOption.line_ref){
+				this._index = 0;
+				this.currentRef = selectedOption.line_ref;
+			}
 		}
 
 		var lineArr = this.linesObj[this.currentRef];
-		var line = this.currentLine = lineArr[this._index];
-		this._index++;
-
-		if(!line) {
+		if(this._index >= lineArr.length){
 			// 结束对话
 			this._stopLines();
 			return;
 		}
 
+		var currentLine = this._getCurrentLineObj();
 
 		// 	设定头像
 		var characterData = this.engin.characterData;
-		var characterName = line.character;
+		var characterName = currentLine.character;
 		var avatarPath = 'images/' + characterData.characters[characterName].avatar;
 		var $avatar = $(".lines .avatar_container");
 		var $avatarImg = $('<img src="" alt="" />').attr("src", avatarPath);
@@ -86,29 +103,22 @@ Lines.prototype = {
 		$avatar.empty();
 		$avatarImg.appendTo($avatar);
 
-		// 有options的情况下，重置相关变量
-		if(line.options){
-			this._optionIndex = 0;
-			this._resetLinesByOption(0);
-		}else {
-			$(".lines .options").empty();
-		}
-
 		// 播放台词
 		var count = 1;
 		this.isPlaying = true;
 		this._interval_handler = setInterval(function(){
-			var content = line.content;
-			var displayContent = line.content.substring(0, count);
+			var content = currentLine.content;
+			var displayContent = currentLine.content.substring(0, count);
 			$content.text(displayContent);
 			count++;
 			if(count > content.length) {
 				clearInterval(_this._interval_handler);
-				var options = _this.currentLine.options;
+				var options = currentLine.options;
 				if(options){
 					_this.initOptions(options);
 				}
 				_this.isPlaying = false;
+				_this._index++;
 				if(callback){
 					callback();
 				}
@@ -117,19 +127,47 @@ Lines.prototype = {
 
 	},
 
-	playEnd: function(){
-		if(this.isPlaying === false){
+	playEnd: function() {
+		if(this.isPlaying === false) {
 			return;
 		}
 		var $content = $(".lines .content");
-		$content.text(this.currentLine.content);
+		var currentLine = this._getCurrentLineObj();
+		$content.text(currentLine.content);
 		clearInterval(this._interval_handler);
-		var options = this.currentLine.options;
+		var options = currentLine.options;
 		if(options){
 			this.initOptions(options);
 		}
+		this._index++;
 		this.isPlaying = false;
 
+		this.changeScript();
+	},
+
+	changeScript: function(){
+		if(!this.nextScript){
+			return;
+		}
+
+		// 剧情脚本设定
+		var scriptKey = this.nextScript.key;
+		this.engin.scriptEngin.changeScript(scriptKey);
+
+		var mapKey = this.nextScript.mapKey;
+		if(this.mapKey){
+			// 地图变更的场合，重新加载地图
+			this.engin.mapEngin.loadMap(mapKey);
+			// 加载地图上的人物
+			this.engin.scriptEngin.loadCharacter();
+			// 设定主人公的位置
+			var position = this.nextScript.position;
+			var faceTo = this.nextScript.faceTo;
+			var posArr = position.split("_");
+			this.engin.characterEngin.currentCharacter.setPosition(posArr[0], posArr[1], faceTo);
+		}
+
+		this.nextScript = null;
 	},
 
 	chooseUp: function(){
@@ -142,7 +180,6 @@ Lines.prototype = {
 		if(this._optionIndex < 0){
 			this._optionIndex = len - 1;
 		}
-		this._resetLinesByOption(this._optionIndex);
 		$options.removeClass("selected").eq(this._optionIndex).addClass("selected");
 	},
 
@@ -156,14 +193,13 @@ Lines.prototype = {
 		if(this._optionIndex >= len){
 			this._optionIndex = 0;
 		}
-		this._resetLinesByOption(this._optionIndex);
 		$options.removeClass("selected").eq(this._optionIndex).addClass("selected");
 	},
 
-	_resetLinesByOption: function(optionIndex){
-		var line = this.currentLine;
-		this.currentRef = line.options[optionIndex]["line_ref"];
-		this._index = 0;
+	_getCurrentLineObj: function(){
+		var lineArr = this.linesObj[this.currentRef];
+		var line = lineArr[this._index];
+		return line;
 	},
 
 	_stopLines: function(){
