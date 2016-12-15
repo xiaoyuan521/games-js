@@ -88,10 +88,12 @@ div.lines {
 
 .option {
 	margin-left: 20px;
+	font-size: 16px;
+	margin-top: 3px;
 }
 
 .option.selected {
-	font-weight: bold
+	color: #e85d8d;
 }
 
 .option.selected:before {

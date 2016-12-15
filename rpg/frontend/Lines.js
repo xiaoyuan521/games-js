@@ -84,7 +84,7 @@ Lines.prototype = {
 		var lineArr = this.linesObj[this.currentRef];
 		if(this._index >= lineArr.length){
 			// 结束对话
-			this._stopLines();
+			this.stopLines();
 			return;
 		}
 
@@ -141,11 +141,20 @@ Lines.prototype = {
 		}
 		this._index++;
 		this.isPlaying = false;
+	},
+
+	stopLines: function(){
+		// 本段对话结束
+		$(".lines-overlay").hide();
+		$("div.lines").hide();
+		$("div.lines .avatar_container").empty();
+		$("div.lines .content_container > div").empty();
 
 		this.changeScript();
 	},
 
 	changeScript: function(){
+		console.log("in change script", this.nextScript);
 		if(!this.nextScript){
 			return;
 		}
@@ -200,14 +209,6 @@ Lines.prototype = {
 		var lineArr = this.linesObj[this.currentRef];
 		var line = lineArr[this._index];
 		return line;
-	},
-
-	_stopLines: function(){
-		// 本段对话结束
-		$(".lines-overlay").hide();
-		$("div.lines").hide();
-		$("div.lines .avatar_container").empty();
-		$("div.lines .content_container > div").empty();
 	}
 }
 
