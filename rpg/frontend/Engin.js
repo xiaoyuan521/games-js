@@ -21,6 +21,11 @@ var LinesEngin = require("./LinesEngin.js");
 // 前台分为3层，map layer, character layer, lines layer
 // 每个层次有一个overlay, 每个层次在展示的时候，该层的overlay会表示出来，接管键盘事件
 
+// 剧情脚本的设定
+// scripts_xx.yaml的文件为每个剧目的剧情
+// scripts_xx.yaml中只记录当前剧情跟前一个剧情不同的地方
+// 通过ScriptEngin#_calcScriptData来计算出，每一幕的全部剧情
+
 function Engin(config) {
 	this.config = config;
 	this.dataSource = new CoorMap();
@@ -35,6 +40,8 @@ function Engin(config) {
 	this.scriptEngin = null;
 
 	this.linesEngin = null;
+
+	this.debugMode = true;
 }
 
 Engin.prototype = {
@@ -82,7 +89,7 @@ Engin.prototype = {
 		}
 
 		// 地图切换，加载当前地图人物
-		this.scriptEngin.loadCharacter();
+		this.characterEngin.loadCharacter();
 	},
 
 	setDataSource: function(dataSource) {

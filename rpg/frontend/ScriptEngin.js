@@ -11,62 +11,23 @@ ScriptEngin.prototype = {
 
 	init: function() {
 
+		var characterEngin = this.engin.characterEngin;
+
+		// 做成全部剧情用的对象
+		// this._calcScriptData();
+
 		// 加载主人公
 		var mainCharacterInfo = this.engin.characterData.mainCharacter;
 		var name = mainCharacterInfo.name;
 		var pos = mainCharacterInfo.position;
 		var faceTo = mainCharacterInfo.faceTo;
-		var currentCharacter = this._loadCharacter(name, pos, faceTo);
+		var currentCharacter = characterEngin._loadCharacter(name, pos, faceTo);
 		currentCharacter.getDom().addClass("currentCharacter");
-		this.engin.characterEngin.setCurrentCharacter(currentCharacter);
+		characterEngin.setCurrentCharacter(currentCharacter);
 
 		// 加载其他人物
-		this.loadCharacter();
+		characterEngin.loadCharacter();
 
-	},
-
-	// 加载当前地图的人物
-	loadCharacter: function() {
-		$(".character-layer > div").not(".currentCharacter").remove();
-
-		var currentScriptKey = this.currentScriptKey;
-		var currentMapKey = this.engin.mapEngin.currentMapKey;
-		var currentMapScript = this.scriptData[currentScriptKey][currentMapKey];
-		if(!currentMapScript || !currentMapScript.characters){
-			return;
-		}		
-		var characters = currentMapScript.characters;
-		for(var key in characters) {
-			var character = characters[key];
-			var name = key;
-			var pos = character.position;
-			var faceTo = character.faceTo;
-			this._loadCharacter(name, pos, faceTo, true);
-		}
-	},
-
-	_loadCharacter: function(name, pos, faceTo, changeDataSourceFlg){
-		var config = this.engin.config;
-		var cellSize = config.cellSize;
-
-		// 设定人物到画面上
-		var character = new Character(this.engin, name);
-		var posArr = pos.split("_");
-		var x = parseInt(posArr[0],10) * cellSize;
-		var y = parseInt(posArr[1], 10) * cellSize;
-		character.setPosition(x, y, faceTo);
-
-		if(changeDataSourceFlg === true){
-			// 设定人物到datasource中
-			var dataSource = this.engin.getDataSource();
-			var dataSourcePoint = dataSource.get(x,y);
-			dataSourcePoint.character = {
-				name: name,
-				faceTo: faceTo
-			}
-		}
-
-		return character;
 	},
 
 	changeScript: function(scriptKey){
@@ -78,6 +39,84 @@ ScriptEngin.prototype = {
 		var scriptKey = this.currentScriptKey;
 		var scriptInfo = this.scriptData[scriptKey][mapKey];
 		return scriptInfo;
+	},
+
+	_calcScriptData: function(){
+		var baseScriptData = this.scriptData;
+		var maxScriptNum = 0;
+		var maxMapNumber = 0;
+		var scriptKeyArr = [];
+		var mapKeyArr = [];
+		for(var key in baseScriptData){
+			var keyInt = parseInt(key, 10);
+			if(keyInt > maxScriptNum){
+				maxScriptNum = keyInt;
+				scriptKeyArr.push(key);
+			}
+
+			for(var mapKey in baseScriptData[key]){
+				var mapKeyInt = parseInt(mapKey, 10);
+				if(mapKeyInt > maxMapNumber){
+					maxMapNumber = mapKeyInt;
+					mapKeyArr.push(mapKey);
+				}
+			}
+		}
+		scriptKeyArr.sort();
+		mapKeyArr.sort();
+
+		console.log("maxScriptNum", maxScriptNum, scriptKeyArr);
+		console.log("maxMapNumber", maxMapNumber, mapKeyArr);
+
+		var resultScriptData = {};
+		for(var i=0;i<scriptKeyArr.length;i++){
+			var skey = scriptKeyArr[i];
+			var fullMapScriptData = {};
+			for(var j=0; j< mapKeyArr.length; j++){
+				var mkey = mapKeyArr[j];
+				var keyMapScriptData = this._findPreScript(baseScriptData, skey, mkey);
+				fullMapScriptData[mkey] = fullMapScriptData;
+			}
+			resultScriptData[skey] = fullMapScriptData;
+		}
+		console.log("all done ...", resultScriptData);
+		this.scriptData = resultScriptData;
+	},
+
+	_findPreScript: function(scriptDataObj, scriptKey, mapKey){
+		scriptKey = scriptKey + "";
+		mapKey = mapKey + "";
+		var scriptData = scriptDataObj[scriptKey];
+		if(!scriptData) {
+			var preScriptKey = parseInt(scriptKey, 10) -1;
+			if(preScriptKey < 0){
+				console.error("preScriptKey is under zero !!!");
+				return;
+			}
+			preScriptKey = this._formatKey();
+			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
+		}
+		var mapScriptData = scriptData[mapKey];
+		if(mapScriptData){
+			return mapScriptData;
+		} else {
+			var preScriptKey = parseInt(scriptKey, 10) -1;
+			if(preScriptKey < 0){
+				console.error("preScriptKey is under zero !!!");
+				return;
+			}
+			preScriptKey = this._formatKey();
+			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
+		}
+	},
+
+	_formatKey: function(key){
+		key = key + "";
+		if(key.length == 1){
+			return "0" + key;
+		}else {
+			return key;
+		}
 	}
 }
 

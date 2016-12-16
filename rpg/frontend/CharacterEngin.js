@@ -228,7 +228,52 @@ CharacterEngin.prototype = {
 			$('<img src="" alt="" />').attr('src', "images/" + bodyFileName).appendTo($preload);
 			$('<img src="" alt="" />').attr('src', "images/" + avatarFileName).appendTo($preload);
 		}
-	}
+	},
+
+	// 加载当前地图的人物
+	loadCharacter: function() {
+		$(".character-layer > div").not(".currentCharacter").remove();
+
+		var currentScriptKey = this.engin.scriptEngin.currentScriptKey;
+		var currentMapKey = this.engin.mapEngin.currentMapKey;
+		var currentScript = this.engin.scriptEngin.scriptData[currentScriptKey];
+		var currentMapScript = currentScript[currentMapKey];
+		if(!currentMapScript || !currentMapScript.characters){
+			return;
+		}		
+		var characters = currentMapScript.characters;
+		for(var key in characters) {
+			var character = characters[key];
+			var name = key;
+			var pos = character.position;
+			var faceTo = character.faceTo;
+			this._loadCharacter(name, pos, faceTo, true);
+		}
+	},
+
+	_loadCharacter: function(name, pos, faceTo, changeDataSourceFlg){
+		var config = this.engin.config;
+		var cellSize = config.cellSize;
+
+		// 设定人物到画面上
+		var character = new Character(this.engin, name);
+		var posArr = pos.split("_");
+		var x = parseInt(posArr[0],10) * cellSize;
+		var y = parseInt(posArr[1], 10) * cellSize;
+		character.setPosition(x, y, faceTo);
+
+		if(changeDataSourceFlg === true){
+			// 设定人物到datasource中
+			var dataSource = this.engin.getDataSource();
+			var dataSourcePoint = dataSource.get(x,y);
+			dataSourcePoint.character = {
+				name: name,
+				faceTo: faceTo
+			}
+		}
+
+		return character;
+	},
 }
 
 module.exports = CharacterEngin

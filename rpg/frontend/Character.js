@@ -53,11 +53,20 @@ Character.prototype = {
 		var $characterDom = this.dom = $('<div class=""></div>');
 		$characterDom.appendTo($(".character-layer"));
 
-		$characterDom.css({
-			"width": characterSizeXy.x + "px",
-			"height": characterSizeXy.y + "px",
-			"background-image": "url('" + imgPath + "')"
-		})
+		if(this.engin.debugMode){
+			var dispName = characterData.imgName.replace(/\..*?$/g, '');
+			$characterDom.css({
+				"width": characterSizeXy.x + "px",
+				"height": characterSizeXy.y + "px",
+			}).addClass("debug wrapByCharacter");
+			$characterDom.text(dispName);
+		} else {
+			$characterDom.css({
+				"width": characterSizeXy.x + "px",
+				"height": characterSizeXy.y + "px",
+				"background-image": "url('" + imgPath + "')"
+			})
+		}
 
 		this._setCssDeviation(this.currentMove);
 	},

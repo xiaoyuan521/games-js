@@ -54,8 +54,12 @@ MapEngin.prototype = {
 				dataSource.set(x,y, {bg: row[i]});
 
 				// images
-				var $img = $('<img alt="" />').attr("src", "images/" + value);
-				// var $img = $('<div></div>').text(value.substring(0,2));
+				var $img = null;
+				if(this.engin.debugMode) {
+					$img = $('<div></div>').text(value.substring(0,2));
+				} else {
+					$img = $('<img alt="" />').attr("src", "images/" + value);
+				}
 				$img.css({
 					width: cellSize + "px",
 					height: cellSize + "px",

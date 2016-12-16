@@ -51,52 +51,6 @@
   line_6: 
     - character: girl02
       content: 哦, 长老啊，他在东边的林子里。祝你好运。
-# 第二张地图
-"02":
- characters:
-  boy02:
-    position: "6_5"
-    faceTo: right
-    line_ref: line_1
-  boy03:
-    position: "4_4"
-    faceTo: down
-    line_ref: line_4
- lines:
-  line_1:
-   - character: boy02
-     content: 我是个男人，好吧。
-   - character: boy02
-     content: 你还想让我怎么样？
-   - character: girl01
-     content: 娶我
-   - character: boy02
-     content: ...
-     options: 
-      - content: 点头
-        line_ref: line_2
-      - content: 摇头
-        line_ref: line_3
-  line_2:
-   - character: girl01
-     content: 哼，我就是44你。没想到这么容易就答应了。我现在怀疑我当初是不是不该选择你。
-  line_3:
-   - character: girl01
-     content: 流氓~ 以后我不想看到你了
-  line_4:
-   - character: girl01
-     content: 你是长老么？
-   - character: boy03
-     content: 我是长老么？ （喃喃自语）
-   - character: girl01
-     content: 是【筱筱】告诉我你的位置的。现在村子需要你！
-   - character: boy03
-     content: 【筱筱】， 你说的是【筱筱】么，我的筱筱，你终于需要我了，我是长老，快去带我见筱筱。
-   - character: girl01
-     content: 好，那出发吧。
-     script: 
-      key: "03"
-      mapKey: "01"
-      position: "10_4"
-      faceTo: left
+      script: 
+        key: "03"
 

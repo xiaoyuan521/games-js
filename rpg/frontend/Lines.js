@@ -96,17 +96,29 @@ Lines.prototype = {
 		}
 
 		// 	设定头像
-		var characterData = this.engin.characterData;
-		var characterName = currentLine.character;
-		var avatarPath = 'images/' + characterData.characters[characterName].avatar;
 		var $avatar = $(".lines .avatar_container");
-		var $avatarImg = $('<img src="" alt="" />').attr("src", avatarPath);
-		$avatarImg.css({
-			"max-width": "100%",
-			"max-height": "100%"
-		});
-		$avatar.empty();
-		$avatarImg.appendTo($avatar);
+		if(this.engin.debugMode){
+			var characterName = currentLine.character;
+			var $nameDiv = $('<div class="wrapByWord debug"></div>');
+			$nameDiv.text(characterName).css({
+				"max-width": "100%",
+				"max-height": "100%"
+			});
+			$avatar.empty();
+			$nameDiv.appendTo($avatar);
+		} else {
+			var characterData = this.engin.characterData;
+			var characterName = currentLine.character;
+			var avatarPath = 'images/' + characterData.characters[characterName].avatar;
+			var $avatarImg = $('<img src="" alt="" />').attr("src", avatarPath);
+			$avatarImg.css({
+				"max-width": "100%",
+				"max-height": "100%"
+			});
+			$avatar.empty();
+			$avatarImg.appendTo($avatar);
+		}
+
 
 		// 播放台词
 		var count = 1;
