@@ -14,7 +14,7 @@ ScriptEngin.prototype = {
 		var characterEngin = this.engin.characterEngin;
 
 		// 做成全部剧情用的对象
-		// this._calcScriptData();
+		this._calcScriptData();
 
 		// 加载主人公
 		var mainCharacterInfo = this.engin.characterData.mainCharacter;
@@ -93,7 +93,7 @@ ScriptEngin.prototype = {
 				console.error("preScriptKey is under zero !!!");
 				return;
 			}
-			preScriptKey = this._formatKey();
+			preScriptKey = this._formatKey(preScriptKey);
 			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
 		}
 		var mapScriptData = scriptData[mapKey];
@@ -105,7 +105,7 @@ ScriptEngin.prototype = {
 				console.error("preScriptKey is under zero !!!");
 				return;
 			}
-			preScriptKey = this._formatKey();
+			preScriptKey = this._formatKey(preScriptKey);
 			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
 		}
 	},
