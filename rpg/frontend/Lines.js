@@ -184,7 +184,7 @@ Lines.prototype = {
 			// 地图变更的场合，重新加载地图
 			this.engin.mapEngin.loadMap(mapKey);
 			// 加载地图上的人物
-			this.engin.scriptEngin.loadCharacter();
+			this.engin.characterEngin.loadCharacter();
 			// 设定主人公的位置
 			var position = this.nextScript.position;
 			var faceTo = this.nextScript.faceTo;

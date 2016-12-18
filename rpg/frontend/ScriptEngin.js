@@ -13,7 +13,7 @@ ScriptEngin.prototype = {
 
 		var characterEngin = this.engin.characterEngin;
 
-		// 做成全部剧情用的对象
+		// 做成全部剧情的数据对象
 		this._calcScriptData();
 
 		// 加载主人公
@@ -45,28 +45,34 @@ ScriptEngin.prototype = {
 		var baseScriptData = this.scriptData;
 		var maxScriptNum = 0;
 		var maxMapNumber = 0;
-		var scriptKeyArr = [];
-		var mapKeyArr = [];
+		var scriptKeyArr = []; // 全部剧情脚本key的数据
+		var mapKeyArr = []; // 全部地图key的数组
 		for(var key in baseScriptData){
-			var keyInt = parseInt(key, 10);
-			if(keyInt > maxScriptNum){
-				maxScriptNum = keyInt;
+			if(scriptKeyArr.indexOf(key) == -1){
 				scriptKeyArr.push(key);
 			}
 
 			for(var mapKey in baseScriptData[key]){
-				var mapKeyInt = parseInt(mapKey, 10);
-				if(mapKeyInt > maxMapNumber){
-					maxMapNumber = mapKeyInt;
+				if(mapKeyArr.indexOf(mapKey) == -1){
 					mapKeyArr.push(mapKey);
 				}
 			}
-		}
-		scriptKeyArr.sort();
-		mapKeyArr.sort();
+ 		}
 
-		console.log("maxScriptNum", maxScriptNum, scriptKeyArr);
-		console.log("maxMapNumber", maxMapNumber, mapKeyArr);
+ 		// 剧情key，地图key 的2个数组排序
+ 		var _sortByInt = function(a,b){
+ 			var inta = parseInt(a, 10);
+ 			var intb = parseInt(b, 10);
+ 			if(inta == intb){
+ 				return 0;
+ 			}
+ 			return inta > intb ? 1 : -1;
+ 		}
+		scriptKeyArr.sort(_sortByInt);
+		mapKeyArr.sort(_sortByInt);
+
+		// console.log("maxScriptNum", maxScriptNum, scriptKeyArr);
+		// console.log("maxMapNumber", maxMapNumber, mapKeyArr);
 
 		var resultScriptData = {};
 		for(var i=0;i<scriptKeyArr.length;i++){
@@ -75,42 +81,47 @@ ScriptEngin.prototype = {
 			for(var j=0; j< mapKeyArr.length; j++){
 				var mkey = mapKeyArr[j];
 				var keyMapScriptData = this._findPreScript(baseScriptData, skey, mkey);
-				fullMapScriptData[mkey] = fullMapScriptData;
+				fullMapScriptData[mkey] = keyMapScriptData;
 			}
 			resultScriptData[skey] = fullMapScriptData;
 		}
-		console.log("all done ...", resultScriptData);
+		// console.log("all done ...", resultScriptData);
 		this.scriptData = resultScriptData;
 	},
 
+	// 递归寻找某个剧情下的某张地图数据
+	// 如果当前剧情中找不到地图数据，向前一个剧情中找寻
 	_findPreScript: function(scriptDataObj, scriptKey, mapKey){
 		scriptKey = scriptKey + "";
 		mapKey = mapKey + "";
 		var scriptData = scriptDataObj[scriptKey];
 		if(!scriptData) {
+			// 剧情脚本的key可能不连续  01 ,03, 05 ...
 			var preScriptKey = parseInt(scriptKey, 10) -1;
 			if(preScriptKey < 0){
 				console.error("preScriptKey is under zero !!!");
 				return;
 			}
-			preScriptKey = this._formatKey(preScriptKey);
+			preScriptKey = this._addZero(preScriptKey);
 			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
 		}
+
 		var mapScriptData = scriptData[mapKey];
 		if(mapScriptData){
 			return mapScriptData;
 		} else {
+			// 当前剧情脚本中没有这张地图，向前一个剧情脚本继续寻找
 			var preScriptKey = parseInt(scriptKey, 10) -1;
 			if(preScriptKey < 0){
 				console.error("preScriptKey is under zero !!!");
 				return;
 			}
-			preScriptKey = this._formatKey(preScriptKey);
+			preScriptKey = this._addZero(preScriptKey);
 			return this._findPreScript(scriptDataObj, preScriptKey, mapKey);
 		}
 	},
 
-	_formatKey: function(key){
+	_addZero: function(key){
 		key = key + "";
 		if(key.length == 1){
 			return "0" + key;
