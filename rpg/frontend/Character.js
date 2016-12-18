@@ -233,11 +233,15 @@ Character.prototype = {
 
 	// 跟随主角在地图中行走
 	followMoveInMap: function(leaderX, leaderY){
+		var x = this.x;
+		var y = this.y;
+		if(x == leaderX && y == leaderY){
+			// 2个人在同一个位置，跟随的人物不移动
+			return;
+		}
 
 		// 设定脸部朝向
 		var faceTo = null;
-		var x = this.x;
-		var y = this.y;
 		if(x == leaderX){
 			if(y < leaderY){
 				faceTo = "down";
@@ -252,7 +256,6 @@ Character.prototype = {
 				faceTo = "right";
 			}
 		}
-		console.log(faceTo, leaderX, leaderY, x, y);
 		this.setDirection(faceTo);
 
 		this.walk();
