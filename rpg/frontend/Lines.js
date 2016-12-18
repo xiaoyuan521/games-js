@@ -20,7 +20,7 @@ Lines.prototype = {
 
 	constructor: Lines,
 
-	init: function(){
+	init: function() {
 		this.initDom();
 	},
 

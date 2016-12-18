@@ -1,6 +1,5 @@
 var Character = require("./Character.js");
 
-var MOVE_TIME = 400;
 var BLANK_ENTER_KEY_CODES = [32,13];
 var DIRECTION_KEY_CODES = [37,38,39,40]
 
@@ -104,7 +103,7 @@ CharacterEngin.prototype = {
 			return;
 		}
 
-		var nextMapXy = this._getNextMapXy(this.nextDirection);
+		var nextMapXy = this.currentCharacter._getNextMapXy(this.nextDirection);
 		var canWalkFlg = this._canWalk(nextMapXy);
 		var x = nextMapXy.x;
 		var y = nextMapXy.y;
@@ -112,7 +111,7 @@ CharacterEngin.prototype = {
 		if(canWalkFlg === true){
 			this.isWalking = true;
 			currentCharacter.walk();
-			this._moveCharacter(x, y, function(){
+			this.currentCharacter.moveInMap(x, y, function(){
 				_this.isWalking = false;
 				_this.nextDirection = null;
 				currentCharacter.x = x;
@@ -126,7 +125,7 @@ CharacterEngin.prototype = {
 
 	checkLines: function(){
 		var characterFaceTo = this.currentCharacter.currentDirection;
-		var nextXy = this._getNextMapXy(characterFaceTo);
+		var nextXy = this.currentCharacter._getNextMapXy(characterFaceTo);
 		var nextData = this.dataSource.get(nextXy.x, nextXy.y);
 		if(!nextData || !nextData.character){
 			return;
@@ -141,14 +140,6 @@ CharacterEngin.prototype = {
 		this.engin.linesEngin.setLinesObj(lineObj, lineRef);
 		this.engin.linesEngin.start();
 
-	},
-
-	_moveCharacter: function(x, y, callbackFn){
-		var $characterDom = $(".currentCharacter");
-		$characterDom.animate({
-			"left": x + "px",
-			"top": y + "px"
-		}, MOVE_TIME, "linear", callbackFn);
 	},
 
 	// 地图中，下一个点是否为可以移动点
@@ -177,39 +168,6 @@ CharacterEngin.prototype = {
 		}
 
 		return true;
-	},
-
-	// 根据行走方向取得，下一个地图的x，y坐标
-	_getNextMapXy: function(direction){
-		var cellSize = this.config.cellSize;
-		var currentX = this.currentCharacter.x;
-		var currentY = this.currentCharacter.y;
-		var x = 0;
-		var y = 0;
-		switch(direction){
-			case "left":
-				x = currentX - cellSize;
-				y = currentY;
-				break;
-			case "right":
-				x = currentX + cellSize;
-				y = currentY;
-				break;
-			case "up":
-				x = currentX;
-				y = currentY - cellSize;
-				break;
-			case "down":
-				x = currentX;
-				y = currentY + cellSize;
-				break;
-			default:
-				break;
-		}
-		return {
-			x:x,
-			y:y
-		}
 	},
 
 	setCurrentCharacter: function(currentCharacter){
@@ -261,6 +219,10 @@ CharacterEngin.prototype = {
 		var x = parseInt(posArr[0],10) * cellSize;
 		var y = parseInt(posArr[1], 10) * cellSize;
 		character.setPosition(x, y, faceTo);
+
+		if(name == "boy01"){
+			this.currentCharacter.setFollower(character);
+		}
 
 		if(changeDataSourceFlg === true){
 			// 设定人物到datasource中

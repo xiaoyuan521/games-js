@@ -1,8 +1,10 @@
 // 走一步的时间
-var walkTime = 100;
+var MOVEMENT_TIME = 100;
+// 地图中走一格的时间
+var MOVE_TIME = 400;
 
 
-function Character(engin, CharacterName){
+function Character(engin, CharacterName) {
 	this.engin = engin;
 	this.config = engin.config;
 
@@ -17,6 +19,8 @@ function Character(engin, CharacterName){
 	this.direction = "right"; // 人物面向的方向
 	this.x = null; // 人物在地图中的位置 x
 	this.y = null; // 人物在地图中的位置 y
+
+	this.follower = null; // 跟随移动的人
 
 	this.init(CharacterName);
 }
@@ -40,7 +44,7 @@ Character.prototype = {
 			var nextMove = _this._getNextMove();
 			_this._setCssDeviation(nextMove);
 			_this.currentMove = nextMove;
-		}, walkTime);
+		}, MOVEMENT_TIME);
 	},
 
 	// 加载人物图片，初始化姿势
@@ -212,6 +216,92 @@ Character.prototype = {
 
 	getDom: function(){
 		return this.dom;
+	},
+
+	// 人物在地图中行走
+	moveInMap: function(x, y, callbackFn){
+		var $characterDom = this.getDom();
+		$characterDom.animate({
+			"left": x + "px",
+			"top": y + "px"
+		}, MOVE_TIME, "linear", callbackFn);
+
+		if(this.follower){
+			this.follower.followMoveInMap(this.x,this.y);
+		}
+	},
+
+	// 跟随主角在地图中行走
+	followMoveInMap: function(leaderX, leaderY){
+
+		// 设定脸部朝向
+		var faceTo = null;
+		var x = this.x;
+		var y = this.y;
+		if(x == leaderX){
+			if(y < leaderY){
+				faceTo = "down";
+			}else {
+				faceTo = "up";
+			}
+		} 
+		if(y == leaderY){
+			if(x > leaderX){
+				faceTo = "left";
+			}else {
+				faceTo = "right";
+			}
+		}
+		console.log(faceTo, leaderX, leaderY, x, y);
+		this.setDirection(faceTo);
+
+		this.walk();
+		var _this = this;
+		setTimeout(function(){
+			_this.moveInMap(leaderX, leaderY, function(){
+				_this.stop();
+				_this.x = leaderX;
+				_this.y = leaderY;
+			});
+		});
+
+	},
+
+	// 根据行走方向取得，下一个地图的x，y坐标
+	_getNextMapXy: function(direction){
+		var cellSize = this.config.cellSize;
+		var currentX = this.x;
+		var currentY = this.y;
+		var x = 0;
+		var y = 0;
+		switch(direction){
+			case "left":
+				x = currentX - cellSize;
+				y = currentY;
+				break;
+			case "right":
+				x = currentX + cellSize;
+				y = currentY;
+				break;
+			case "up":
+				x = currentX;
+				y = currentY - cellSize;
+				break;
+			case "down":
+				x = currentX;
+				y = currentY + cellSize;
+				break;
+			default:
+				break;
+		}
+		return {
+			x:x,
+			y:y
+		}
+	},
+
+	setFollower: function(follower){
+		this.follower = follower;
 	}
 
 }
