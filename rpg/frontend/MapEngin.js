@@ -94,8 +94,24 @@ MapEngin.prototype = {
 
 		this.engin.characterEngin.currentCharacter.stop();
 		$(".character-overlay").show();
+		// 加载地图
 		this.loadMap(mapName);
+		// 加载主角
 		this.engin.characterEngin.currentCharacter.setPosition(x, y, faceTo);
+		// 记载主角的跟随者（跟主角重合）
+		var loadFollowerCharacterObj = this.engin.characterEngin.currentCharacter;
+		while(true){
+			if(!loadFollowerCharacterObj.follower) {
+				break;
+			} else {
+				var follower = loadFollowerCharacterObj.follower;
+				setTimeout(function(){
+					follower.setPosition(x, y, faceTo);
+					console.log("_chang map ,load character 11111111");
+				})
+				loadFollowerCharacterObj = follower;
+			}
+		}
 		$(".character-overlay").hide();
 	},
 

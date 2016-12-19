@@ -130,6 +130,13 @@ Character.prototype = {
 		this.isWalking = false;
 		var stopMove = "0" + this.currentMove[1];
 		this._setCssDeviation(stopMove);
+
+		var stopCharacter = this;
+		while(stopCharacter.follower){
+			var follower = this.follower;
+			follower.stop();
+			stopCharacter = follower;
+		}
 	},
 
 	// 设定移动方向
@@ -260,12 +267,11 @@ Character.prototype = {
 
 		this.walk();
 		var _this = this;
-		setTimeout(function(){
-			_this.moveInMap(leaderX, leaderY, function(){
-				_this.stop();
-				_this.x = leaderX;
-				_this.y = leaderY;
-			});
+		this.moveInMap(leaderX, leaderY, function(){
+			console.log("follower walk done 22222222");
+			_this.stop();
+			_this.x = leaderX;
+			_this.y = leaderY;
 		});
 
 	},

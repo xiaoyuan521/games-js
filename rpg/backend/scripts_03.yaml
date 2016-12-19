@@ -87,7 +87,8 @@
      content: 好，那出发吧。
      script: 
       key: "04"
-      mapKey: "01"
-      position: "10_4"
-      faceTo: left
+      # mapKey: "01"
+      # position: "10_4"
+      # faceTo: left
+     follower: true
 

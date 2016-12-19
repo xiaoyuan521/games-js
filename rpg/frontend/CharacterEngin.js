@@ -190,7 +190,7 @@ CharacterEngin.prototype = {
 
 	// 加载当前地图的人物
 	loadCharacter: function() {
-		$(".character-layer > div").not(".currentCharacter").remove();
+		$(".character-layer > div").not(".currentCharacter").not(".follower").remove();
 
 		var currentScriptKey = this.engin.scriptEngin.currentScriptKey;
 		var currentMapKey = this.engin.mapEngin.currentMapKey;
@@ -222,6 +222,8 @@ CharacterEngin.prototype = {
 
 		if(name == "boy01"){
 			this.currentCharacter.setFollower(character);
+			var $dom = character.getDom();
+			$dom.addClass("follower");
 		}
 
 		if(changeDataSourceFlg === true){
