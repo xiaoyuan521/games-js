@@ -1,3 +1,5 @@
+# 长老被带回
+
 # 第一张地图
 "01":
  characters:
@@ -5,14 +7,10 @@
     position: "7_7"
     faceTo: left
     line_ref: line_1
-  boy04:
+  boy03:
     position: "5_5"
     faceTo: down
     line_ref: line_4
-  boy03:
-    position: "5_6"
-    faceTo: down
-    line_ref: line_15
   girl03:
     position: "4_5"
     faceTo: left
@@ -41,14 +39,26 @@
    - character: boy01
      content: 真好吃啊！
   line_4:
+    - character: girl01
+      content: 我把<b>长老</b>找来了，现在交任务！
+    - character: boy03
+      content: 哇， 好厉害，谢谢你！
+    - character: boy03
+      content: 其实我找长老也没什么事儿，狼人杀少一个法官，你来当吧。 长老同志~
     - character: boy04
-      content: 谢谢你，找来了长老。
+      content: 。。。
+    - character: boy04
+      content: 。。。。。。。。
+    - character: boy04
+      content: 好吧。
+      script: 
+        key: "05"
+        mapKey: "01"
+      follower: 
+        name:
   line_5:
     - character: girl03
-      content: 谢谢你，找来了长老。
-  line_15:
-    - character: boy03
-      content: 我就是长老。
+      content: 按照我说的方位找到长老了吧。^_^
 # 第二张地图
 "02":
  characters:

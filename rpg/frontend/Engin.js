@@ -86,12 +86,15 @@ Engin.prototype = {
 	// 检测地图切换
 	// 检测剧情发生
 	checkEvent: function(x, y){
-		var changeToMap = this.mapEngin.checkChangeMap(x,y);
-		if( changeToMap === false){
+		var exitsInfo = this.mapEngin.checkChangeMap(x,y);
+		if( exitsInfo === false){
 			return;
 		}
 
-		// 地图切换，加载当前地图人物
+		// 切换地图，记载主角和跟随者
+		this.mapEngin.changeMap(exitsInfo);
+
+		// 加载新地图人物
 		this.characterEngin.loadCharacter();
 	},
 

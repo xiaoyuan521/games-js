@@ -127,15 +127,16 @@ Character.prototype = {
 
 	// 停止走路
 	stop: function(){
+		var $dom = this.getDom();
+		$dom.stop();
+		
 		this.isWalking = false;
 		var stopMove = "0" + this.currentMove[1];
 		this._setCssDeviation(stopMove);
 
-		var stopCharacter = this;
-		while(stopCharacter.follower){
+		if(this.follower){
 			var follower = this.follower;
 			follower.stop();
-			stopCharacter = follower;
 		}
 	},
 
@@ -267,11 +268,12 @@ Character.prototype = {
 
 		this.walk();
 		var _this = this;
-		this.moveInMap(leaderX, leaderY, function(){
+		_this.moveInMap(leaderX, leaderY, function(){
 			console.log("follower walk done 22222222");
 			_this.stop();
 			_this.x = leaderX;
 			_this.y = leaderY;
+				
 		});
 
 	},
@@ -311,6 +313,19 @@ Character.prototype = {
 
 	setFollower: function(follower){
 		this.follower = follower;
+	},
+
+	clearFollower: function(characterObj){
+		if(characterObj === undefined) {
+			characterObj = this;
+		}
+		if(!characterObj.follower){
+			return;
+		}
+		var followerObj = characterObj.follower;
+		characterObj.follower = null;
+		followerObj.getDom().remove();
+		this.clearFollower(followerObj);
 	}
 
 }

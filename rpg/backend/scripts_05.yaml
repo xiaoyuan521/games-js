@@ -1,4 +1,4 @@
-# 对话长老，带回
+# 长老被带回
 
 # 第一张地图
 "01":
@@ -15,6 +15,10 @@
     position: "4_5"
     faceTo: left
     line_ref: line_5
+  boy04:
+    position: "6_6"
+    faceTo: down
+    line_ref: line_15
  lines:
   line_1:
    - character: girl01
@@ -40,10 +44,13 @@
      content: 真好吃啊！
   line_4:
     - character: boy03
-      content: 去找【筱筱】打听一下关于长老的位置信息。
+      content: 谢谢你，找来了长老。
   line_5:
     - character: girl03
-      content: 你好，我叫【筱筱】，你要找的长老，在东边的林子里。
+      content: 谢谢你，找来了长老。
+  line_15:
+    - character: boy04
+      content: 我就是长老。
 # 第二张地图
 "02":
  characters:
@@ -51,10 +58,6 @@
     position: "6_5"
     faceTo: right
     line_ref: line_1
-  boy04:
-    position: "4_4"
-    faceTo: down
-    line_ref: line_4
  lines:
   line_1:
    - character: boy02
@@ -76,19 +79,3 @@
   line_3:
    - character: girl01
      content: 流氓~ 以后我不想看到你了
-  line_4:
-   - character: girl01
-     content: 你是长老么？
-   - character: boy04
-     content: 我是长老么？ （喃喃自语）
-   - character: girl01
-     content: 是【筱筱】告诉我你的位置的。现在村子需要你！
-   - character: boy04
-     content: 【筱筱】， 你说的是【筱筱】么，我的筱筱，你终于需要我了，我是长老，快去带我见筱筱。
-   - character: girl01
-     content: 好，那出发吧。
-     script: 
-      key: "04"
-     follower: 
-      name: boy04
-

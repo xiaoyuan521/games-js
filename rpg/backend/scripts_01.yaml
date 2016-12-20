@@ -1,3 +1,5 @@
+# 故事开始
+
 # 第一张地图
 "01":
  characters:
@@ -63,7 +65,7 @@
     position: "6_5"
     faceTo: right
     line_ref: line_1
-  boy03:
+  boy04:
     position: "4_4"
     faceTo: down
     line_ref: line_4
@@ -89,7 +91,7 @@
    - character: girl01
      content: 流氓~ 以后我不想看到你了
   line_4:
-   - character: boy03
+   - character: boy04
      content: 小姑娘，要买金鱼么？
    - character: girl01
      content: 不要

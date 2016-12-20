@@ -76,14 +76,12 @@ MapEngin.prototype = {
 		var exits = this.mapData[this.currentMapKey].exits;
 		var exitsInfo = exits[position];
 		if(exitsInfo) {
-			// 到达出口,加载下一张地图
-			this._changeMap(exitsInfo);
-			return exitsInfo.mapName;
+			return exitsInfo;
 		}
 		return false;
 	},
 
-	_changeMap: function(exitsInfo){
+	changeMap: function(exitsInfo){
 		var mapName = exitsInfo.map;
 		var position = exitsInfo.position;
 		var faceTo = exitsInfo.faceTo;
@@ -93,22 +91,20 @@ MapEngin.prototype = {
 		var y = posArr[1];
 
 		this.engin.characterEngin.currentCharacter.stop();
-		$(".character-overlay").show();
+		$(".character-overlay").show().focus();
 		// 加载地图
 		this.loadMap(mapName);
 		// 加载主角
 		this.engin.characterEngin.currentCharacter.setPosition(x, y, faceTo);
-		// 记载主角的跟随者（跟主角重合）
+		// 加载主角的跟随者（跟主角重合）
 		var loadFollowerCharacterObj = this.engin.characterEngin.currentCharacter;
 		while(true){
 			if(!loadFollowerCharacterObj.follower) {
 				break;
 			} else {
 				var follower = loadFollowerCharacterObj.follower;
-				setTimeout(function(){
-					follower.setPosition(x, y, faceTo);
-					console.log("_chang map ,load character 11111111");
-				})
+				follower.setPosition(x, y, faceTo);
+				console.log("_chang map ,load character 11111111");
 				loadFollowerCharacterObj = follower;
 			}
 		}

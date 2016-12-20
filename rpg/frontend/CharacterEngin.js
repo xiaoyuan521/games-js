@@ -15,6 +15,7 @@ function CharacterEngin(engin) {
 	this.nextDirection = null;
 
 	this.currentCharacter = null;
+	this.currentNpcs = {};
 
 	this.isWalking = false;
 }
@@ -191,6 +192,7 @@ CharacterEngin.prototype = {
 	// 加载当前地图的人物
 	loadCharacter: function() {
 		$(".character-layer > div").not(".currentCharacter").not(".follower").remove();
+		this.currentNpcs = {};
 
 		var currentScriptKey = this.engin.scriptEngin.currentScriptKey;
 		var currentMapKey = this.engin.mapEngin.currentMapKey;
@@ -220,12 +222,6 @@ CharacterEngin.prototype = {
 		var y = parseInt(posArr[1], 10) * cellSize;
 		character.setPosition(x, y, faceTo);
 
-		if(name == "boy01"){
-			this.currentCharacter.setFollower(character);
-			var $dom = character.getDom();
-			$dom.addClass("follower");
-		}
-
 		if(changeDataSourceFlg === true){
 			// 设定人物到datasource中
 			var dataSource = this.engin.getDataSource();
@@ -234,10 +230,23 @@ CharacterEngin.prototype = {
 				name: name,
 				faceTo: faceTo
 			}
+
+			// 设定人物到npcs对象中
+			this.currentNpcs[name] = character;
 		}
 
 		return character;
 	},
+
+	removeFromDataSource: function(characterObj){
+		var dataSource = this.engin.getDataSource();
+		var x = characterObj.x;
+		var y = characterObj.y;
+		var dataSourcePoint = dataSource.get(x,y);
+		dataSourcePoint.character = null;
+
+		console.log("remove from data source", x,y, characterObj);
+	}
 }
 
 module.exports = CharacterEngin

@@ -90,6 +90,26 @@ Lines.prototype = {
 
 		var currentLine = this._getCurrentLineObj();
 
+		// 跟随主角
+		if(currentLine.follower){
+			var followerName = currentLine.follower.name;
+
+			if(!followerName){
+				// name是空的情况下，删除跟随的角色
+				this.engin.characterEngin.currentCharacter.clearFollower();
+			}else{
+				// 设定跟随者
+				var characterEngin = this.engin.characterEngin;
+				var followerObj = characterEngin.currentNpcs[followerName];
+				followerObj.getDom().addClass("follower");
+				console.log("follow main character !", currentLine.character,followerObj, currentLine);
+				this.engin.characterEngin.removeFromDataSource(followerObj);
+				characterEngin.currentCharacter.follower = followerObj;
+			}
+
+
+		}
+
 		// 触发剧情
 		if(currentLine.script) {
 			this.nextScript = currentLine.script;
@@ -187,10 +207,13 @@ Lines.prototype = {
 			this.engin.characterEngin.loadCharacter();
 			// 设定主人公的位置
 			var position = this.nextScript.position;
-			var faceTo = this.nextScript.faceTo;
-			var posArr = position.split("_");
-			this.engin.characterEngin.currentCharacter.setPosition(posArr[0], posArr[1], faceTo);
+			if(position){
+				var faceTo = this.nextScript.faceTo;
+				var posArr = position.split("_");
+				this.engin.characterEngin.currentCharacter.setPosition(posArr[0], posArr[1], faceTo);
+			}
 		}
+
 
 		this.nextScript = null;
 	},
