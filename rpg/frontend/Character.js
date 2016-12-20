@@ -129,7 +129,7 @@ Character.prototype = {
 	stop: function(){
 		var $dom = this.getDom();
 		$dom.stop();
-		
+
 		this.isWalking = false;
 		var stopMove = "0" + this.currentMove[1];
 		this._setCssDeviation(stopMove);
