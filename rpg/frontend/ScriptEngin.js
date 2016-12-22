@@ -71,9 +71,6 @@ ScriptEngin.prototype = {
 		scriptKeyArr.sort(_sortByInt);
 		mapKeyArr.sort(_sortByInt);
 
-		// console.log("maxScriptNum", maxScriptNum, scriptKeyArr);
-		// console.log("maxMapNumber", maxMapNumber, mapKeyArr);
-
 		var resultScriptData = {};
 		for(var i=0;i<scriptKeyArr.length;i++){
 			var skey = scriptKeyArr[i];
@@ -85,7 +82,6 @@ ScriptEngin.prototype = {
 			}
 			resultScriptData[skey] = fullMapScriptData;
 		}
-		// console.log("all done ...", resultScriptData);
 		this.scriptData = resultScriptData;
 	},
 

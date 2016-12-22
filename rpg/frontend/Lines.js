@@ -102,7 +102,6 @@ Lines.prototype = {
 				var characterEngin = this.engin.characterEngin;
 				var followerObj = characterEngin.currentNpcs[followerName];
 				followerObj.getDom().addClass("follower");
-				console.log("follow main character !", currentLine.character,followerObj, currentLine);
 				this.engin.characterEngin.removeFromDataSource(followerObj);
 				characterEngin.currentCharacter.setFollower(followerObj);
 			}

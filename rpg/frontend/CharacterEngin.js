@@ -86,7 +86,7 @@ CharacterEngin.prototype = {
 			}
 
 			if(_this.nextDirection == null) {
-				_this.currentCharacter.stop();
+				_this.currentCharacter.stop(true);
 				return;
 			}
 

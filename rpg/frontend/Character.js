@@ -126,7 +126,7 @@ Character.prototype = {
 	},
 
 	// 停止走路
-	stop: function(){
+	stop: function(recusivelyFlg){
 		var $dom = this.getDom();
 		$dom.stop();
 
@@ -134,9 +134,11 @@ Character.prototype = {
 		var stopMove = "0" + this.currentMove[1];
 		this._setCssDeviation(stopMove);
 
-		if(this.follower){
-			var follower = this.follower;
-			follower.stop();
+		// stop所有的跟随者
+		if(recusivelyFlg === true) {
+			if(this.follower){
+				this.follower.stop(true);
+			}
 		}
 	},
 
@@ -269,7 +271,6 @@ Character.prototype = {
 		this.walk();
 		var _this = this;
 		_this.moveInMap(leaderX, leaderY, function(){
-			console.log("follower walk done 22222222");
 			_this.stop();
 			_this.x = leaderX;
 			_this.y = leaderY;
@@ -313,7 +314,6 @@ Character.prototype = {
 
 	setFollower: function(follower){
 		var followableCharacter = this._getFollowable(this);
-		console.log("((((((((((((", followableCharacter, followableCharacter.x, followableCharacter.y);
 		followableCharacter.follower = follower;
 	},
 
