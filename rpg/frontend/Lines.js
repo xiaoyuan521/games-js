@@ -58,8 +58,8 @@ Lines.prototype = {
 		var _this = this;
 		var $content = $(".lines .content");
 
+		// 在option选择模式中
 		if(this.currentOption){
-			// 在option选择模式中
 
 			// 根据options已经做出了选择，清空
 			$(".lines .options").empty();
@@ -104,10 +104,8 @@ Lines.prototype = {
 				followerObj.getDom().addClass("follower");
 				console.log("follow main character !", currentLine.character,followerObj, currentLine);
 				this.engin.characterEngin.removeFromDataSource(followerObj);
-				characterEngin.currentCharacter.follower = followerObj;
+				characterEngin.currentCharacter.setFollower(followerObj);
 			}
-
-
 		}
 
 		// 触发剧情

@@ -121,6 +121,8 @@ CharacterEngin.prototype = {
 				// 每次移动完成后，校验是否加载新地图 或者 触发剧情
 				_this.engin.checkEvent(x, y);
 			})
+		} else {
+			this.nextDirection = null;
 		}
 	},
 
@@ -244,8 +246,6 @@ CharacterEngin.prototype = {
 		var y = characterObj.y;
 		var dataSourcePoint = dataSource.get(x,y);
 		dataSourcePoint.character = null;
-
-		console.log("remove from data source", x,y, characterObj);
 	}
 }
 

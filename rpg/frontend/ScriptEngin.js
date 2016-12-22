@@ -22,7 +22,7 @@ ScriptEngin.prototype = {
 		var pos = mainCharacterInfo.position;
 		var faceTo = mainCharacterInfo.faceTo;
 		var currentCharacter = characterEngin._loadCharacter(name, pos, faceTo);
-		currentCharacter.getDom().addClass("currentCharacter").attr("z-index", "100");
+		currentCharacter.getDom().addClass("currentCharacter").css("z-index", "100");
 		characterEngin.setCurrentCharacter(currentCharacter);
 
 		// 加载其他人物

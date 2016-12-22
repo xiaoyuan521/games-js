@@ -312,7 +312,17 @@ Character.prototype = {
 	},
 
 	setFollower: function(follower){
-		this.follower = follower;
+		var followableCharacter = this._getFollowable(this);
+		console.log("((((((((((((", followableCharacter, followableCharacter.x, followableCharacter.y);
+		followableCharacter.follower = follower;
+	},
+
+	_getFollowable: function(character){
+		if(character.follower == null){
+			return character;
+		}else {
+			return this._getFollowable(character.follower);
+		}
 	},
 
 	clearFollower: function(characterObj){

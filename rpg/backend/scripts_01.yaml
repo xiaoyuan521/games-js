@@ -15,6 +15,20 @@
     position: "4_5"
     faceTo: left
     line_ref: line_6
+
+  boy05:
+    position: "4_3"
+    faceTo: left
+    line_ref: line_b05
+  boy06:
+    position: "5_3"
+    faceTo: left
+    line_ref: line_b06
+  boy07:
+    position: "6_3"
+    faceTo: left
+    line_ref: line_b07
+
  lines:
   line_1:
    - character: girl01
@@ -58,6 +72,22 @@
   line_6:
     - character: girl02
       content: 你好，我是【筱筱】。人家心情不好，现在不想说话。
+
+  line_b05:
+    - character: boy05
+      content: "你好"
+      follower:
+        name: boy05
+  line_b06:
+    - character: boy06
+      content: "你好"
+      follower:
+        name: boy06
+  line_b07:
+    - character: boy07
+      content: "你好"
+      follower:
+        name: boy07
 # 第二张地图
 "02":
  characters:
