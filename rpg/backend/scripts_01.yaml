@@ -85,7 +85,7 @@
         name: boy06
   line_b07:
     - character: boy07
-      content: "你好"
+      content: 你好，你是<span class="c_name">风行云</span>吧，我是<span class="c_name">李莫愁</span>
       follower:
         name: boy07
 # 第二张地图

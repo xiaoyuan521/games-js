@@ -39,7 +39,7 @@ Lines.prototype = {
 		var $options = $(".lines .options");
 		options.forEach(function(o, index){
 			$o = $('<div class="option"></div>')
-			$o.text(o.content).appendTo($options);
+			$o.html(o.content).appendTo($options);
 			if(index == 0){
 				$o.addClass("selected");
 			}
@@ -140,12 +140,12 @@ Lines.prototype = {
 		// 播放台词
 		var count = 1;
 		this.isPlaying = true;
+		var contentArr = this._getContentArr(currentLine.content);
 		this._interval_handler = setInterval(function(){
-			var content = currentLine.content;
-			var displayContent = currentLine.content.substring(0, count);
-			$content.text(displayContent);
+			var displayContent = contentArr.slice(0,count).join("");
+			$content.html(displayContent);
 			count++;
-			if(count > content.length) {
+			if(count > contentArr.length) {
 				clearInterval(_this._interval_handler);
 				var options = currentLine.options;
 				if(options){
@@ -167,7 +167,7 @@ Lines.prototype = {
 		}
 		var $content = $(".lines .content");
 		var currentLine = this._getCurrentLineObj();
-		$content.text(currentLine.content);
+		$content.html(currentLine.content);
 		clearInterval(this._interval_handler);
 		var options = currentLine.options;
 		if(options){
@@ -245,6 +245,18 @@ Lines.prototype = {
 		var lineArr = this.linesObj[this.currentRef];
 		var line = lineArr[this._index];
 		return line;
+	},
+
+	// 将对话内容分成每次显示的数组
+	// 由于对话内容中可能存在html语法，所以需要这样做
+	_getContentArr: function(content){
+		var regExp = new RegExp("[^<]|<.*?</.*?>", "g");
+		var result;
+		var contentArr = [];
+		while((result = regExp.exec(content)) != null){
+			contentArr.push(result[0]);
+		}
+		return contentArr;
 	}
 }
 
