@@ -63,3 +63,72 @@
 
   http://localhost:3000/rpg/index.html
 
+ * 剧情脚本的说明
+
+  * 普通对话
+
+  ```
+   - character: zhix
+     content: 今天天气不错
+  ```
+
+  * 对话内容的样式支持
+
+  ```
+    - character: boy07
+      content: 你好，你是<span class="c_name">风行云</span>吧，我是<span class="c_name">李莫愁</span>
+  ```
+
+  * 对话中选择
+
+  ```
+   - character: zhix
+     content: 恩。。。
+     options: 
+      - content: 你看大海多好看！
+        line_ref: line_2
+      - content: 有空儿狼人杀一把？
+        line_ref: line_3
+  ```
+
+  * 触发剧情
+
+  ```
+   - character: zhix
+     content: 好的！
+     script: 
+      key: "02"
+  ```
+
+  * 在选项中触发剧情
+
+  ```
+    - character: girl01
+      content: 让我想想。。。
+      options: 
+        - content: 接受任务
+          script: 
+            key: "02"
+            mapKey: null      # mapKey 设定的话，则重新加载地图
+            position: "3_3"   # position 可以不设定，人物保持原位（用于当前地图刷新）
+            faceTo: left      # 人物的面部朝向
+        - content: 不接受任务
+  ```
+
+  * 人物跟随
+
+  ```
+    - character: boy05
+      content: "你好"
+      follower:
+        name: boy05          # 这里只能设定一个名字，可以多人跟随
+  ```
+
+  * 结束人物跟随
+
+  ```
+    - character: boy05
+      content: "你好"
+      follower:
+        name:                 # 这里设定为空就是结束跟随
+  ```
