@@ -34,8 +34,8 @@ mapMapping:
    position: "0_5"
    faceTo: right
   "5_10":
-   map: "03"
-   position: "1_0"
+   map: "04"
+   position: "9_0"
    faceTo: down
 
 "02":
@@ -44,9 +44,9 @@ mapMapping:
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [tr,la,tr,la,tr,la,la,tr,la,la,tr]
   - [la,la,la,la,la,la,la,la,la,la,la]
-  - [la,la,la,la,la,la,la,la,la,la,la]
-  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [tr,la,la,tr,la,la,tr,la,la,la,tr]
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
   - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
@@ -56,22 +56,49 @@ mapMapping:
    map: "01"
    position: "10_4"
    faceTo: left
+  "10_5":
+    map: "03"
+    position: "0_1"
+    faceTo: "right"
 
 "03":
  data: 
-  - [tr,la,la,tr,tr,tr,tr,tr,tr,tr,tr]
-  - [tr,tr,la,la,tr,tr,tr,tr,tr,tr,tr]
-  - [tr,tr,tr,la,la,tr,tr,la,la,la,tr]
-  - [tr,tr,tr,tr,la,la,tr,la,tr,la,tr]
-  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
-  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
-  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
-  - [tr,tr,tr,tr,tr,la,tr,la,tr,la,tr]
-  - [tr,tr,tr,tr,tr,la,la,la,la,la,tr]
-  - [tr,tr,tr,tr,tr,tr,tr,la,tr,tr,tr]
-  - [tr,tr,tr,tr,tr,tr,tr,la,la,la,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+  - [la,la,la,la,la,la,la,la,la,la,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,la,tr]
+  - [tr,la,la,la,la,la,la,la,tr,la,tr]
+  - [tr,la,tr,tr,tr,tr,tr,la,tr,la,tr]
+  - [tr,la,tr,la,la,la,la,tr,tr,la,tr]
+  - [tr,la,tr,la,tr,tr,tr,la,tr,la,tr]
+  - [tr,la,tr,la,la,la,la,la,tr,la,tr]
+  - [tr,la,tr,tr,tr,tr,tr,tr,tr,la,tr]
+  - [tr,la,la,la,la,la,la,la,la,la,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,tr,tr,tr,tr]
  exits: 
-  "1_0":
+  "0_1":
+   map: "02"
+   position: "10_5"
+   faceTo: left
+
+"04":
+ data: 
+  - [tr,tr,la,tr,tr,la,tr,tr,tr,la,tr]
+  - [tr,la,la,tr,la,la,tr,tr,la,la,tr]
+  - [tr,tr,la,tr,tr,la,tr,tr,la,la,tr]
+  - [tr,tr,la,tr,tr,la,la,tr,la,la,tr]
+  - [tr,tr,la,tr,tr,la,tr,tr,la,la,tr]
+  - [la,la,la,la,la,la,la,la,la,la,la]
+  - [tr,tr,tr,la,la,la,tr,tr,tr,la,tr]
+  - [tr,tr,tr,la,la,la,tr,tr,tr,la,tr]
+  - [tr,tr,tr,tr,la,tr,la,tr,tr,la,tr]
+  - [tr,tr,tr,tr,tr,tr,tr,la,tr,tr,tr]
+  - [tr,la,tr,tr,tr,tr,tr,tr,tr,tr,tr]
+ exits: 
+  "9_0":
    map: "01"
    position: "5_10"
    faceTo: up
+  "10_5":
+    map: "05"
+    position: "0_5"
+    faceTo: right
