@@ -10,13 +10,13 @@
  lines:
   line_1:
    - character: zhix
-     content: 今天天气不错
+     content: 今天天气不错。
    - character: mengy
-     content: 是啊，挺风和日丽的
+     content: 是啊，挺风和日丽的。
    - character: zhix
-     content: 今天天气真好
+     content: 今天天气真好。
    - character: mengy
-     content: 你想说啥
+     content: 你想说啥。。。
    - character: zhix
      content: 恩。。。
      options: 
@@ -30,43 +30,9 @@
   line_3:
    - character: mengy
      content: 好啊！正闲没事儿，我给你们当法官，你去叫人吧。
+   - character: mengy
+     content: 到<span class="direction">右边</span>的林子里去，先找<span class="c_name">雷哥</span>来。
    - character: zhix
-     content: 好的！
+     content: 好嘞！
      script: 
       key: "02"
-  line_4:
-    - character: boy03
-      content: 我想请你帮个忙。
-    - character: boy03
-      content: 最近村子里来了很多的不速之客，我不知道该怎么办了，你能把村子里的长老找来么？
-    - character: boy03
-      content: 长老是个神龙见首不见尾的人，关于他的去向，你可以跟，【筱筱】打听一下。
-    - character: girl01
-      content: 让我想想。。。
-      options: 
-        - content: 接受任务
-          script: 
-            key: "02"
-            mapKey: null
-            position: "3_3"
-            faceTo: left
-        - content: 不接受任务
-  line_6:
-    - character: girl02
-      content: 你好，我是【筱筱】。人家心情不好，现在不想说话。
-
-  line_b05:
-    - character: boy05
-      content: "你好"
-      follower:
-        name: boy05
-  line_b06:
-    - character: boy06
-      content: "你好"
-      follower:
-        name: boy06
-  line_b07:
-    - character: boy07
-      content: 你好，你是<span class="c_name">风行云</span>吧，我是<span class="c_name">李莫愁</span>
-      follower:
-        name: boy07

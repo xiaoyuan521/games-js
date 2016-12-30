@@ -121,6 +121,11 @@ div.lines {
 	font-weight: bold;
 }
 
+.direction {
+	color: red;
+	margin: 0px 3px;
+}
+
 .zIndex100: {
 	z-index: 100;
 }
