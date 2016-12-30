@@ -1,9 +1,13 @@
 mainCharacter: 
- name: zhix
+ name: zhix1
  position: "6_6"
  faceTo: right
 
 characters:
+ zhix1: 
+  imgName: "zhix1.png"
+  avatar: "zhix1_avatar.png"
+  size: "32*48"
  mengy: 
   imgName: "mengy.png"
   avatar: "mengy_avatar.png"
