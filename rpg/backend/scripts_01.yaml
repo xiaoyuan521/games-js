@@ -3,55 +3,37 @@
 # 第一张地图
 "01":
  characters:
-  boy01:
+  mengy:
     position: "7_7"
     faceTo: left
     line_ref: line_1
-  boy03:
-    position: "5_5"
-    faceTo: down
-    line_ref: line_4
-  girl03:
-    position: "4_5"
-    faceTo: left
-    line_ref: line_6
-
-  boy05:
-    position: "4_3"
-    faceTo: left
-    line_ref: line_b05
-  boy06:
-    position: "5_3"
-    faceTo: left
-    line_ref: line_b06
-  boy07:
-    position: "6_3"
-    faceTo: left
-    line_ref: line_b07
-
  lines:
   line_1:
-   - character: girl01
+   - character: zhix
      content: 今天天气不错
-   - character: boy01
-     content: 是很不错，挺风和日丽的~
-   - character: girl01
-     content: 想吃点儿啥
+   - character: mengy
+     content: 是啊，挺风和日丽的
+   - character: zhix
+     content: 今天天气真好
+   - character: mengy
+     content: 你想说啥
+   - character: zhix
+     content: 恩。。。
      options: 
-      - content: 苹果
+      - content: 你看大海多好看！
         line_ref: line_2
-      - content: 葡萄
+      - content: 有空儿狼人杀一把？
         line_ref: line_3
   line_2:
-   - character: girl01
-     content: 回答错误！
+   - character: mengy
+     content: 少扯没用的！
   line_3:
-   - character: girl01
-     content: 回答正确，我也是这么想的~
-   - character: girl01
-     content: 我去给你削皮。 。。。
-   - character: boy01
-     content: 真好吃啊！
+   - character: mengy
+     content: 好啊！正闲没事儿，我给你们当法官，你去叫人吧。
+   - character: zhix
+     content: 好的！
+     script: 
+      key: "02"
   line_4:
     - character: boy03
       content: 我想请你帮个忙。
@@ -85,7 +67,7 @@
         name: boy06
   line_b07:
     - character: boy07
-      content: "你好"
+      content: 你好，你是<span class="c_name">风行云</span>吧，我是<span class="c_name">李莫愁</span>
       follower:
         name: boy07
 # 第二张地图

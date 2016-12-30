@@ -90,7 +90,7 @@ MapEngin.prototype = {
 		var x = posArr[0];
 		var y = posArr[1];
 
-		this.engin.characterEngin.currentCharacter.stop();
+		this.engin.characterEngin.currentCharacter.stop(true);
 		$(".character-overlay").show().focus();
 		// 加载地图
 		this.loadMap(mapName);
@@ -104,7 +104,6 @@ MapEngin.prototype = {
 			} else {
 				var follower = loadFollowerCharacterObj.follower;
 				follower.setPosition(x, y, faceTo);
-				console.log("_chang map ,load character 11111111");
 				loadFollowerCharacterObj = follower;
 			}
 		}

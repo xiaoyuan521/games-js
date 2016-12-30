@@ -115,6 +115,12 @@ div.lines {
     border-bottom: 5px solid transparent;
 }
 
+.c_name {
+	margin: 0px 3px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
 .zIndex100: {
 	z-index: 100;
 }
