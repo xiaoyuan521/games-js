@@ -1,0 +1,50 @@
+# 找@阿软
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_2
+ lines:
+  line_1:
+   - character: mengy
+     content: 去找<span class="c_name">阿软</span>来。
+
+  line_2:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+"03":
+ characters:
+  ar:
+    position: "6_7"
+    faceTo: right
+    line_ref: line_1
+  huanj:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_2
+ lines:
+  line_1:
+   - character: ar
+     content: <span class="c_name">志翔</span>，你怎么又来了？（哎，我怎么加了个又字）
+   - character: zhix
+     content: 狼人杀，缺人，找你来了。
+   - character: zhix
+     content: 你要是有正经事儿，不去也行。
+   - character: ar
+     content: 我去！干啥也不能耽误杀人！
+   - character: ar
+     content: 今天别再让我摸贫民啦！
+   - character: zhix
+     content: 呵呵~~
+     follower: 
+      name: ar
+     script:
+      key: "05"
+      

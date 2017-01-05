@@ -1,0 +1,41 @@
+# 找@雷哥任务
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: mengy
+     content: 到<span class="direction">右边</span>的林子里去，先找<span class="c_name">雷哥</span>来。
+   - character: mengy
+     content: 这里风景好，我在这里等。
+
+"02":
+ characters:
+  leig:
+    position: "6_4"
+    faceTo: down
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: leig
+     content: <span class="c_name">志翔</span>，你来干啥来了？
+   - character: zhix
+     content: 狼人杀啊？
+   - character: leig
+     content: 恩，正闲着没事儿，走吧~
+   - character: leig
+     content: 今天目标，活过第二轮。
+   - character: zhix
+     content: 知道<span class="c_name">阿软</span>在哪儿么？
+   - character: leig
+     content: 我刚才看见他追一个小姑娘，到<span class="direction">右边</span>的小树林子里去了。
+   - character: leig
+     content: 你先带我去集合地点，然后再去找。
+     follower:
+      name: leig
+     script:
+      key: "03"

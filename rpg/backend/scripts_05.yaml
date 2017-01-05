@@ -1,0 +1,46 @@
+# 找@欢姐
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_2
+ lines:
+  line_1:
+   - character: mengy
+     content: <span class="c_name">阿软</span>是你把<span class="c_name">欢姐</span>带走的，为啥没带回来？
+   - character: mengy
+     content: 把一个女孩儿留在树林里好么？
+   - character: mengy
+     content: 快去接回来！
+
+  line_2:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+"03":
+ characters:
+  huanj:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_2
+ lines:
+  line_2:
+   - character: ar
+     content: <span class="c_name">欢姐</span>，一起去狼人杀吧？
+   - character: huanj
+     content: <span class="c_name">牛哥</span>去么？ 他去我就有人踩啦。
+   - character: zhix
+     content: <span class="c_name">牛哥</span>会去的，一会儿我去喊他。
+   - character: huanj
+     content: 好，走吧。爆牛，查杀爆牛，啦啦啦啦~
+     follower: 
+      name: huanj
+     script:
+      key: "06"
+      

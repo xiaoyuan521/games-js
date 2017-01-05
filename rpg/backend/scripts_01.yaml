@@ -36,3 +36,49 @@
      content: 好嘞！
      script: 
       key: "02"
+
+"02":
+ characters:
+  leig:
+    position: "6_4"
+    faceTo: down
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: leig
+     content: <span class="c_name">志翔</span>，你来干啥来了？
+   - character: zhix
+     content: 溜达溜达。
+
+"03":
+ characters:
+  ar:
+    position: "6_7"
+    faceTo: right
+    line_ref: line_1
+  huanj:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_2
+ lines:
+  line_1:
+   - character: ar
+     content: <span class="c_name">志翔</span>，这是你该来的地方么？
+   - character: zhix
+     content: 啊，我出来溜达溜达。
+   - character: ar
+     content: 有大马路你不走，你往这里溜达啥。
+   - character: zhix
+     content: 就许你来，不许别人来啊。
+   - character: ar
+     content: 你个纱布，跟你没法说。
+   - character: ar
+     content: 2016赛季金面具啥时候请客？
+   - character: zhix
+     content: 那个 。。。。 回头见 ！
+   - character: huanj
+     content: <span class="c_name">阿软</span>，刚才你再跟谁说话。
+   - character: ar
+     content: 哦，没事儿，问路的。咱们继续。
+
+

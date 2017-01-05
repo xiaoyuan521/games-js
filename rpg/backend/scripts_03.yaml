@@ -1,0 +1,29 @@
+# 找到@雷哥
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: mengy
+     content: 好，找到<span class="c_name">雷哥</span>了，继续再找其他人，我们可是4 v 4 v 4的局
+   - character: mengy
+     content: <span class="c_name">雷哥</span>刚才应该告诉你<span class="c_name">阿软</span>的位置了，去吧。
+   - character: zhix
+     content: 好嘞~
+     follower:
+      name:
+     script:
+      key: "04"
+      mapKey: "01"
+      position:
+      faceTo:
+
+
+"02":
+ characters:
+
+

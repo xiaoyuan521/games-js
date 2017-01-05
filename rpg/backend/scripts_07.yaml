@@ -1,0 +1,43 @@
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_lei
+  ar:
+    position: "6_5"
+    faceTo: down
+    line_ref: line_ar
+  huanj:
+    position: "4_5"
+    faceTo: down
+    line_ref: line_huan
+ lines:
+  line_1:
+   - character: mengy
+     content: 太好了，一起回来了，赶快把，准备准备，<span class="c_name">雷哥</span>都等在那儿自言自语半天了！
+   - character: mengy
+     content: <span class="c_name">志翔</span>，再去<span class="direction">南边</span>找找人。
+   - character: zhix
+     content: OK！
+     script:
+      key: "07"
+      mapKey: "01"
+     follower:
+      name:
+
+  line_lei:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+  line_ar:
+   - character: ar
+     content: 别再让我摸民了，给我张郎牌。
+
+  line_huan:
+   - character: huanj
+     content: 踩牛哥！
