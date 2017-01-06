@@ -1,0 +1,52 @@
+# 找到@霍霍，@东，@丹，@乔
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_lei
+  ar:
+    position: "6_5"
+    faceTo: down
+    line_ref: line_ar
+  huanj:
+    position: "4_5"
+    faceTo: down
+    line_ref: line_huan
+ lines:
+  line_1:
+   - character: mengy
+     content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br></br>（一会儿<span class="c_name">牛哥/span>有要提女性战争了吧。）
+   - character: mengy
+     content: 各位，快找好自己位置吧。
+   - character: mengy
+     content: 对了，<span class="c_name">志翔</span>，刚<span class="c_name">牛哥</span>，<span class="c_name">广赫</span>，<span class="c_name">阿非</span>3个人，谁也不服谁，单挑去了。
+- character: mengy
+     content: 他们去了<span class="direction">北面</span>的林子，还拉了<span class="c_name">勇哥</span>去做裁判。你快去看看！
+   - character: zhix
+     content: 好咧，包我身上了，我一起把他3全灭了，金面具不是盖的！
+     script:
+      key: "12"
+      mapKey: "01"
+     follower:
+      name:
+
+  line_lei:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+  line_ar:
+   - character: ar
+     content: 别再让我摸民了，给我张狼！
+
+  line_huan:
+   - character: huanj
+     content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
+
+"07":
+ characters:

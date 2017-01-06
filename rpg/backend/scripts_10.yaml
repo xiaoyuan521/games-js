@@ -1,0 +1,37 @@
+# 找@大乔
+
+"06":
+ characters:
+
+"07":
+ characters:
+  daq:
+    position: "5_4"
+    faceTo: down
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: daq
+     content: 感觉我的脸好圆啊？
+   - character: daq
+     content: 我这是，在哪儿？ 我迷路了，地图怎么有点儿似曾相识的感觉。。。
+   - character: daq
+     content: 啊，你们几个怎么来了。
+   - character: danj
+     content: 我们是来找你的，怕你迷路。跟姐走吧。
+   - character: dongg
+     content: 跟我们走吧，这个地方不适合你。
+   - character: daq
+     content: 你也来了，<span class="c_name">阿东</span>，你的空气刘海儿怎么没了？
+   - character: dongg
+     content: 给我根烟，<span class="c_name">志翔</span>
+   - character: zhix
+     content: 呵呵。。。
+   - character: huohuo
+     content: 快把<span class="c_name">乔乔</span>拉走，这地方让她思维混乱。
+   - character: daq
+     content: 好吧，我跟你们走。
+     script:
+      key: "11"
+     follower: 
+      name: daq

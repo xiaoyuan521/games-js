@@ -1,0 +1,18 @@
+# 找 @牛哥
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_2
+ lines:
+  line_1:
+   - character: mengy
+     content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br></br>（一会儿<span class="c_name">牛哥/span>有要提女性战争了吧。）
+   - character: mengy
+     content: 去<span class="direction">北面</span>的林子找<span class="c_name">牛哥</span>他们。

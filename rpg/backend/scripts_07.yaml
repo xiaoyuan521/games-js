@@ -1,3 +1,5 @@
+# 找@霍霍
+
 "01":
  characters:
   mengy:
@@ -19,16 +21,9 @@
  lines:
   line_1:
    - character: mengy
-     content: 太好了，一起回来了，赶快把，准备准备，<span class="c_name">雷哥</span>都等在那儿自言自语半天了！
-   - character: mengy
-     content: <span class="c_name">志翔</span>，再去<span class="direction">南边</span>找找人。
+     content: 现在，算上你，已经4个人啦，再去<span class="direction">南边</span>的林子里找一找。
    - character: zhix
-     content: OK！
-     script:
-      key: "07"
-      mapKey: "01"
-     follower:
-      name:
+     content: 恩，这就去。
 
   line_lei:
    - character: leig
@@ -36,8 +31,41 @@
 
   line_ar:
    - character: ar
-     content: 别再让我摸民了，给我张郎牌。
+     content: 别再让我摸民了，给我张狼！
 
   line_huan:
    - character: huanj
-     content: 踩牛哥！
+     content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
+
+"04":
+ characters:
+  huohuo:
+    position: "4_8"
+    faceTo: up
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: huohuo
+     content: 哎，哎，哎~~~~~~~~
+   - character: zhix
+     content: <span class="c_name">霍霍</span>，你练啥功呢？
+   - character: huohuo
+     content: 看不懂么？天眼功！
+   - character: zhix
+     content: 听说你总结了一套狼人杀悯人的方法，好使么？
+   - character: huohuo
+     content: 好不好使看疗效啊。
+   - character: zhix
+     content: 那来一起玩儿吧。
+   - character: huohuo
+     content: 走起！
+   - character: huohuo
+     content: <span class="c_name">东哥</span>，<span class="c_name">丹姐</span>，<span class="c_name">大乔</span>都在<span class="direction">东南</span>方向，一起叫上吧。
+   - character: zhix
+     content: 那感情好！
+   - character: huohuo
+     content: 老司机，开车！
+     script:
+      key: "08"
+     follower:
+      name: huohuo

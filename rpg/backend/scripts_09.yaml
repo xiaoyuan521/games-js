@@ -1,0 +1,27 @@
+# 找@阿东
+
+"05":
+  characters:
+
+"06":
+ characters:
+  dongg:
+    position: "2_8"
+    faceTo: right
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: dongg
+     content: <span class="c_name">志翔</span>，你来的正好，有烟没？
+   - character: zhix
+     content: 来一根？
+   - character: dongg
+     content: 恩，给我一根，<span class="c_name">霍霍</span>和<span class="c_name">丹姐</span>怎么跟你再一起？
+   - character: zhix
+     content: 哦，找你来了，狼人杀。
+   - character: dongg
+     content: 靠，不早说，不抽了，走起！
+   - character: dongg
+     content: <span class="c_name">大乔</span>自己去<span class="direction">东边</span>的熊猫海岸玩儿了，别迷路了，我带你们去找她。
+     follower:
+      name: dongg

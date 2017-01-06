@@ -81,4 +81,57 @@
    - character: ar
      content: 哦，没事儿，问路的。咱们继续。
 
+"04":
+ characters:
+  huohuo:
+    position: "4_8"
+    faceTo: up
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: huohuo
+     content: 哎，哎，哎~~~~~~~~
+   - character: zhix
+     content: <span class="c_name">霍霍</span>，你练啥功呢？
+   - character: huohuo
+     content: 看不懂么？天眼功！
+
+"05":
+ characters:
+  danj:
+    position: "5_5"
+    faceTo: right
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: zhix
+     content: <span class="c_name">丹姐</span>，你别想不开啊，前面可是汪洋大海。
+   - character: danj
+     content: 你给我离远点儿！
+
+"06":
+ characters:
+  dongg:
+    position: "2_8"
+    faceTo: right
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: dongg
+     content: <span class="c_name">志翔</span>，你来的正好，有烟没？
+   - character: zhix
+     content: 我上班要迟到了，先走啦。
+
+"07":
+ characters:
+  daq:
+    position: "5_4"
+    faceTo: down
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: daq
+     content: 感觉我的脸好圆啊？
+   - character: daq
+     content: 我这是，在哪儿？ 我迷路了，地图怎么有点儿似曾相识的感觉。。。
 

@@ -1,0 +1,64 @@
+# 找@丹姐
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_lei
+  ar:
+    position: "6_5"
+    faceTo: down
+    line_ref: line_ar
+  huanj:
+    position: "4_5"
+    faceTo: down
+    line_ref: line_huan
+ lines:
+  line_1:
+   - character: mengy
+     content: 把<span class="c_name">东哥</span>，<span class="c_name">丹姐</span>，<span class="c_name">大乔</span>一起找来。
+   - character: zhix
+     content: 恩，这就去。
+
+  line_lei:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+  line_ar:
+   - character: ar
+     content: 别再让我摸民了，给我张狼！
+
+  line_huan:
+   - character: huanj
+     content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
+
+"04":
+  characters:
+
+"05":
+ characters:
+  danj:
+    position: "5_5"
+    faceTo: right
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: zhix
+     content: <span class="c_name">丹姐</span>，你别想不开啊，前面可是汪洋大海。
+   - character: danj
+     content: 我有点儿困，让我睡一觉。
+   - character: huohuo
+     content: 丹姐，玩狼人杀啦！
+   - character: danj
+     content: 啊！不早说，快走！
+   - character: zhix
+     content: 。。。。。。。。
+     script: 
+      key: "09"
+     follower: 
+      name:"danj"
