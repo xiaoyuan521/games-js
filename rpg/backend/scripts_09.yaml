@@ -25,3 +25,5 @@
      content: <span class="c_name">大乔</span>自己去<span class="direction">东边</span>的熊猫海岸玩儿了，别迷路了，我带你们去找她。
      follower:
       name: dongg
+     script:
+      key: "10"

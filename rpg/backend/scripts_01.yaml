@@ -35,7 +35,7 @@
    - character: zhix
      content: 好嘞！
      script: 
-      key: "02"
+      key: "07"
 
 "02":
  characters:
@@ -123,6 +123,19 @@
      content: 我上班要迟到了，先走啦。
 
 "07":
+ characters:
+  daq:
+    position: "5_4"
+    faceTo: down
+    line_ref: line_1
+ lines:
+  line_1:
+   - character: daq
+     content: 感觉我的脸好圆啊？
+   - character: daq
+     content: 我这是，在哪儿？ 我迷路了，地图怎么有点儿似曾相识的感觉。。。
+
+"08":
  characters:
   daq:
     position: "5_4"

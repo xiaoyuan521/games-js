@@ -9,10 +9,62 @@
   leig:
     position: "5_5"
     faceTo: down
-    line_ref: line_2
+    line_ref: line_lei
+  ar:
+    position: "6_5"
+    faceTo: down
+    line_ref: line_ar
+  huanj:
+    position: "4_5"
+    faceTo: down
+    line_ref: line_huan
+  huohuo:
+    position: "3_5"
+    faceTo: down
+    line_ref: line_huo
+  daq:
+    position: "2_5"
+    faceTo: down
+    line_ref: line_qiao
+  dongg:
+    position: "2_6"
+    faceTo: right
+    line_ref: line_dong
+  danj:
+    position: "2_7"
+    faceTo: up
+    line_ref: line_dan
  lines:
   line_1:
    - character: mengy
      content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br></br>（一会儿<span class="c_name">牛哥/span>有要提女性战争了吧。）
    - character: mengy
      content: 去<span class="direction">北面</span>的林子找<span class="c_name">牛哥</span>他们。
+
+  line_lei:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+  line_ar:
+   - character: ar
+     content: 别再让我摸民了，给我张狼！
+
+  line_huan:
+   - character: huanj
+     content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
+
+  line_huohuo:
+   - character: huohuo
+     content: 今天如果是好身份，直接开天眼，如果是女巫，直接盲毒。
+
+  line_qiao:
+   - character: daq
+     content: 今天谁给我发金水我都不接。
+
+  line_dong:
+   - character: dongg
+     content: 我要上警，报个强神玩儿。
+
+  line_dan:
+   - character: danj
+     content: 别跟我说话，好紧张，让我做做心里建设！
