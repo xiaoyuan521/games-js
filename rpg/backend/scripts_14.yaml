@@ -1,0 +1,31 @@
+# 找到@牛哥
+
+"08":
+ characters:
+  niug:
+    position: "3_5"
+    faceTo: right
+    line_ref: line_2
+  guangh:
+    position: "5_5"
+    faceTo: left
+    line_ref: line_3
+ lines:
+  line_2:
+   - character: niug
+     content: 1 v 1 v 1 的局，我拿狼，刀谁都赢，哈哈哈。总这么玩儿有希望不是积分不再垫底了。
+   - character: zhix
+     content: 。。。
+   - character: yongg
+     content: 玩444的局了，走吧。
+   - character: niug
+     content: 什么！眼看就要赢的局。。。注定要积分垫底。。。
+     follower:
+       name: niug
+     script: 
+       key: "15"
+  line_3:
+   - character: guangh
+     content: 1 v 1 v 1 的局，我是贫民，我准备把这2个人全干死！
+   - character: zhix
+     content: 。。。

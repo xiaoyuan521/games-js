@@ -1,0 +1,44 @@
+# 找到@闫永
+
+"08":
+ characters:
+  af:
+    position: "4_4"
+    faceTo: down
+    line_ref: line_1
+  niug:
+    position: "3_5"
+    faceTo: right
+    line_ref: line_2
+  guangh:
+    position: "5_5"
+    faceTo: left
+    line_ref: line_3
+ lines:
+  line_1:
+   - character: af
+     content: 1 v 1 v 1 的局，我拿预言家，估计又没人跟我悍跳了。
+   - character: zhix
+     content: 。。。
+   - character: yongg
+     content: 别玩了，走吧。
+   - character: af
+     content: 找什么急，眼看我就要把<span class="c_name">牛哥</span>归出去了。
+   - character: yongg
+     content: 玩444了，大家都等着呢。
+   - character: af
+     content: 哦，好吧。
+     follower:
+       name: af
+     script: 
+       key: "14"
+  line_2:
+   - character: niug
+     content: 1 v 1 v 1 的局，我拿狼，刀谁都赢，哈哈哈。总这么玩儿有希望不是积分不再垫底了。
+   - character: zhix
+     content: 。。。
+  line_3:
+   - character: guangh
+     content: 1 v 1 v 1 的局，我是贫民，我准备把这2个人全干死！
+   - character: zhix
+     content: 。。。

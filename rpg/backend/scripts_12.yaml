@@ -1,4 +1,4 @@
-# 找 @牛哥
+# 找 @牛哥，广赫，阿非，闫勇
 
 "01":
  characters:
@@ -37,7 +37,7 @@
  lines:
   line_1:
    - character: mengy
-     content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br></br>（一会儿<span class="c_name">牛哥/span>有要提女性战争了吧。）
+     content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br></br>（一会儿<span class="c_name">牛哥/span>又要提女性战争了吧。）
    - character: mengy
      content: 去<span class="direction">北面</span>的林子找<span class="c_name">牛哥</span>他们。
 
@@ -53,13 +53,19 @@
    - character: huanj
      content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
 
-  line_huohuo:
+  line_huo:
    - character: huohuo
      content: 今天如果是好身份，直接开天眼，如果是女巫，直接盲毒。
 
   line_qiao:
    - character: daq
      content: 今天谁给我发金水我都不接。
+   - character: zhix
+     content: 要是我给你发金水呢？
+   - character: daq
+     content: 直接拍死你！
+   - character: zhix
+     content: 呵呵。
 
   line_dong:
    - character: dongg
@@ -68,3 +74,62 @@
   line_dan:
    - character: danj
      content: 别跟我说话，好紧张，让我做做心里建设！
+
+"08":
+ characters:
+  af:
+    position: "4_4"
+    faceTo: down
+    line_ref: line_1
+  niug:
+    position: "3_5"
+    faceTo: right
+    line_ref: line_2
+  guangh:
+    position: "5_5"
+    faceTo: left
+    line_ref: line_3
+  yongg:
+    position: "8_6"
+    faceTo: left
+    line_ref: line_4
+ lines:
+  line_1:
+   - character: af
+     content: 1 v 1 v 1 的局，我拿预言家，估计又没人跟我悍跳了。
+   - character: zhix
+     content: 。。。
+  line_2:
+   - character: niug
+     content: 1 v 1 v 1 的局，我拿狼，刀谁都赢，哈哈哈。总这么玩儿有希望不是积分不再垫底了。
+   - character: zhix
+     content: 。。。
+  line_3:
+   - character: guangh
+     content: 1 v 1 v 1 的局，我是贫民，我准备把这2个人全干死！
+   - character: zhix
+     content: 。。。
+  line_4:
+   - character: yongg
+     content: 他们3个非得要玩儿1 v 1 v 1的局，说要决一死战，我拦也拦不住啊。
+   - character: zhix
+     content: 。。。
+   - character: zhix
+     content: 那他们3个为啥隔着这么远呢？说话也听不清楚啊。
+   - character: yongg
+     content: 他们说，这样就不会被颜杀了，保证绝对公平！
+   - character: zhix
+     content: 现在大家都等着他们3个能，开4 v 4 v 4的局，叫他们3个别刚了。
+   - character: yongg
+     content: "       "
+     options:
+      - content: 让他们玩儿吧，你们等一会儿。
+      - content: 赶紧把他们3个叫停，一起去玩儿 4 v 4 v 4的局
+        line_ref: line_5
+  line_5:
+   - character: zhix
+     content: 好的
+     script:
+      key: "13"
+     follower:
+      name: yongg

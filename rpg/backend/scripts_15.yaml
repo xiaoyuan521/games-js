@@ -1,0 +1,24 @@
+# 找到@广赫
+
+"08":
+ characters:
+  guangh:
+    position: "5_5"
+    faceTo: left
+    line_ref: line_3
+ lines:
+  line_3:
+   - character: guangh
+     content: 1 v 1 v 1 的局，我是贫民，我准备把这2个人全干死！
+   - character: zhix
+     content: 。。。
+   - character: guangh
+     content: 哎？你们怎么都过来了，说好的不带颜杀的！
+   - character: yongg
+     content: 开444的局了，快走。
+   - character: guangh
+     content: 哦，一样，444的局也能怼死他们两个，哈哈哈。
+     follower:
+       name: guangh
+     script: 
+       key: "16"

@@ -22,12 +22,14 @@
   line_1:
    - character: mengy
      content: 太好了，<span class="c_name">丹姐</span>和<span class="c_name">乔乔</span>也来了，支持女性玩家，fighting！<br/>（一会儿<span class="c_name">牛哥</span>又要提女性战争了吧。）
+   - character: daq
+     content: 他再敢提，直接把他刀了。
    - character: mengy
-     content: 各位，快找好自己位置吧。
+     content: 恩恩，我看行，<br/>各位，快找好自己位置吧。
    - character: mengy
-     content: 对了，<span class="c_name">志翔</span>，刚<span class="c_name">牛哥</span>，<span class="c_name">广赫</span>，<span class="c_name">阿非</span>3个人，谁也不服谁，单挑去了。
+     content: 对了，<span class="c_name">志翔</span>，<span class="c_name">牛哥</span>，<span class="c_name">广赫</span>，<span class="c_name">阿非</span>3个人，谁也不服谁，单挑去了。
    - character: mengy
-     content: 他们去了<span class="direction">北面</span>的林子，还拉了<span class="c_name">勇哥</span>去做裁判。你快去看看！
+     content: 他们去了<span class="direction">北面</span>的林子，还拉了<span class="c_name">勇哥</span>去做法官。你快去看看！
    - character: zhix
      content: 好咧，包我身上了，金面具一出，把他们3个全灭了！
      script:

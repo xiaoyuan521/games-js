@@ -35,7 +35,7 @@
    - character: zhix
      content: 好嘞！
      script: 
-      key: "07"
+      key: "12"
 
 "02":
  characters:
@@ -137,14 +137,46 @@
 
 "08":
  characters:
-  daq:
-    position: "5_4"
+  af:
+    position: "4_4"
     faceTo: down
     line_ref: line_1
+  niug:
+    position: "3_5"
+    faceTo: right
+    line_ref: line_2
+  guangh:
+    position: "5_5"
+    faceTo: left
+    line_ref: line_3
+  yongg:
+    position: "8_6"
+    faceTo: left
+    line_ref: line_4
  lines:
   line_1:
-   - character: daq
-     content: 感觉我的脸好圆啊？
-   - character: daq
-     content: 我这是，在哪儿？ 我迷路了，地图怎么有点儿似曾相识的感觉。。。
+   - character: af
+     content: 1 v 1 v 1 的局，我拿预言家，估计又没人跟我悍跳了。
+   - character: zhix
+     content: 。。。
+  line_2:
+   - character: niug
+     content: 1 v 1 v 1 的局，我拿狼，刀谁都赢，哈哈哈。总这么玩儿有希望不是积分不再垫底了。
+   - character: zhix
+     content: 。。。
+  line_3:
+   - character: guangh
+     content: 1 v 1 v 1 的局，我是贫民，我准备把这2个人全干死！
+   - character: zhix
+     content: 。。。
+  line_4:
+   - character: yongg
+     content: 他们3个非得要玩儿1 v 1 v 1的局，说要决一死战，我拦也拦不住啊。
+   - character: zhix
+     content: 。。。
+   - character: zhix
+     content: 那他们3个为啥隔着这么远呢？说话也听不清楚啊。
+   - character: yongg
+     content: 他们说，这样就不会被颜杀了，保证绝对公平！
+
 
