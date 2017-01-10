@@ -22,11 +22,11 @@ mapMapping:
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [la,la,la,la,la,la,la,la,la,la,la]
-  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
-  - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,la,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,la,la,la,la,la,la,tr,tr,tr]
+  - [tr,tr,la,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,la,la,la,la,la,tr,tr,tr]
   - [tr,tr,tr,be,be,br,be,be,tr,tr,tr]
-  - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
   - [tr,tr,tr,be,se,br,se,be,tr,tr,tr]
  exits: 
   "10_4":
@@ -178,7 +178,7 @@ mapMapping:
   - [la,la,la,la,la,la,la,la,la,la,la]
   - [la,la,la,la,la,la,la,la,la,la,la]
   - [la,la,tr,la,la,la,tr,la,la,la,la]
-  - [la,la,la,tr,la,tr,la,la,la,la,la]
+  - [la,la,la,tr,tr,tr,la,la,la,la,la]
   - [la,la,la,la,tr,la,la,la,la,la,la]
   - [la,la,la,la,tr,la,la,la,la,la,la]
   - [la,la,la,la,tr,la,la,la,la,la,la]

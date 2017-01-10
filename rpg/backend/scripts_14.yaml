@@ -19,7 +19,7 @@
    - character: yongg
      content: 玩444的局了，走吧。
    - character: niug
-     content: 什么！眼看就要赢的局。。。注定要积分垫底。。。
+     content: 什么！眼看就要赢的局。。。又不算啦，<br/>注定要积分垫底。。。只能找<span class="c_name">东哥</span>改数据库了！
      follower:
        name: niug
      script: 
