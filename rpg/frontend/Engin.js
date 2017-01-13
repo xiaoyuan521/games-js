@@ -41,7 +41,7 @@ function Engin(config) {
 
 	this.linesEngin = null;
 
-	this.debugMode = true;
+	this.debugMode = false;
 	window.engin = this;
 }
 
