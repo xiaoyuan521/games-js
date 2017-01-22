@@ -1,3 +1,3 @@
 ### 游戏截图
 
-[[rpg.png]]
+[[/games/rpg/rpg.png]]
