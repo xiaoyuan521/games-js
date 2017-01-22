@@ -1,5 +1,7 @@
 var CoorMap = require("./CoorMap.js");
 
+var SNAKE_SPPED = 200;
+
 var Snake = function(box, drawer){
 	this.box = box;
 	this.drawer = drawer;
@@ -53,7 +55,7 @@ Snake.prototype = {
 		var _this = this;
 		this.handler = setInterval(function(){
 			_this.move();
-		}, 100);
+		}, SNAKE_SPPED);
 	},
 
 	move: function(){
