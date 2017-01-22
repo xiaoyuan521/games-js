@@ -1,3 +1,3 @@
 ### 游戏截图
 
-[[/rpg.png]]
+![text](rpg.png)
