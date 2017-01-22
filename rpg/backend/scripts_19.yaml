@@ -1,0 +1,116 @@
+# 结束
+
+"01":
+ characters:
+  mengy:
+    position: "7_7"
+    faceTo: left
+    line_ref: line_1
+  leig:
+    position: "5_5"
+    faceTo: down
+    line_ref: line_lei
+  ar:
+    position: "6_5"
+    faceTo: down
+    line_ref: line_ar
+  huanj:
+    position: "4_5"
+    faceTo: down
+    line_ref: line_huan
+  huohuo:
+    position: "3_5"
+    faceTo: down
+    line_ref: line_huo
+  daq:
+    position: "2_5"
+    faceTo: down
+    line_ref: line_qiao
+  dongg:
+    position: "2_6"
+    faceTo: right
+    line_ref: line_dong
+  danj:
+    position: "2_7"
+    faceTo: right
+    line_ref: line_dan
+  niug:
+    position: "3_8"
+    faceTo: up
+    line_ref: line_niu
+  yongg:
+    position: "4_8"
+    faceTo: up
+    line_ref: line_yong
+  guangh:
+    position: "5_8"
+    faceTo: up
+    line_ref: line_guang
+  af:
+    position: "6_7"
+    faceTo: left
+    line_ref: line_fei
+  zhix:
+    position: "6_6"
+    faceTo: right
+    line_ref: line_xiang
+
+ lines:
+  line_1:
+   - character: mengy
+     content: 故事就这样，结束了，希望给您带去了一丝欢乐！
+
+  line_lei:
+   - character: leig
+     content: 我已经做好了充分的准备，绝对要活过第二轮！！！
+
+  line_ar:
+   - character: ar
+     content: 别再让我摸民了，给我张狼！
+
+  line_huan:
+   - character: huanj
+     content: 踩<span class="c_name">牛哥</span>！啦啦啦啦啦！
+
+  line_huo:
+   - character: huohuo
+     content: 今天如果是好身份，直接开天眼，如果是女巫，直接盲毒。
+
+  line_qiao:
+   - character: daq
+     content: 今天谁给我发金水我都不接。
+   - character: zhix
+     content: 要是我给你发金水呢？
+   - character: daq
+     content: 直接拍死你！
+   - character: zhix
+     content: 呵呵。
+
+  line_dong:
+   - character: dongg
+     content: 我要上警，报个强神玩儿。
+
+  line_dan:
+   - character: danj
+     content: 别跟我说话，好紧张，让我做做心里建设！
+
+  line_niu:
+   - character: niug
+     content: 今天准备玩儿花板子，但愿别又抗推。
+
+  line_yong:
+   - character: yongg
+     content: 我已经准备好拿预言家了。
+
+  line_guang:
+   - character: guangh
+     content: 我悄悄跟我队友说一下，我悍跳，你们都别上警，在警下给我上票。
+   - character: guangh
+     content: 我要展示一下微告第一狼王的实力！
+
+  line_fei:
+   - character: af
+     content: 发牌别挡着我，我抿一下<span class="c_name">雷哥</span>的身份。
+   - character: af
+     content: 哦~ 看出来了，<span class="c_name">雷哥</span>是匹狼呀。
+

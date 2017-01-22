@@ -180,10 +180,10 @@ Character.prototype = {
 
 		var nextPositions = this._getPositionXY(singleXy.x, singleXy.y, nextMove);
 		var $characterDom = this.getDom();
+		var positionStr = nextPositions.x + "px " + nextPositions.y + "px";
 		$characterDom.css({
 			"position":"absolute",
-			"background-position-x": nextPositions.x + "px",
-			"background-position-y": nextPositions.y + "px"
+			"background-position": positionStr
 		});
 	},
 

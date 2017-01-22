@@ -64,11 +64,19 @@
    - character: mengy
      content: 哈哈。我也乐在其中！
    - character: mengy
-     content: 好了，你也准备好吧。
+     content: 好了，2017年新年到了，咱们也给大家拜个年吧~
+   - character: zhix
+     content: 对，对，祝大家新年快乐，完事如意。
    - character: mengy
-     content: 天黑请闭眼！！！！！！
+     content: 祝大家在新的一年中狼人杀玩儿得更开心，都能成为carray大神！
+   - character: zhix
+     content: 祝大家在新的一年中都能像我一样，取得金面具的好成绩！
+   - character: mengy
+     content: 恩，那个，<span class="c_name">志翔</span>， 这就不用提了。。。
+   - character: mengy
+     content: 好，请大家确认自己身份<br/>天黑请闭眼！
      script:
-      key: "18"
+      key: "19"
       mapkey: "01"
 
   line_lei:

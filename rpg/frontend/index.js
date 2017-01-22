@@ -5,5 +5,7 @@ var engin = new Engin(config);
 
 
 $(function(){
+
 	engin.init();
+
 })

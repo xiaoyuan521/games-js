@@ -4,6 +4,11 @@
 	font-size: 16px;
 }
 
+html,body {
+	padding: 10px;
+	position: relative;
+}
+
 .debug {
 	border: 1px solid red;
 	background-color: white;

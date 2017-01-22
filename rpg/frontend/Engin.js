@@ -66,6 +66,8 @@ Engin.prototype = {
 
 			_this.linesEngin = new LinesEngin(_this);
 			_this.linesEngin.init();
+
+			$("#loading").hide();
 		});
 	},
 
