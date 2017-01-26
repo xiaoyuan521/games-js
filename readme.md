@@ -52,8 +52,8 @@
 
  * 素材
 
-  万能的贴吧  
-  http://tieba.baidu.com/p/2833008853
+    万能的贴吧  
+    http://tieba.baidu.com/p/2833008853
 
  * 各种原理
 
@@ -65,7 +65,7 @@
 
  * 游戏运行
 
-  http://localhost:3004/rpg/index.html
+    http://localhost:3004/rpg/index.html
 
  * 剧情脚本的说明
 
