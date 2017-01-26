@@ -40,15 +40,15 @@
 
  * 编译js
 
-  watchify rpg/frontend/*.js -o rpg/build/bundle.js --debug
+    watchify rpg/frontend/*.js -o rpg/build/bundle.js --debug
 
  * 启动后台
 
-  nodemon rpg/server_rpg.js
+    nodemon rpg/server_rpg.js
 
  * unit test的执行
 
-  jasmine
+    jasmine
 
  * 素材
 
