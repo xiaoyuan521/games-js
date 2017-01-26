@@ -19,20 +19,19 @@
 
  * 编译js
 
-  watchify snake/*.js -o snake/build/bundle.js --debug
+    watchify snake/*.js -o snake/build/bundle.js --debug
 
  * 启动后台
 
-  nodemon server_snake.js
-
+    nodemon server_snake.js
 
  * unit test的执行
 
-  jasmine
+    jasmine
 
  * 游戏运行
 
-  http://localhost:3000/snake/index.html
+    http://localhost:3000/snake/index.html
 
 ---
 
